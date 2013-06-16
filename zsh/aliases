@@ -1,0 +1,8 @@
+alias netrst='sudo service networking restart' 
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias rdbtp='rake -t db:test:prepare'
+alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp *'
+alias fullretag='ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`'
+alias g='git status'
+
+alias typealot="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
