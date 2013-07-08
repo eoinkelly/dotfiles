@@ -17,27 +17,45 @@ Bundle 'gmarik/vundle'
 Bundle 'ack.vim'
 Bundle 'ag.vim'
 Bundle 'ctrlp.vim'
-Bundle 'haskellmode-vim'
+Bundle 'lukerandall/haskellmode-vim'
 Bundle 'jshint.vim'
 Bundle 'rename.vim'
-Bundle 'syntastic'
-Bundle 'tabular'
-Bundle 'tcomment_vim'
-Bundle 'vim-abolish'
-Bundle 'vim-haml'
-Bundle 'vim-handlebars'
-Bundle 'vim-rails'
-Bundle 'vim-repeat'
-Bundle 'vim-ruby'
-Bundle 'vim-surround'
-Bundle 'vim-unimpaired'
-Bundle 'zencoding-vim'
-
-" Themes
-Bundle 'vividchalk.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'godlygeek/tabular'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-haml'
+Bundle 'nono/vim-handlebars'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-repeat'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'mattn/zencoding-vim'
+Bundle 'bling/vim-airline'
+" 
+" " Themes
+Bundle 'tpope/vividchalk.vim'
 Bundle 'chriskempson/base16-vim'
-
+" 
 Bundle 'eoin-tomorrow-theme'
+" 
+
+" ========================================================================
+" vim-airline
+" ========================================================================
+let g:airline_enable_syntastic=1
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_linecolumn_prefix = '␊ '
+let g:airline_linecolumn_prefix = '␤ '
+let g:airline_linecolumn_prefix = '¶ '
+let g:airline_fugitive_prefix = '⎇ '
+let g:airline_paste_symbol = 'ρ'
+let g:airline_paste_symbol = 'Þ'
+let g:airline_paste_symbol = '∥'
 
 " ========================================================================
 " General stuff
@@ -55,7 +73,7 @@ set autoindent
 set number
 
 " This is sorta nice but slow in terminal vim
-" set relativenumber
+set relativenumber
 " au FocusLost * :set number
 " au FocusGained * :set relativenumber
 " autocmd InsertEnter * :set number

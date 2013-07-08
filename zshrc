@@ -58,7 +58,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rvm)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/zsh/aliases
@@ -66,7 +66,10 @@ source $HOME/.dotfiles/zsh/functions
 
 
 # Load RVM 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+# Load rbenv
+eval "$(rbenv init -)"
 
 # Stuff I got from r00k's zshrc that i'm not sure I need:
 # Disable flow control commands (keeps C-s from freezing everything)
@@ -96,14 +99,20 @@ export RUBY_HEAP_FREE_MIN=500000
 # I think this is for Tmux (can't remember) 
 TERM=screen-256color
 
-export EDITOR=/usr/bin/vim
-
-PATH=$PATH:$HOME/bin
-PATH=$PATH:$HOME/.rvm/bin
-PATH=$PATH:$HOME/.cabal/bin
+export EDITOR="/usr/local/bin/vim"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH" 
+
+# Add homebrew 
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH" 
+
+# Add node & npm
+export PATH="/usr/local/share/npm/bin:$PATH" 
+
+# Add android dev tools
+export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH" 
+export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH" 
 
 ### Keychain Setup
 keychain --nocolor ~/.ssh/id_rsa
@@ -118,15 +127,14 @@ keychain --nocolor ~/.ssh/id_rsa
  
 # this tests for the presence of rvm 
 # if its loaded, it'll add the prompt
-function rvm_info_for_prompt {
-  # v = ruby version, p = patch, g = gemset
-  ruby_version=$(~/.rvm/bin/rvm-prompt v p g)
-  if [ -n "$ruby_version" ]; then
-    echo "[$ruby_version]"
-  fi
-}
-
-RPROMPT="%{$fg[yellow]%}$(rvm_info_for_prompt)%{$reset_color%}"
+# function rvm_info_for_prompt {
+#   # v = ruby version, p = patch, g = gemset
+#   ruby_version=$(~/.rvm/bin/rvm-prompt v p g)
+#   if [ -n "$ruby_version" ]; then
+#     echo "[$ruby_version]"
+#   fi
+# }
+# RPROMPT="%{$fg[yellow]%}$(rvm_info_for_prompt)%{$reset_color%}"
 
 # precmd () {
 #   export RPROMPT="%{$fg[green]%}$(rvm_info_for_prompt)%{$reset_color%}"

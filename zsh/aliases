@@ -6,3 +6,7 @@ alias fullretag='ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=
 alias g='git status'
 
 alias typealot="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
+
+alias pg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log'
+
+alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
