@@ -33,8 +33,11 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'mattn/zencoding-vim'
 Bundle 'bling/vim-airline'
-" 
-" " Themes
+" Bundle 'marijnh/tern_for_vim'
+Bundle 't9md/vim-ruby_eval'
+Bundle 'editorconfig/editorconfig-vim'
+ 
+" Themes
 Bundle 'tpope/vividchalk.vim'
 Bundle 'chriskempson/base16-vim'
 " 
@@ -45,18 +48,28 @@ Bundle 'eoin-tomorrow-theme'
 " vim-airline
 " ========================================================================
 let g:airline_enable_syntastic=1
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_linecolumn_prefix = '␊ '
-let g:airline_linecolumn_prefix = '␤ '
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_fugitive_prefix = '⎇ '
-let g:airline_paste_symbol = 'ρ'
-let g:airline_paste_symbol = 'Þ'
-let g:airline_paste_symbol = '∥'
 
+" let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+
+" let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+
+" let g:airline_linecolumn_prefix = '␊ '
+let g:airline_linecolumn_prefix = '␤ '
+" let g:airline_linecolumn_prefix = '¶ '
+
+let g:airline_fugitive_prefix = '⎇ '
+
+let g:airline_paste_symbol = 'ρ'
+" let g:airline_paste_symbol = 'Þ'
+" let g:airline_paste_symbol = '∥'
+
+" change the theme (available options: dark, light, simple, badwolf)
+let g:airline_theme='dark'
+
+" * enable/disable usage of patched powerline font symbols
+let g:airline_powerline_fonts=1
 " ========================================================================
 " General stuff
 " ========================================================================
@@ -138,6 +151,10 @@ highlight StatusLine ctermfg=blue ctermbg=yellow
 " Ctrlp
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 5
+
+" MacVim
+" ======
+set guifont=Monaco:h12
 
 " ==========================================================
 " Statusline Control
@@ -239,6 +256,7 @@ end
 " ==========================================================
 " experimental thing which is supposed to speed up vim with ruby files
 " let g:ruby_path = system('rvm current')
+
 
 source ~/.vim/functions.vim
 source ~/.vim/aliases.vim 
