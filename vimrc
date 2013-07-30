@@ -36,6 +36,7 @@ Bundle 'bling/vim-airline'
 " Bundle 'marijnh/tern_for_vim'
 Bundle 't9md/vim-ruby_eval'
 Bundle 'editorconfig/editorconfig-vim'
+Bundle 'tpope/vim-eunuch'
  
 " Themes
 Bundle 'tpope/vividchalk.vim'
@@ -135,7 +136,7 @@ set listchars=tab:▸\ ,eol:¬
 " set tags=./tags;
 
 " Use _ as a word-separator
-set iskeyword-=_
+" set iskeyword-=_
 
 set hlsearch
 

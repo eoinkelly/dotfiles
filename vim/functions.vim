@@ -92,3 +92,26 @@ function! RunNearestTest()
     let spec_line_number = line('.')
     call RunTestFile(":" . spec_line_number)
 endfunction
+
+" Copy selected lines to the system clipboard
+" *******************************************
+" Copy the selected lines to the system pasteboard
+" function SystemClipboardCopy() range
+"   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
+" endfunction
+"
+" com -range=% -nargs=0 SystemClipboardCopy :<line1>,<line2>call SystemClipboardCopy()
+
+" Evaluate the selected lines w. ruby and print output
+" ****************************************************
+" function EvalRuby() range
+"   let 
+"   let ruby_code = join(getline(a:firstline, a:lastline), "\n")
+"   let ruby_output = system('echo '.shellescape(ruby_code).'| ruby ')
+" 
+"   " execute "normal " . a:lastline . "G"
+"   " execute "normal o# => " . ruby_code . "\<Esc>ddk"
+"   execute "normal o# => " . ruby_code . "\<Esc>ddk"
+" endfunction
+" 
+" com -range=% -nargs=0 EvalRuby :<line1>,<line2>call EvalRuby()

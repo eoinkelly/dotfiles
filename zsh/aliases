@@ -3,10 +3,16 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias rdbtp='rake -t db:test:prepare'
 alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp *'
 alias fullretag='ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`'
-alias g='git status'
 
-alias typealot="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
+alias g='git status'
+alias gc='git commit'
+alias ga='git add'
+
+# alias typealot="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
+alias typealot="history | ~/.dotfiles/bin/typealot.rb | sort -rn | head -n 20"
 
 alias pg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log'
 
 alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
+
+alias ri='ri --format ansi'
