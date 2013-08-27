@@ -44,3 +44,6 @@ def less(x)
     io.puts x.to_yaml
   end
 end
+
+# Load my custom helpers
+load "~/.dotfiles/irb_snippets.rb"
