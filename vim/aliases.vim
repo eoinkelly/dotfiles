@@ -3,15 +3,11 @@ let mapleader=','
 map <Leader>val :sp ~/.dotfiles/vim/aliases.vim<cr>
 map <Leader>zal :sp ~/.dotfiles/zsh/aliases<cr>
 
-map <Leader>ts :sp ~/tool-sharpening.md<cr>
-map <Leader>in :sp ~/dropbox/ALLIB/Clients/Notes/TODO/inbox.md<cr>
-
-" Run this file
-map <leader>s :call RunTestFile()<cr>
-" Run only the example under the cursor
-map <leader>S :call RunNearestTest()<cr>
-" Run all test files
-map <leader>a :call RunTests('spec')<cr>
+" Rspec.vim mappings
+map <Leader>s :call RunCurrentSpecFile()<CR>
+map <Leader>S :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " Map C-s to save because I sometimes use it by accident
 map <C-s> :w<cr>

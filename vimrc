@@ -37,11 +37,12 @@ Bundle 'bling/vim-airline'
 Bundle 't9md/vim-ruby_eval'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tpope/vim-eunuch'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'thoughtbot/vim-rspec'
  
 " Themes
 Bundle 'tpope/vividchalk.vim'
 Bundle 'chriskempson/base16-vim'
-" 
 Bundle 'eoin-tomorrow-theme'
 " 
 
@@ -70,7 +71,7 @@ let g:airline_paste_symbol = 'ρ'
 let g:airline_theme='dark'
 
 " * enable/disable usage of patched powerline font symbols
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 " ========================================================================
 " General stuff
 " ========================================================================
@@ -151,7 +152,7 @@ highlight StatusLine ctermfg=blue ctermbg=yellow
 
 " Ctrlp
 let g:ctrlp_match_window_reversed = 1
-let g:ctrlp_max_height = 5
+let g:ctrlp_max_height = 10 
 
 " MacVim
 " ======
@@ -258,6 +259,22 @@ end
 " experimental thing which is supposed to speed up vim with ruby files
 " let g:ruby_path = system('rvm current')
 
+" Automatically reread files that have been changed externally
+set autoread
+
+" don't move the cursor after pasting
+" " (by jumping to back start of previously changed text)
+noremap p p`[
+noremap P P`[
+"
+" " Reselect visual block after indent/outdent
+" this seems to break .. for indenting
+" vnoremap < <gv
+" vnoremap > >gv
+
+set winwidth=80
+" Use silver-searcher for ctrl-p
+let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %s '
 
 source ~/.vim/functions.vim
 source ~/.vim/aliases.vim 
