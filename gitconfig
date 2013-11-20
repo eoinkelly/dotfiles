@@ -21,6 +21,7 @@
 [core]
 	editor = vim
   autocrlf = input
+	excludesfile = /Users/eoinkelly/.gitignore_global
 
 [alias]
 	st = status
@@ -52,5 +53,12 @@
 	trustExitCode = true
 [mergetool]
 	prompt = false
+	keepBackup = true
 [merge]
 	tool = Kaleidoscope
+[difftool "sourcetree"]
+	cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true

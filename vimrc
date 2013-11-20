@@ -29,22 +29,34 @@ Bundle 'nono/vim-handlebars'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-fugitive'
 Bundle 'mattn/zencoding-vim'
 Bundle 'bling/vim-airline'
 " Bundle 'marijnh/tern_for_vim'
-Bundle 't9md/vim-ruby_eval'
+" Bundle 't9md/vim-ruby_eval'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tpope/vim-eunuch'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+" Bundle 'https://github.com/hwartig/vim-seeing-is-believing'
+Bundle 'bryanjswift/vim-rust'
  
 " Themes
 Bundle 'tpope/vividchalk.vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'eoin-tomorrow-theme'
-" 
+
+"  Snippets
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
 
 " ========================================================================
 " vim-airline
@@ -141,8 +153,8 @@ set listchars=tab:▸\ ,eol:¬
 
 set hlsearch
 
-set backupdir=~/.tmp
-set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+" set backupdir=~/.tmp
+" set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
 
 " Get rid of the delay when hitting esc!
 set noesckeys
@@ -151,8 +163,11 @@ set noesckeys
 highlight StatusLine ctermfg=blue ctermbg=yellow
 
 " Ctrlp
+" =====
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 10 
+" Use silver-searcher for ctrl-p
+let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %s '
 
 " MacVim
 " ======
@@ -210,6 +225,7 @@ endif
 let g:CommandTMaxHeight=15
 
 set wildignore+=node_modules/** " for node projects
+set wildignore+=bower_components/** " for front-end projects
 set wildignore+=tmp/** " for rails projects
 set wildignore+=.git " ignore git repo
 set wildignore+=*.jpg,*.png,*.o,*.pdf,*.gif,Thumbs.db,*.sqlite3 " ignore common binary files
@@ -256,8 +272,6 @@ end
 " ==========================================================
 " Experimental Stuff
 " ==========================================================
-" experimental thing which is supposed to speed up vim with ruby files
-" let g:ruby_path = system('rvm current')
 
 " Automatically reread files that have been changed externally
 set autoread
@@ -273,8 +287,46 @@ noremap P P`[
 " vnoremap > >gv
 
 set winwidth=80
-" Use silver-searcher for ctrl-p
-let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %s '
+
+" Setup tab bar colors
+" this is the color of the whole tab bar
+" ctermfg = background color of the whole tab bar
+" ctermbg = the color of the "close" text on the RHS of tab bar
+:hi TabLineFill ctermfg=59 ctermbg=White
+
+" this is the currently selected tag name
+:hi TabLine ctermfg=Blue ctermbg=Yellow
+
+" this is the background behind all tab names
+" and the foreground is the text color of non-selected tab names
+" :hi TabLineSel ctermfg=Red ctermbg=Yellow
+:hi TabLineSel ctermbg=254 ctermfg=Black
+
+
+" https://github.com/hwartig/vim-seeing-is-believing
+" nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
+" xmap <buffer> <F5> <Plug>(seeing-is-believing-run)
+" imap <buffer> <F5> <Plug>(seeing-is-believing-run)
+" 
+" nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+" xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+" imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+
+" 
+set mouse=a
+" map <ScrollWheelUp> <C-Y>
+" map <ScrollWheelDown> <C-E>
+
+" Different cursor shapes in different modes (only works in iTerm2)
+" * block cursor in normal mode, slim line cursor in insert mode
+" * http://blog.roseman.org.uk/2012/02/04/improving-vim-terminal-development-environment/
+" * added 2013-11-20
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" ==========================================================
+" ==========================================================
+
+runtime macros/matchit.vim " enable the matchit plugin
 
 source ~/.vim/functions.vim
 source ~/.vim/aliases.vim 
