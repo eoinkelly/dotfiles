@@ -3,7 +3,7 @@ spec_hits = []
  
 checks = {
             '_spec\.rb$' => ['focus:[:space:]*true'],
-            '\.rb$' => ['binding\.pry', 'debugger']
+            '\.rb$' => ['binding\.pry', 'debugger', 'TODO:', 'FIXME:']
          }
  
 # Find the names of all the filenames that have been (A)dded (C)opied or (M)odified

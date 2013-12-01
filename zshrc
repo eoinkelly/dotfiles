@@ -114,6 +114,9 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH" 
 export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH" 
 
+# For cordova CLI
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 ### Keychain Setup
 keychain --nocolor ~/.ssh/id_rsa
 . ~/.keychain/$(hostname)-sh
