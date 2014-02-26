@@ -68,9 +68,6 @@ source $HOME/.dotfiles/zsh/functions
 # Load RVM 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-# Load rbenv
-eval "$(rbenv init -)"
-
 # Stuff I got from r00k's zshrc that i'm not sure I need:
 # Disable flow control commands (keeps C-s from freezing everything)
 # stty start undef
@@ -86,7 +83,7 @@ stty ixoff -ixon
 # https://gist.github.com/1688857
 # export RUBY_GC_MALLOC_LIMIT=60000000
 # export RUBY_FREE_MIN=200000
-export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_INIT_SLOTS=1000000
 export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
@@ -113,6 +110,11 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 # Add android dev tools
 export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH" 
 export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH" 
+
+# Load rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 
 # For cordova CLI
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -142,3 +144,7 @@ keychain --nocolor ~/.ssh/id_rsa
 # precmd () {
 #   export RPROMPT="%{$fg[green]%}$(rvm_info_for_prompt)%{$reset_color%}"
 # }
+
+# bind word movement to option+right-arrow, option+left-arrow
+bindkey "" forward-word   #control left
+bindkey "" backward-word  #control right

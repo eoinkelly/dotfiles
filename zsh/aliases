@@ -2,9 +2,10 @@ alias netrst='sudo service networking restart'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias rdbtp='rake -t db:test:prepare'
 
-alias ctags="`brew --prefix`/bin/ctags"
-alias retag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp *"
-alias fullretag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`"
+# ctags kills kittens if you run it on a large repo
+# alias ctags="`brew --prefix`/bin/ctags"
+# alias retag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp *"
+# alias fullretag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`"
 
 alias g='git status'
 alias gc='git commit'
@@ -20,3 +21,4 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias ri='ri --format ansi'
 
 alias marked='open -a "/Applications/Marked.app" '
+alias rake="noglob rake"

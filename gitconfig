@@ -36,7 +36,7 @@
   roblog = log --pretty=format:'%Cred %h %Creset %ad %Cgreen %an %Creset %s' --date=rfc
 
 [push]
-	default = matching
+	default = current
 [init]
 	templatedir = ~/.git_template
 [credential]

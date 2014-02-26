@@ -94,6 +94,7 @@ filetype plugin on    " Enable filetype-specific plugins
 
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.md set textwidth=80
 
 set smartindent
 set autoindent
@@ -134,13 +135,15 @@ set smartcase
 set spelllang=en_nz
 
 " set tab and indents 
-set shiftwidth=2 
-set softtabstop=2 
-set tabstop=2 
-set shiftround 
-set expandtab
-" " Show hidden characters 
-set list
+" ===================
+set shiftwidth=2 " how many spaces autoindent should use when shifting in/out e.g. with << or >>
+set softtabstop=2 " how many spaces to insert when you type 'Tab' character while editing
+set tabstop=2 " how many spaces to insert when you type 'Tab'
+set shiftround " round shifts to the nearest shiftwidth. Used by < and > commands
+set expandtab " when the user types 'Tab' we really insert spaces
+set list " Show hidden characters 
+
+autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
 " Use the same symbols as TextMate for tabstops and EOLs as they are lovely
 set listchars=tab:▸\ ,eol:¬
@@ -167,7 +170,9 @@ highlight StatusLine ctermfg=blue ctermbg=yellow
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 10 
 " Use silver-searcher for ctrl-p
-let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %s '
+let g:ctrlp_user_command = 'ag --nogroup --path-to-agignore ~/.dotfiles/agignore --nobreak --noheading --nocolor -g "" %s '
+let g:ctrlp_working_path_mode = 'c'
+
 
 " MacVim
 " ======
@@ -312,6 +317,8 @@ set winwidth=80
 " xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
 " imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
 
+
+" set colorcolumn 80
 " 
 set mouse=a
 " map <ScrollWheelUp> <C-Y>
