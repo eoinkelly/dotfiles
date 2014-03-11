@@ -14,6 +14,7 @@ call vundle#rc()
 " let Vundle manage Vundle (required)! 
 Bundle 'gmarik/vundle'
 
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'ack.vim'
 Bundle 'ag.vim'
 Bundle 'ctrlp.vim'
