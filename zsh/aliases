@@ -8,8 +8,14 @@ alias rdbtp='rake -t db:test:prepare'
 # alias fullretag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`"
 
 alias g='git status'
-alias gc='git commit'
+alias gcm='git commit'
+alias gco='git checkout'
 alias ga='git add'
+alias gpush='git push'
+alias gpull='git pull'
+alias gp='echo "gpull=git pull, gpush=git push"'
+alias gf='git pull'
+alias gc='echo "gcm = commit, gco = checkout"'
 
 # alias typealot="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
 alias typealot="history | ~/.dotfiles/bin/typealot.rb | sort -rn | head -n 20"
