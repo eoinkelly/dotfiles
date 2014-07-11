@@ -7,57 +7,68 @@ filetype off " required!
 " ========================================================================
 " Vundle stuff
 " ========================================================================
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle (required)! 
-Bundle 'gmarik/vundle'
-
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'ack.vim'
-Bundle 'ag.vim'
-Bundle 'ctrlp.vim'
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'jshint.vim'
-Bundle 'rename.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'godlygeek/tabular'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-haml'
-Bundle 'nono/vim-handlebars'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-repeat'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mattn/zencoding-vim'
-Bundle 'bling/vim-airline'
-" Bundle 'marijnh/tern_for_vim'
-" Bundle 't9md/vim-ruby_eval'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'tpope/vim-eunuch'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-" Bundle 'https://github.com/hwartig/vim-seeing-is-believing'
-Bundle 'bryanjswift/vim-rust'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)! 
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'ack.vim'
+Plugin 'ag.vim'
+Plugin 'ctrlp.vim'
+Plugin 'lukerandall/haskellmode-vim'
+Plugin 'jshint.vim'
+Plugin 'rename.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-haml'
+Plugin 'nono/vim-handlebars'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/zencoding-vim'
+Plugin 'bling/vim-airline'
+" Plugin 'marijnh/tern_for_vim'
+" Plugin 't9md/vim-ruby_eval'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tpope/vim-eunuch'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+" Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
+Plugin 'bryanjswift/vim-rust'
+Plugin 'tpope/vim-vinegar'
  
 " Themes
-Bundle 'tpope/vividchalk.vim'
-Bundle 'chriskempson/base16-vim'
-Bundle 'eoin-tomorrow-theme'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'chriskempson/base16-vim'
+Plugin 'eoin-tomorrow-theme'
 
 "  Snippets
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+Plugin 'honza/vim-snippets'
+call vundle#end() " required
+filetype plugin indent on
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
 
 " ========================================================================
 " vim-airline
@@ -110,6 +121,9 @@ set relativenumber
 
 " Switch syntax highlighting on
 syntax on
+
+" make backspace sane in insert me
+set backspace=indent,eol,start
 
 " turn on 256 colors in terminal on dark background
 set t_Co=256
@@ -172,7 +186,7 @@ let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 10 
 " Use silver-searcher for ctrl-p
 let g:ctrlp_user_command = 'ag --nogroup --path-to-agignore ~/.dotfiles/agignore --nobreak --noheading --nocolor -g "" %s '
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'ra'
 
 
 " MacVim

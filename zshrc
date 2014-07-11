@@ -66,7 +66,7 @@ plugins=()
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
-
+ 
 
 # Load RVM 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
@@ -105,6 +105,7 @@ export EDITOR="/usr/local/bin/vim"
 
 # For cordova CLI
 export JAVA_HOME=$(/usr/libexec/java_home)
+export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 
 ### Keychain Setup
 keychain --nocolor ~/.ssh/id_rsa
@@ -135,3 +136,6 @@ keychain --nocolor ~/.ssh/id_rsa
 # bind word movement to option+right-arrow, option+left-arrow
 bindkey "" forward-word   #control left
 bindkey "" backward-word  #control right
+
+# OPAM configuration
+. /Users/eoinkelly/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

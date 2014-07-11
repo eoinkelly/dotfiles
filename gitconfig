@@ -53,7 +53,7 @@
 	trustExitCode = true
 [mergetool]
 	prompt = false
-	keepBackup = true
+	keepBackup = false
 [merge]
 	tool = Kaleidoscope
 [difftool "sourcetree"]
@@ -65,3 +65,6 @@
 
 [fetch]
   prune = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

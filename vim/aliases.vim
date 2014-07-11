@@ -1,3 +1,7 @@
+" D = command key (macvim only, does not work in terminal vim)
+" M = option/alt key
+" C = control key
+"
 let mapleader=','
 
 map <Leader>val :sp ~/.dotfiles/vim/aliases.vim<cr>
@@ -18,6 +22,7 @@ nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>m :CtrlPMRU<CR>
 
 nnoremap <cr> :nohlsearch<cr> 
+
 
 " Enable the learnin' stick!
 " noremap h <NOP>

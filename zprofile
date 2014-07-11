@@ -11,6 +11,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Add node & npm
 export PATH="/usr/local/share/npm/bin:$PATH" 
 
+# Add cabal
+export PATH="$HOME/.cabal/bin:$PATH" 
+
 # Add android dev tools
 export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH" 
 export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH" 
