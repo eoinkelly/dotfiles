@@ -9,14 +9,17 @@ filetype off " required!
 " ========================================================================
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)! 
+Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'ahw/vim-pbcopy'
 Plugin 'ack.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'jshint.vim'
 Plugin 'rename.vim'
+Plugin 'vim-scripts/TailMinusF'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tcomment_vim'
@@ -44,11 +47,12 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 " Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
 Plugin 'bryanjswift/vim-rust'
 Plugin 'tpope/vim-vinegar'
- 
+
 " Themes
 Plugin 'tpope/vim-vividchalk'
 Plugin 'chriskempson/base16-vim'
 Plugin 'eoin-tomorrow-theme'
+Plugin 'lsdr/monokai'
 
 "  Snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -112,6 +116,11 @@ set smartindent
 set autoindent
 set number
 
+let macvim_skip_colorscheme=1
+
+" show partially typed commands in command mode
+set showcmd
+
 " This is sorta nice but slow in terminal vim
 set relativenumber
 " au FocusLost * :set number
@@ -149,14 +158,14 @@ set smartcase
 " Set region to NZ English
 set spelllang=en_nz
 
-" set tab and indents 
+" set tab and indents
 " ===================
 set shiftwidth=2 " how many spaces autoindent should use when shifting in/out e.g. with << or >>
 set softtabstop=2 " how many spaces to insert when you type 'Tab' character while editing
 set tabstop=2 " how many spaces to insert when you type 'Tab'
 set shiftround " round shifts to the nearest shiftwidth. Used by < and > commands
 set expandtab " when the user types 'Tab' we really insert spaces
-set list " Show hidden characters 
+" set list " Show hidden characters
 
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
@@ -183,7 +192,7 @@ highlight StatusLine ctermfg=blue ctermbg=yellow
 " Ctrlp
 " =====
 let g:ctrlp_match_window_reversed = 1
-let g:ctrlp_max_height = 10 
+let g:ctrlp_max_height = 10
 " Use silver-searcher for ctrl-p
 let g:ctrlp_user_command = 'ag --nogroup --path-to-agignore ~/.dotfiles/agignore --nobreak --noheading --nocolor -g "" %s '
 let g:ctrlp_working_path_mode = 'ra'
@@ -191,7 +200,9 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " MacVim
 " ======
-set guifont=Monaco:h12
+" * replace spaces in font name with _
+" * hXX is size in points
+set guifont=Source_Code_Pro_Light:h14
 
 " ==========================================================
 " Statusline Control
@@ -203,17 +214,17 @@ set laststatus=2
 set statusline+=%m
 set statusline+=%r
 set statusline+=%y
-set statusline+=[buffer\ 
+set statusline+=[buffer\
 set statusline+=%n
 set statusline+=]
 set statusline+=[
 set statusline+=%t
 set statusline+=]
-set statusline+=\ 
+set statusline+=\
 set statusline+=[
 set statusline+=row\ %l/%L
 set statusline+=\ (%p%%)
-set statusline+=,\ 
+set statusline+=,\
 set statusline+=col\ %v\ (%c)
 set statusline+=]
 " set statusline+=%{fugitive#statusline()}
@@ -327,14 +338,17 @@ set winwidth=80
 " nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
 " xmap <buffer> <F5> <Plug>(seeing-is-believing-run)
 " imap <buffer> <F5> <Plug>(seeing-is-believing-run)
-" 
+"
 " nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
 " xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
 " imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
 
+" Configure browser for haskell_doc.vim
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
 
 " set colorcolumn 80
-" 
+"
 set mouse=a
 " map <ScrollWheelUp> <C-Y>
 " map <ScrollWheelDown> <C-E>
@@ -351,4 +365,4 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 runtime macros/matchit.vim " enable the matchit plugin
 
 source ~/.vim/functions.vim
-source ~/.vim/aliases.vim 
+source ~/.vim/aliases.vim

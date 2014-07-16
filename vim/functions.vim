@@ -115,3 +115,31 @@ endfunction
 " endfunction
 " 
 " com -range=% -nargs=0 EvalRuby :<line1>,<line2>call EvalRuby()
+
+
+" Perform a command and preserve the cursor position and remove the command
+" from history
+" ****************************************************
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction 
+
+" Strip tailing whitespace
+" nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+
+" Autoformat the whole file (preserving cursor position)
+" nmap _= :call Preserve("normal gg=G")<CR>
+
+
+
+" automatically strip trailing whitespace on save on all files
+autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")

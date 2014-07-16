@@ -11,6 +11,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Add node & npm
 export PATH="/usr/local/share/npm/bin:$PATH" 
 
+# Add my little utilities
+export PATH="$HOME/bin:$PATH" 
+
 # Add cabal
 export PATH="$HOME/.cabal/bin:$PATH" 
 

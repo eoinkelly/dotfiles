@@ -1,0 +1,9 @@
+#!/Users/eoinkelly/.rbenv/shims/ruby
+
+require 'rubygems'
+require 'gems'
+require 'pry'
+
+gem_name = ARGV.first
+gem_info = Gems.info gem_name
+puts "gem '#{gem_name}', '~> #{gem_info["version"]}'"
