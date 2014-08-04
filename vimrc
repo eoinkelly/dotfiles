@@ -11,8 +11,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'ahw/vim-pbcopy'
+Plugin 'jtratner/vim-flavored-markdown' " does github markdown
+" Plugin 'ahw/vim-pbcopy'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ack.vim'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
@@ -49,10 +52,10 @@ Plugin 'bryanjswift/vim-rust'
 Plugin 'tpope/vim-vinegar'
 
 " Themes
-Plugin 'tpope/vim-vividchalk'
+" Plugin 'tpope/vim-vividchalk'
 Plugin 'chriskempson/base16-vim'
 Plugin 'eoin-tomorrow-theme'
-Plugin 'lsdr/monokai'
+" Plugin 'lsdr/monokai'
 
 "  Snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -108,15 +111,26 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+" Markdown setup
+" ==============
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.md set textwidth=80
+au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=ghmarkdown
+au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
+autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
+
+" NERDTree
+" ========
+let NERDTreeShowHidden = 1
+" let NERDTreeRespectWildIgnore = 1
+let NERDTreeIgnore=['\.swp$', '\.swo$', '\.DS_Store$']
+
+
 
 set smartindent
 set autoindent
 set number
 
-let macvim_skip_colorscheme=1
+" let macvim_skip_colorscheme=1
 
 " show partially typed commands in command mode
 set showcmd
@@ -134,14 +148,30 @@ syntax on
 " make backspace sane in insert me
 set backspace=indent,eol,start
 
-" turn on 256 colors in terminal on dark background
-set t_Co=256
 
-" set background=dark
-" colorscheme base16-default
-" colorscheme vividchalk
+" ===========
+" Colorscheme
+" ===========
+" https://github.com/chriskempson/base16-vim/blob/master/colors/base16-monokai.vim
 
-colorscheme Tomorrow-Night-Bright
+set t_Co=256 " turn on 256 colors in terminal
+set background=dark
+colorscheme base16-monokai
+
+" Tweak the color scheme on terminal only
+highlight LineNr term=reverse cterm=reverse ctermfg=8 ctermbg=0
+highlight ColorColumn term=reverse cterm=reverse ctermfg=8 ctermbg=0
+highlight CursorLine ctermbg=1
+" to fix:
+" search highlighting,
+" current line number
+" tab bar
+" :hi CursorLine ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+
+
+
+
 
 " Use unix line endings and encode files as UTF-8
 set encoding=utf-8
@@ -167,7 +197,6 @@ set shiftround " round shifts to the nearest shiftwidth. Used by < and > command
 set expandtab " when the user types 'Tab' we really insert spaces
 " set list " Show hidden characters
 
-autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
 " Use the same symbols as TextMate for tabstops and EOLs as they are lovely
 set listchars=tab:▸\ ,eol:¬
@@ -323,16 +352,17 @@ set winwidth=80
 " this is the color of the whole tab bar
 " ctermfg = background color of the whole tab bar
 " ctermbg = the color of the "close" text on the RHS of tab bar
-:hi TabLineFill ctermfg=59 ctermbg=White
+" :hi TabLineFill ctermfg=59 ctermbg=White
 
 " this is the currently selected tag name
-:hi TabLine ctermfg=Blue ctermbg=Yellow
+" :hi TabLine ctermfg=Blue ctermbg=Yellow
 
 " this is the background behind all tab names
 " and the foreground is the text color of non-selected tab names
 " :hi TabLineSel ctermfg=Red ctermbg=Yellow
-:hi TabLineSel ctermbg=254 ctermfg=Black
+" :hi TabLineSel ctermbg=254 ctermfg=Black
 
+set cursorline
 
 " https://github.com/hwartig/vim-seeing-is-believing
 " nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
@@ -347,7 +377,7 @@ set winwidth=80
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 
-" set colorcolumn 80
+" set colorcolumn=+1
 "
 set mouse=a
 " map <ScrollWheelUp> <C-Y>
@@ -359,6 +389,8 @@ set mouse=a
 " * added 2013-11-20
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+
 " ==========================================================
 " ==========================================================
 
@@ -366,3 +398,12 @@ runtime macros/matchit.vim " enable the matchit plugin
 
 source ~/.vim/functions.vim
 source ~/.vim/aliases.vim
+
+" Strip tailing whitespace
+" nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Autoformat the whole file (preserving cursor position)
+" nmap _= :call Preserve("normal gg=G")<CR>
+
+" Automatically strip trailing whitespace on save on all files
+autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")

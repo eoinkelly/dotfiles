@@ -21,7 +21,8 @@ nmap <Leader>t :CtrlP<CR>
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>m :CtrlPMRU<CR>
 
-nnoremap <cr> :nohlsearch<cr> 
+nmap <Leader>r :NERDTreeToggle<CR>
+nnoremap <cr> :nohlsearch<cr>
 
 
 " Enable the learnin' stick!

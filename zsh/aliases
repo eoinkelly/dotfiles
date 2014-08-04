@@ -9,7 +9,7 @@ alias be='bundle exec'
 # alias retag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp *"
 # alias fullretag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`"
 
-alias g='git status'
+alias g='git status --short'
 alias gcm='git commit'
 alias gco='git checkout'
 alias ga='git add'

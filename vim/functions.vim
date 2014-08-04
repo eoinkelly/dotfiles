@@ -65,19 +65,19 @@ endfunction
 "     :silent !echo;echo;echo;echo;echo
 "     exec ":!bundle exec rspec " . a:filename
 " endfunction
-" 
+"
 " function! SetTestFile()
 "     " Set the spec file that tests will be run for.
 "     let t:grb_test_file=@%
 " endfunction
-" 
+"
 " function! RunTestFile(...)
 "     if a:0
 "         let command_suffix = a:1
 "     else
 "         let command_suffix = ""
 "     endif
-" 
+"
 "     " Run the tests for the previously-marked file.
 "     let in_spec_file = match(expand("%"), '_spec.rb$') != -1
 "     if in_spec_file
@@ -87,7 +87,7 @@ endfunction
 "     end
 "     call RunTests(t:grb_test_file . command_suffix)
 " endfunction
-" 
+"
 " function! RunNearestTest()
 "     let spec_line_number = line('.')
 "     call RunTestFile(":" . spec_line_number)
@@ -105,15 +105,15 @@ endfunction
 " Evaluate the selected lines w. ruby and print output
 " ****************************************************
 " function EvalRuby() range
-"   let 
+"   let
 "   let ruby_code = join(getline(a:firstline, a:lastline), "\n")
 "   let ruby_output = system('echo '.shellescape(ruby_code).'| ruby ')
-" 
+"
 "   " execute "normal " . a:lastline . "G"
 "   " execute "normal o# => " . ruby_code . "\<Esc>ddk"
 "   execute "normal o# => " . ruby_code . "\<Esc>ddk"
 " endfunction
-" 
+"
 " com -range=% -nargs=0 EvalRuby :<line1>,<line2>call EvalRuby()
 
 
@@ -130,16 +130,4 @@ function! Preserve(command)
   " Clean up: restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
-endfunction 
-
-" Strip tailing whitespace
-" nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
-
-
-" Autoformat the whole file (preserving cursor position)
-" nmap _= :call Preserve("normal gg=G")<CR>
-
-
-
-" automatically strip trailing whitespace on save on all files
-autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")
+endfunction
