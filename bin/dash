@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# $* is all command line args
+open dash://$*

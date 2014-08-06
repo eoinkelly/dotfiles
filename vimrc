@@ -15,6 +15,7 @@ Plugin 'jtratner/vim-flavored-markdown' " does github markdown
 " Plugin 'ahw/vim-pbcopy'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ack.vim'
+Plugin 'rizzatti/dash.vim'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
@@ -22,39 +23,40 @@ Plugin 'ctrlp.vim'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'jshint.vim'
 Plugin 'rename.vim'
-Plugin 'vim-scripts/TailMinusF'
+" Plugin 'vim-scripts/TailMinusF'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'nono/vim-handlebars'
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-haml'
-Plugin 'nono/vim-handlebars'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-eunuch'
 Plugin 'mattn/zencoding-vim'
 Plugin 'bling/vim-airline'
 " Plugin 'marijnh/tern_for_vim'
 " Plugin 't9md/vim-ruby_eval'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-eunuch'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 " Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
 Plugin 'bryanjswift/vim-rust'
-Plugin 'tpope/vim-vinegar'
 
 " Themes
 " Plugin 'tpope/vim-vividchalk'
 Plugin 'chriskempson/base16-vim'
-Plugin 'eoin-tomorrow-theme'
+Plugin 'chriskempson/vim-tomorrow-theme'
+" Plugin 'eoins-themes'
 " Plugin 'lsdr/monokai'
 
 "  Snippets
@@ -149,19 +151,16 @@ syntax on
 set backspace=indent,eol,start
 
 
-" ===========
-" Colorscheme
-" ===========
-" https://github.com/chriskempson/base16-vim/blob/master/colors/base16-monokai.vim
-
+" Terminal Colorscheme
+" ====================
 set t_Co=256 " turn on 256 colors in terminal
 set background=dark
-colorscheme base16-monokai
+colorscheme Tomorrow-Night-Bright
 
 " Tweak the color scheme on terminal only
-highlight LineNr term=reverse cterm=reverse ctermfg=8 ctermbg=0
-highlight ColorColumn term=reverse cterm=reverse ctermfg=8 ctermbg=0
-highlight CursorLine ctermbg=1
+" highlight LineNr term=reverse cterm=reverse ctermfg=8 ctermbg=0
+" highlight ColorColumn term=reverse cterm=reverse ctermfg=8 ctermbg=0
+" highlight CursorLine ctermbg=1
 " to fix:
 " search highlighting,
 " current line number

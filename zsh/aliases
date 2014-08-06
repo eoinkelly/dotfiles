@@ -21,8 +21,7 @@ alias gc='echo "gcm = commit, gco = checkout"'
 alias gd='git diff'
 alias gs='git stash'
 
-# alias typealot="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
-alias typealot="history | ~/.dotfiles/bin/typealot.rb | sort -rn | head -n 20"
+alias typealot="history | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
 
 alias pg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log'
 
