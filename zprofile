@@ -2,6 +2,9 @@
 ## Initialisation that makes sense for both interactive and non-interactive shells
 # ###########################
 
+# `psql` without any args should do what I mean!
+export PGDATABASE="postgres"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 

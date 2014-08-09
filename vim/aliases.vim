@@ -8,8 +8,8 @@ map <Leader>val :sp ~/.dotfiles/vim/aliases.vim<cr>
 map <Leader>zal :sp ~/.dotfiles/zsh/aliases<cr>
 
 " Rspec.vim mappings
-map <Leader>s :call RunCurrentSpecFile()<CR>
-map <Leader>S :call RunNearestSpec()<CR>
+map <Leader>S :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 

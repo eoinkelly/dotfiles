@@ -14,6 +14,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'jtratner/vim-flavored-markdown' " does github markdown
 " Plugin 'ahw/vim-pbcopy'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'derekwyatt/vim-scala'
 Plugin 'ack.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -40,7 +41,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-eunuch'
-Plugin 'mattn/zencoding-vim'
+" Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
 " Plugin 'marijnh/tern_for_vim'
 " Plugin 't9md/vim-ruby_eval'
@@ -389,6 +390,11 @@ set mouse=a
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+" ==========================================================
+" ==========================================================
+
+" thoughtbot/vim-rspec
+let g:rspec_runner = "os_x_iterm"
 
 " ==========================================================
 " ==========================================================
