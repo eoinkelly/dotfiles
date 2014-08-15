@@ -47,3 +47,4 @@ end
 
 # Load my custom helpers
 load "~/.dotfiles/irb_snippets.rb"
+load '~/.dotfiles/poke.rb'
