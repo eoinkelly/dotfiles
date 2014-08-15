@@ -1,0 +1,7 @@
+# "raw" on ActiveRecord objects is pretty crazy
+unless AwesomePrint.rails_console?
+  AwesomePrint.defaults = {
+    :indent => 2,
+    :raw => true
+  }
+end

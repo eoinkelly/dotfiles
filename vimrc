@@ -119,13 +119,14 @@ filetype plugin on    " Enable filetype-specific plugins
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
 au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=ghmarkdown
 au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
+autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
 " NERDTree
 " ========
 let NERDTreeShowHidden = 1
 " let NERDTreeRespectWildIgnore = 1
-let NERDTreeIgnore=['\.swp$', '\.swo$', '\.DS_Store$']
+let NERDTreeIgnore=['\.swp$', '\.swo$', '\.DS_Store$', '\.sass-cache$']
 
 
 
@@ -256,12 +257,19 @@ set statusline+=\ (%p%%)
 set statusline+=,\
 set statusline+=col\ %v\ (%c)
 set statusline+=]
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 " set statusline+=%{fugitive#statusline()}
 
 " try auto formatting paragraphs
 " set formatoptions+=a
 " try auto hiding buffers
 set hidden
+
+let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_ruby_checkers = ['mri'] " default
 
 " I prefer if help opens in a new tab
 cabbrev help tab help
@@ -346,7 +354,8 @@ noremap P P`[
 " vnoremap < <gv
 " vnoremap > >gv
 
-set winwidth=80
+" ???
+" set winwidth=80
 
 " Setup tab bar colors
 " this is the color of the whole tab bar

@@ -2,6 +2,8 @@
 ## Initialisation that makes sense for both interactive and non-interactive shells
 # ###########################
 
+export GRADLE_HOME="/usr/local/Cellar/gradle/2.0"
+
 # `psql` without any args should do what I mean!
 export PGDATABASE="postgres"
 
