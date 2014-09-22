@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# ```
+# Some IPs that came up for google.co.nz in sept 2014:
+# 74.125.237.191
+# 74.125.237.143
+# 74.125.237.159
+# 74.125.237.152
+# 74.125.237.151
+# ```
+#
+# Can also use the NZ name servers
+#
+# # .nz nameservers
+#
+# ```
+# NameserverProviderLocationTypeIP
+# ns1.dns.net.nzNZRSNew Zealand                         Unicast202.46.190.130 2001:dce:2000:2::130
+# ns2.dns.net.nzNZRSNe          w ZealandAnycast202.46.191.130 2001:dce:4000:2::130
+# ns3.dns.net.nz            NZRSNew ZealandAnycast202.46.188.130
+# ns4.dns.net.nzNZRSNew Z                   ealandAnycast202.46.189.130
+# ns5.dns.net.nzNeuStar   UltraDNS Multi            ple InternationalAnycast204.74.112.253 2001:0502:D399::253
+# ns6.dns.n     et.nzNeuStar  UltraDNS Multiple InternationalAnycast204.74.113.253
+#         ns7.dns.net.nzAutonomicaMultiple InternationalAnycast194.146.106.           54
+#         ```
+
+# .nz DNS server
+echo "Trying to ping .nz DNS server"
+ping 202.46.190.130 

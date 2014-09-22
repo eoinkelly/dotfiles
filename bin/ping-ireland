@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# eircom.ie DNS servers:
+# Primary DNS: 159.134.0.1
+# Secondary DNS: 159.134.0.2
+
+echo "Trying to ping eircom.ie DNS server"
+ping 159.134.0.1
+

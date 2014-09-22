@@ -32,3 +32,10 @@ export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH"
 # Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# We want the ./bin of rails apps we trust to be first on our path so that we
+# can run bundler binstubs (and not have to type `bundle exec foo` everytime we
+# want to run `foo).This little hack lets us have this convenience on git repos
+# we consider "safe". Mark a repo as safe by creating an empty `.git/safe` dir
+# in it.
+export PATH=".git/safe/../../bin:$PATH"

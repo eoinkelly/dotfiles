@@ -1,0 +1,5 @@
+#!/bin/bash
+
+GATEWAY=$(netstat -nr | grep "^default" | awk '{print $2}')
+echo "Trying to ping gateway: ${GATEWAY}"
+ping $GATEWAY

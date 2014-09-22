@@ -11,10 +11,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'jtratner/vim-flavored-markdown' " does github markdown
+" Plugin 'jtratner/vim-flavored-markdown' " does github markdown
 " Plugin 'ahw/vim-pbcopy'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'elzr/vim-json'
+Plugin 'jneen/ragel.vim'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'idris-hackers/idris-vim'
 Plugin 'ack.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -24,6 +27,7 @@ Plugin 'ctrlp.vim'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'jshint.vim'
 Plugin 'rename.vim'
+Plugin 'lambdatoast/elm.vim'
 " Plugin 'vim-scripts/TailMinusF'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
@@ -117,9 +121,10 @@ filetype plugin on    " Enable filetype-specific plugins
 " Markdown setup
 " ==============
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
-au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=ghmarkdown
-au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
-autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
+au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=markdown
+
+" au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
+" autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
 " NERDTree
@@ -408,6 +413,19 @@ let g:rspec_runner = "os_x_iterm"
 " ==========================================================
 " ==========================================================
 
+" Coffeescript
+" ============
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+
+
+" JSON
+" ====
+let g:vim_json_syntax_conceal = 0
+autocmd BufNewFile,BufReadPost *.json setl foldmethod=syntax nofoldenable
+
+
+
+
 runtime macros/matchit.vim " enable the matchit plugin
 
 source ~/.vim/functions.vim
@@ -421,3 +439,8 @@ source ~/.vim/aliases.vim
 
 " Automatically strip trailing whitespace on save on all files
 autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")
+
+
+" use ,p as a "delete {thing} to blackhole register and the paste contents of
+" default register"
+vnoremap <Leader>p "_dP

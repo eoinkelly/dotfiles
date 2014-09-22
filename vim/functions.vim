@@ -116,6 +116,13 @@ endfunction
 "
 " com -range=% -nargs=0 EvalRuby :<line1>,<line2>call EvalRuby()
 
+function Jsonifier()
+  :set filetype=json
+  :setlocal foldmethod=syntax nofoldenable
+  :%!jsonlint
+endfunction
+
+command Jsonify call Jsonifier()
 
 " Perform a command and preserve the cursor position and remove the command
 " from history
