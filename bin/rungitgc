@@ -1,0 +1,13 @@
+#!/Users/eoinkelly/.rbenv/shims/ruby
+
+# Purpose: Run git gc --aggressive on my local repos
+
+code_dir = "/Users/eoinkelly/Code" # no trailing slash please
+
+Dir.new(code_dir).each do |d|
+  git_dir = "#{code_dir}/#{d}/.git"
+  if File.directory?(git_dir)
+    puts "Running git gc --aggressive in '#{d}'"
+    `cd #{code_dir}/#{d} && git gc --aggressive`
+  end
+end

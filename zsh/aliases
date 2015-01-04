@@ -19,8 +19,14 @@ alias gpull='git pull'
 alias gf='git fetch'
 alias gc='echo "gcm = commit, gco = checkout"'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gs='git stash'
 
+alias npm0='npm --depth=0'
+alias npmg='npm -g'
+alias npmg0='npm -g --depth=0'
+
+alias tree='tree -C'
 alias typealot="history | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
 alias typeabit="history | tail -n 1000 | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
 
@@ -32,3 +38,8 @@ alias ri='ri --format ansi'
 
 alias marked='open -a "/Applications/Marked.app" '
 alias rake="noglob rake"
+
+alias andevmon='open "/Applications/Android Studio.app/sdk/tools/lib/monitor-x86_64/monitor.app"'
+alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+
+alias rme="~/Code/rme/rme"

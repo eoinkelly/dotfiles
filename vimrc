@@ -1,3 +1,6 @@
+" Sources:
+" * https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -14,7 +17,10 @@ Plugin 'kchmck/vim-coffee-script'
 " Plugin 'jtratner/vim-flavored-markdown' " does github markdown
 " Plugin 'ahw/vim-pbcopy'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/renumber.vim'
+Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
+Plugin 'vim-latex/vim-latex'
 Plugin 'jneen/ragel.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'idris-hackers/idris-vim'
@@ -45,7 +51,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-eunuch'
-" Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
 " Plugin 'marijnh/tern_for_vim'
 " Plugin 't9md/vim-ruby_eval'
@@ -55,7 +61,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 " Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
-Plugin 'bryanjswift/vim-rust'
+Plugin 'wting/rust.vim'
 
 " Themes
 " Plugin 'tpope/vim-vividchalk'
@@ -63,13 +69,16 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'chriskempson/vim-tomorrow-theme'
 " Plugin 'eoins-themes'
 " Plugin 'lsdr/monokai'
+Plugin 'tomasr/molokai'
 
 "  Snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
 
+Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'mmozuras/snipmate-mocha'
+
 call vundle#end() " required
 filetype plugin indent on
 
@@ -123,6 +132,9 @@ filetype plugin on    " Enable filetype-specific plugins
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
 au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=markdown
 
+
+au BufRead,BufNewFile *.m set filetype=objc
+
 " au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
 " autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
@@ -138,8 +150,6 @@ let NERDTreeIgnore=['\.swp$', '\.swo$', '\.DS_Store$', '\.sass-cache$']
 set smartindent
 set autoindent
 set number
-
-" let macvim_skip_colorscheme=1
 
 " show partially typed commands in command mode
 set showcmd
@@ -162,7 +172,11 @@ set backspace=indent,eol,start
 " ====================
 set t_Co=256 " turn on 256 colors in terminal
 set background=dark
-colorscheme Tomorrow-Night-Bright
+colorscheme molokai
+" let macvim_skip_colorscheme=1
+let g:molokai_original = 1
+let g:rehash256 = 1
+
 
 " Tweak the color scheme on terminal only
 " highlight LineNr term=reverse cterm=reverse ctermfg=8 ctermbg=0
@@ -187,6 +201,7 @@ set fileformat=unix
 set ignorecase
 " be case sensitive if the search term has multiple cases
 set smartcase
+set incsearch
 
 " Set the terminal title
 " set title
@@ -309,6 +324,8 @@ set wildignore+=*.jpg,*.png,*.o,*.pdf,*.gif,Thumbs.db,*.sqlite3 " ignore common 
 if exists(":Abolish")
   :Abolish teh the " corrects teh|Teh|TEH
   :Abolish lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+  :Abolish taht that
+  :Abolish th e the
 end
 
 " Abolish afterword{,s}                         afterward{}
@@ -424,6 +441,18 @@ let g:vim_json_syntax_conceal = 0
 autocmd BufNewFile,BufReadPost *.json setl foldmethod=syntax nofoldenable
 
 
+" Objective C
+" ============
+autocmd FileType objc setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
+
+" Folding
+" =======
+
+set foldmethod=indent
+" TODO: ideally I would set this to some "fold level max" value
+set foldlevel=5
+
+
 
 
 runtime macros/matchit.vim " enable the matchit plugin
@@ -444,3 +473,9 @@ autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")
 " use ,p as a "delete {thing} to blackhole register and the paste contents of
 " default register"
 vnoremap <Leader>p "_dP
+
+" wean myself off :b#
+nnoremap <leader><leader> <c-^>
+
+" Make %% expand (on the command line) into the containing path of the currently open buffer
+cnoremap %% <C-R>=expand('%:h').'/'<cr>

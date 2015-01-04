@@ -138,3 +138,6 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
+
+command Markify :!open -a "/Applications/Marked.app" %
+

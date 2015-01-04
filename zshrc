@@ -1,4 +1,4 @@
-# Initialisation for interactive shells only 
+# Initialisation for interactive shells only
 # ##########################################
 
 # Path to your oh-my-zsh configuration.
@@ -66,10 +66,10 @@ plugins=()
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
- 
 
-# Load RVM 
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+# Load RVM
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Stuff I got from r00k's zshrc that i'm not sure I need:
 # Disable flow control commands (keeps C-s from freezing everything)
@@ -96,19 +96,23 @@ export RUBY_HEAP_FREE_MIN=500000
 # export RUBY_FREE_MIN=500000
 # export RUBY_HEAP_MIN_SLOTS=40000
 
-# I think this is for Tmux (can't remember) 
+# I think this is for Tmux (can't remember)
 TERM=screen-256color
 
 export EDITOR="/usr/local/bin/vim"
 
 
 
-# For cordova CLI
+# ###################
+# Android Development
+# ###################
+
 export JAVA_HOME=$(/usr/libexec/java_home)
 export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 
 ### Keychain Setup
-keychain --nocolor ~/.ssh/id_rsa
+# my keys all begin with id_rsa so this loads them all
+keychain --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_deploy
 . ~/.keychain/$(hostname)-sh
 
 # Experimental stuff
@@ -117,8 +121,8 @@ keychain --nocolor ~/.ssh/id_rsa
 # add the rvm_info_for_prompt into your prompt
 # below is my full prompt
 # PS1='%{$fg[white]%}%n%{$fg[cyan]%}:%{$fg_no_bold[yellow]%}%3~%{$fg_no_bold[green]%}$(git_info_for_prompt)%{$fg_no_bold[magenta]%}$(rvm_info_for_prompt)%{$reset_color%}# '
- 
-# this tests for the presence of rvm 
+
+# this tests for the presence of rvm
 # if its loaded, it'll add the prompt
 # function rvm_info_for_prompt {
 #   # v = ruby version, p = patch, g = gemset

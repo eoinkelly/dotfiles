@@ -2,8 +2,6 @@
 ## Initialisation that makes sense for both interactive and non-interactive shells
 # ###########################
 
-export GRADLE_HOME="/usr/local/Cellar/gradle/2.0"
-
 # `psql` without any args should do what I mean!
 export PGDATABASE="postgres"
 
@@ -25,9 +23,14 @@ export PATH="$HOME/bin:$PATH"
 # Add cabal
 export PATH="$HOME/.cabal/bin:$PATH"
 
-# Add android dev tools
+# android dev
+export GRADLE_HOME="/usr/local/Cellar/gradle/2.0"
 export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH"
 export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH"
+
+# for zip-align (will probably break sometime)
+export PATH="/usr/local/android-dev-tools/sdk/build-tools/20.0.0:$PATH"
+
 
 # Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"

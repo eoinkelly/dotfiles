@@ -24,6 +24,10 @@ nmap <Leader>m :CtrlPMRU<CR>
 nmap <Leader>r :NERDTreeToggle<CR>
 nnoremap <cr> :nohlsearch<cr>
 
+" Practical Vim tip #80
+" Make C-l clear search highlighting as well as clear screen
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 
 " Enable the learnin' stick!
 " noremap h <NOP>
@@ -34,3 +38,5 @@ nnoremap <cr> :nohlsearch<cr>
 " Map C-j to run JSHint (FIXME: should run in .js files only)
 map <C-j> :JSHint<CR>
 
+imap Q: QUESTION:
+imap T: TODO:

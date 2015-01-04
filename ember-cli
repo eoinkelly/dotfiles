@@ -1,0 +1,5 @@
+{
+  "skipGit" : false,
+  "pod" : true,
+  "checkForUpdates" : true 
+}
