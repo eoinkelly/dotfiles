@@ -110,6 +110,13 @@ export EDITOR="/usr/local/bin/vim"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 
+# ################
+# Node Development
+# ################
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 ### Keychain Setup
 # my keys all begin with id_rsa so this loads them all
 keychain --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_deploy

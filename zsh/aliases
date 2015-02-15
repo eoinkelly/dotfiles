@@ -43,3 +43,12 @@ alias andevmon='open "/Applications/Android Studio.app/sdk/tools/lib/monitor-x86
 alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
 alias rme="~/Code/rme/rme"
+
+alias sourcetree='open -a SourceTree'
+
+# load aliases for ssh'ing into boxes
+source ~/.eoin-ssh-shortcut-aliases
+
+# show and remove vim swp|swo files
+alias swps-show='find -E . -iregex ".*\.(swo|swp)"'
+alias swps-rm='find -E . -iregex ".*\.(swo|swp)" -exec rm {} ";"'

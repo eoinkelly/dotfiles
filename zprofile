@@ -24,7 +24,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
 # android dev
-export GRADLE_HOME="/usr/local/Cellar/gradle/2.0"
+# export GRADLE_HOME="/usr/local/Cellar/gradle/2.0" # used for homebrew gradle
 export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH"
 export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH"
 

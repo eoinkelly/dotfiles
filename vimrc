@@ -289,7 +289,14 @@ set statusline+=%*
 set hidden
 
 let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 " let g:syntastic_ruby_checkers = ['mri'] " default
+
+" Python has the following checkers, among others: flake8, pyflakes, pylint
+" and a native python checker.
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+let g:syntastic_python_checkers = ['pylint', 'python']
 
 " I prefer if help opens in a new tab
 cabbrev help tab help
@@ -326,6 +333,7 @@ if exists(":Abolish")
   :Abolish lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
   :Abolish taht that
   :Abolish th e the
+  :Abolish jion join
 end
 
 " Abolish afterword{,s}                         afterward{}
