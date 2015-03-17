@@ -117,6 +117,9 @@ export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+# enable npm tab completion
+. <(npm completion)
+
 ### Keychain Setup
 # my keys all begin with id_rsa so this loads them all
 keychain --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_deploy

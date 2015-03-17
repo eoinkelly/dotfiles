@@ -17,6 +17,7 @@ Plugin 'kchmck/vim-coffee-script'
 " Plugin 'jtratner/vim-flavored-markdown' " does github markdown
 " Plugin 'ahw/vim-pbcopy'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
@@ -32,11 +33,12 @@ Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'jshint.vim'
-Plugin 'rename.vim'
+" Plugin 'rename.vim'
 Plugin 'lambdatoast/elm.vim'
 " Plugin 'vim-scripts/TailMinusF'
 Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
+" Plugin 'godlygeek/tabular' # Tabularize
+Plugin 'junegunn/vim-easy-align'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'nono/vim-handlebars'
 Plugin 'vim-ruby/vim-ruby'
@@ -96,29 +98,57 @@ filetype plugin indent on
 " ========================================================================
 " vim-airline
 " ========================================================================
-let g:airline_enable_syntastic=1
-
-" let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-
-" let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-
-" let g:airline_linecolumn_prefix = '␊ '
-let g:airline_linecolumn_prefix = '␤ '
-" let g:airline_linecolumn_prefix = '¶ '
-
-let g:airline_fugitive_prefix = '⎇ '
-
-let g:airline_paste_symbol = 'ρ'
-" let g:airline_paste_symbol = 'Þ'
-" let g:airline_paste_symbol = '∥'
+let g:airline#extensions#syntastic= 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
+let g:airline#extensions#quickfix#location_text = 'Location'
 
 " change the theme (available options: dark, light, simple, badwolf)
 let g:airline_theme='dark'
 
-" * enable/disable usage of patched powerline font symbols
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+
+" unicode symbols
+" ===============
+" let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" enable/disable usage of patched powerline font symbols
 " let g:airline_powerline_fonts=1
+"
+" powerline symbols (only make sense with poweline patched font)
+" ===============
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = ''
+"
+" old vim-powerline symbols
+" ===============
+" let g:airline_left_sep = '⮀'
+" let g:airline_left_alt_sep = '⮁'
+" let g:airline_right_sep = '⮂'
+" let g:airline_right_alt_sep = '⮃'
+" let g:airline_symbols.branch = '⭠'
+" let g:airline_symbols.readonly = '⭤'
+" let g:airline_symbols.linenr = '⭡'
+
 " ========================================================================
 " General stuff
 " ========================================================================
@@ -237,7 +267,7 @@ set hlsearch
 set noesckeys
 
 " Highlight the status line
-highlight StatusLine ctermfg=blue ctermbg=yellow
+" highlight StatusLine ctermfg=blue ctermbg=yellow
 
 " Ctrlp
 " =====
@@ -458,7 +488,7 @@ autocmd FileType objc setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown l
 
 set foldmethod=indent
 " TODO: ideally I would set this to some "fold level max" value
-set foldlevel=5
+set foldlevel=10
 
 
 
@@ -486,4 +516,22 @@ vnoremap <Leader>p "_dP
 nnoremap <leader><leader> <c-^>
 
 " Make %% expand (on the command line) into the containing path of the currently open buffer
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
+" cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" %% becomes current filename with extension
+cnoremap %% <C-R>=expand('%:t')<cr>
+
+
+" over.vim
+let g:over_enable_cmd_window = 1
+let g:over_enable_auto_nohlsearch = 1
+let g:over#command_line#search#enable_incsearch = 1
+
+" https://github.com/junegunn/vim-easy-align
+" ==========================================
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

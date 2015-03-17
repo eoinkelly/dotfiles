@@ -39,7 +39,7 @@ alias ri='ri --format ansi'
 alias marked='open -a "/Applications/Marked.app" '
 alias rake="noglob rake"
 
-alias andevmon='open "/Applications/Android Studio.app/sdk/tools/lib/monitor-x86_64/monitor.app"'
+alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
 alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
 alias rme="~/Code/rme/rme"
