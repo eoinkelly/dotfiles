@@ -1,0 +1,18 @@
+
+snippet .then "promises then"
+.then(function(${1}) {
+	${2}
+})${0:;}
+endsnippet
+
+snippet .catch "promises catch"
+.catch(function(${1:err}) {
+	${2:console.log(err);}
+})${0:;}
+endsnippet
+
+snippet prom "promises scaffold"
+new Promise(function(resolve, reject) {
+	${0}
+});
+endsnippet

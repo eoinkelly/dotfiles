@@ -13,7 +13,7 @@ alias g='git status --short'
 alias gcm='git commit'
 alias gco='git checkout'
 alias ga='git add'
-alias gb='git branch'
+alias gb='git branch -vv'
 alias gpush='git push'
 alias gpull='git pull'
 alias gf='git fetch'
@@ -41,6 +41,7 @@ alias rake="noglob rake"
 
 alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
 alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+alias iossim='open "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app"'
 
 alias rme="~/Code/rme/rme"
 
@@ -52,3 +53,8 @@ source ~/.eoin-ssh-shortcut-aliases
 # show and remove vim swp|swo files
 alias swps-show='find -E . -iregex ".*\.(swo|swp)"'
 alias swps-rm='find -E . -iregex ".*\.(swo|swp)" -exec rm {} ";"'
+
+# use graphic printing chars that are good for iterm2
+alias pstree='pstree -g 2'
+
+wtf() { fc -li 1 | grep "$*"; }

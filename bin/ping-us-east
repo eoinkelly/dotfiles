@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Trying to ping a.edu-servers.net (NYU university server)" 
+ping 192.5.6.30

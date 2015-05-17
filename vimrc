@@ -14,15 +14,21 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 Plugin 'kchmck/vim-coffee-script'
-" Plugin 'jtratner/vim-flavored-markdown' " does github markdown
-" Plugin 'ahw/vim-pbcopy'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
+Plugin 'fatih/vim-go'
+
+Plugin 'kien/rainbow_parentheses.vim' " clojure
+Plugin 'guns/vim-sexp' " clojure
+Plugin 'tpope/vim-sexp-mappings-for-regular-people' " clojure
+Plugin 'guns/vim-clojure-static' " clojure
+
 Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'vim-latex/vim-latex'
 Plugin 'jneen/ragel.vim'
+Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'idris-hackers/idris-vim'
 Plugin 'ack.vim'
@@ -33,14 +39,11 @@ Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'jshint.vim'
-" Plugin 'rename.vim'
 Plugin 'lambdatoast/elm.vim'
-" Plugin 'vim-scripts/TailMinusF'
 Plugin 'scrooloose/syntastic'
-" Plugin 'godlygeek/tabular' # Tabularize
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'nono/vim-handlebars'
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-haml'
@@ -55,31 +58,23 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-eunuch'
 Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
-" Plugin 'marijnh/tern_for_vim'
-" Plugin 't9md/vim-ruby_eval'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
-" Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
 Plugin 'wting/rust.vim'
+Plugin 'fsouza/cobol.vim'
 
 " Themes
-" Plugin 'tpope/vim-vividchalk'
 Plugin 'chriskempson/base16-vim'
 Plugin 'chriskempson/vim-tomorrow-theme'
-" Plugin 'eoins-themes'
-" Plugin 'lsdr/monokai'
 Plugin 'tomasr/molokai'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'} " this theme has 24 bit color support
 
-"  Snippets
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'mmozuras/snipmate-mocha'
+" Snippets
+Plugin 'SirVer/ultisnips'        " snippet engine
+Plugin 'honza/vim-snippets'      " the snippets
 
 call vundle#end() " required
 filetype plugin indent on
@@ -99,55 +94,46 @@ filetype plugin indent on
 " vim-airline
 " ========================================================================
 let g:airline#extensions#syntastic= 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1 " show buffers on tab line when there is only one tab
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
 let g:airline#extensions#quickfix#location_text = 'Location'
 
-" change the theme (available options: dark, light, simple, badwolf)
-let g:airline_theme='dark'
+" Reference of what vim-airline has by default
+" let g:airline_section_a       (mode, paste, iminsert)
+" let g:airline_section_b       (hunks, branch)
+" let g:airline_section_c       (bufferline or filename)
+" let g:airline_section_gutter  (readonly, csv)
+" let g:airline_section_x       (tagbar, filetype, virtualenv)
+" let g:airline_section_y = (fileencoding, fileformat)
+" let g:airline_section_z       (percentage, line number, column number)
+" let g:airline_section_warning (syntastic, whitespace)
+
+function! AirlineInit()
+  let g:airline_section_z = airline#section#create_right(['l:%l c:%c (%p%%)'])
+endfunction
+
+autocmd User AirlineAfterInit call AirlineInit()
+let g:airline_theme='dark' " dark, light, simple, badwolf
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-
-" unicode symbols
-" ===============
 " let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 " let g:airline_right_sep = '«'
 let g:airline_right_sep = '◀'
 " let g:airline_symbols.linenr = '␊'
 " let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'ρ'
 " let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '(paste)'
 " let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_symbols.whitespace = 'Ξ'
 
-" enable/disable usage of patched powerline font symbols
-" let g:airline_powerline_fonts=1
-"
-" powerline symbols (only make sense with poweline patched font)
-" ===============
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = ''
-"
-" old vim-powerline symbols
-" ===============
-" let g:airline_left_sep = '⮀'
-" let g:airline_left_alt_sep = '⮁'
-" let g:airline_right_sep = '⮂'
-" let g:airline_right_alt_sep = '⮃'
-" let g:airline_symbols.branch = '⭠'
-" let g:airline_symbols.readonly = '⭤'
-" let g:airline_symbols.linenr = '⭡'
+set laststatus=2
 
 " ========================================================================
 " General stuff
@@ -161,6 +147,7 @@ filetype plugin on    " Enable filetype-specific plugins
 " ==============
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
 au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=markdown
+au BufRead,BufNewFile *.hdl set filetype=verilog
 
 
 au BufRead,BufNewFile *.m set filetype=objc
@@ -202,8 +189,11 @@ set backspace=indent,eol,start
 " ====================
 set t_Co=256 " turn on 256 colors in terminal
 set background=dark
-colorscheme molokai
+" colorscheme Tomorrow-Night-Bright
+" colorscheme dracula
 " let macvim_skip_colorscheme=1
+
+colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
 
@@ -266,9 +256,6 @@ set hlsearch
 " Get rid of the delay when hitting esc!
 set noesckeys
 
-" Highlight the status line
-" highlight StatusLine ctermfg=blue ctermbg=yellow
-
 " Ctrlp
 " =====
 let g:ctrlp_match_window_reversed = 1
@@ -284,34 +271,6 @@ let g:ctrlp_working_path_mode = 'ra'
 " * hXX is size in points
 set guifont=Source_Code_Pro_Light:h14
 
-" ==========================================================
-" Statusline Control
-" ==========================================================
-
-" Make status line visible in all buffers
-set laststatus=2
-
-set statusline+=%m
-set statusline+=%r
-set statusline+=%y
-set statusline+=[buffer\
-set statusline+=%n
-set statusline+=]
-set statusline+=[
-set statusline+=%t
-set statusline+=]
-set statusline+=\
-set statusline+=[
-set statusline+=row\ %l/%L
-set statusline+=\ (%p%%)
-set statusline+=,\
-set statusline+=col\ %v\ (%c)
-set statusline+=]
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" set statusline+=%{fugitive#statusline()}
 
 " try auto formatting paragraphs
 " set formatoptions+=a
@@ -535,3 +494,21 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Ultisnip configuration
+" ======================
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets="<C-s>"
+
+" configure handlebars plugin
+let g:mustache_abbreviations = 1
+
+" Clojure stuff
+" =============
+
+" highlights nested parens in different colors
+" Not sure I'm into this
+" au VimEnter *.clj RainbowParenthesesToggle
+" au Syntax *.clj RainbowParenthesesLoadRound
+" au Syntax *.clj RainbowParenthesesLoadSquare
+" au Syntax *.clj RainbowParenthesesLoadBraces
