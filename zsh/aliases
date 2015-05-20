@@ -3,6 +3,8 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias rdbtp='rake -t db:test:prepare'
 
 alias be='bundle exec'
+alias brake='bundle exec rake -t'
+alias brails='bundle exec rails'
 
 # ctags kills kittens if you run it on a large repo
 # alias ctags="`brew --prefix`/bin/ctags"
@@ -57,4 +59,12 @@ alias swps-rm='find -E . -iregex ".*\.(swo|swp)" -exec rm {} ";"'
 # use graphic printing chars that are good for iterm2
 alias pstree='pstree -g 2'
 
+# wtf YYYY-MM-DD to see all history from a particular day
 wtf() { fc -li 1 | grep "$*"; }
+
+canary() { /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary "$*" 2>/dev/null 1>/dev/null &; }
+
+alias canary3000="canary http://localhost:3000/"
+
+# PostgreSQL
+alias pgdbs="psql -c '\list+' | ~/.dotfiles/bin/pgdbs_filter.rb"

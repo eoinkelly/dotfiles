@@ -18,6 +18,9 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
 Plugin 'fatih/vim-go'
+Plugin 'pangloss/vim-javascript'
+
+Plugin 'mxw/vim-jsx' " jsx, depends: vim-javascript
 
 Plugin 'kien/rainbow_parentheses.vim' " clojure
 Plugin 'guns/vim-sexp' " clojure
@@ -277,15 +280,29 @@ set guifont=Source_Code_Pro_Light:h14
 " try auto hiding buffers
 set hidden
 
+" Syntastic
+" =========
 let g:syntastic_ruby_checkers = ['rubocop']
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 " let g:syntastic_ruby_checkers = ['mri'] " default
+
+let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
 " Python has the following checkers, among others: flake8, pyflakes, pylint
 " and a native python checker.
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 let g:syntastic_python_checkers = ['pylint', 'python']
+
+" Syntastic plugin for vim-airline is enabled. Changes to the status line go
+" through that
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
 
 " I prefer if help opens in a new tab
 cabbrev help tab help
@@ -512,3 +529,7 @@ let g:mustache_abbreviations = 1
 " au Syntax *.clj RainbowParenthesesLoadRound
 " au Syntax *.clj RainbowParenthesesLoadSquare
 " au Syntax *.clj RainbowParenthesesLoadBraces
+
+" ReactJS
+" =======
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
