@@ -68,9 +68,6 @@ source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
 
 
-# Load RVM
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
 # Stuff I got from r00k's zshrc that i'm not sure I need:
 # Disable flow control commands (keeps C-s from freezing everything)
 # stty start undef
@@ -82,6 +79,10 @@ source $HOME/.dotfiles/zsh/functions
 # Prevent Ctrl-s from sending XOFF and making it seem like the session is dead
 stty ixany
 stty ixoff -ixon
+
+# ################
+# Ruby development
+# ################
 
 # https://gist.github.com/1688857
 # export RUBY_GC_MALLOC_LIMIT=60000000
@@ -101,8 +102,6 @@ TERM=screen-256color
 
 export EDITOR="/usr/local/bin/vim"
 
-
-
 # ###################
 # Android Development
 # ###################
@@ -120,36 +119,23 @@ source $(brew --prefix nvm)/nvm.sh
 # enable npm tab completion
 . <(npm completion)
 
-### Keychain Setup
+# ##############
+# Keychain Setup
+# ##############
+
 # my keys all begin with id_rsa so this loads them all
 keychain --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_deploy
 . ~/.keychain/$(hostname)-sh
 
-# Experimental stuff
-# ##################
-
-# add the rvm_info_for_prompt into your prompt
-# below is my full prompt
-# PS1='%{$fg[white]%}%n%{$fg[cyan]%}:%{$fg_no_bold[yellow]%}%3~%{$fg_no_bold[green]%}$(git_info_for_prompt)%{$fg_no_bold[magenta]%}$(rvm_info_for_prompt)%{$reset_color%}# '
-
-# this tests for the presence of rvm
-# if its loaded, it'll add the prompt
-# function rvm_info_for_prompt {
-#   # v = ruby version, p = patch, g = gemset
-#   ruby_version=$(~/.rvm/bin/rvm-prompt v p g)
-#   if [ -n "$ruby_version" ]; then
-#     echo "[$ruby_version]"
-#   fi
-# }
-# RPROMPT="%{$fg[yellow]%}$(rvm_info_for_prompt)%{$reset_color%}"
-
-# precmd () {
-#   export RPROMPT="%{$fg[green]%}$(rvm_info_for_prompt)%{$reset_color%}"
-# }
-
-# bind word movement to option+right-arrow, option+left-arrow
-bindkey "" forward-word   #control left
-bindkey "" backward-word  #control right
+# #################
+# oCaml development
+# #################
 
 # OPAM configuration
 . /Users/eoinkelly/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# #########################
+# Custom local environments
+# #########################
+
+eval "$(direnv hook zsh)"

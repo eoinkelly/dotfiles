@@ -1,5 +1,5 @@
-
-## Initialisation that makes sense for both interactive and non-interactive shells
+# Initialisation that makes sense for both interactive and non-interactive
+# shells
 # ###########################
 
 # `psql` without any args should do what I mean!

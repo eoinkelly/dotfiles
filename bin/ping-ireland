@@ -7,3 +7,5 @@
 echo "Trying to ping eircom.ie DNS server"
 ping 159.134.0.1
 
+# echo "Pinging IP for s3-eu-west-1.amazonaws.com"
+# ping 54.231.129.49

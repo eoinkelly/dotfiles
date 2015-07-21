@@ -68,6 +68,7 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'wting/rust.vim'
 Plugin 'fsouza/cobol.vim'
+Plugin 'keith/swift.vim'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -158,6 +159,9 @@ au BufRead,BufNewFile *.m set filetype=objc
 " au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
 " autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
+
+" turn on spellchecking for markdown files by default
+" autocmd FileType markdown setlocal spell
 
 " NERDTree
 " ========
@@ -285,8 +289,8 @@ set hidden
 let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
-let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
 " Python has the following checkers, among others: flake8, pyflakes, pylint
@@ -301,6 +305,9 @@ let g:syntastic_python_checkers = ['pylint', 'python']
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
+let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
 
 
 
@@ -389,9 +396,6 @@ noremap P P`[
 " this seems to break .. for indenting
 " vnoremap < <gv
 " vnoremap > >gv
-
-" ???
-" set winwidth=80
 
 " Setup tab bar colors
 " this is the color of the whole tab bar
@@ -518,7 +522,9 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsListSnippets="<C-s>"
 
 " configure handlebars plugin
-let g:mustache_abbreviations = 1
+let g:mustache_abbreviations = 0
+call tcomment#DefineType('handlebars', '{{!-- %s --}}')
+call tcomment#DefineType('html.handlebars', '{{!-- %s --}}')
 
 " Clojure stuff
 " =============
@@ -533,3 +539,12 @@ let g:mustache_abbreviations = 1
 " ReactJS
 " =======
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" Experimental stuff
+" ==================
+
+" magical resizing windows
+" set winwidth=84
+" set winheight=5
+" set winminheight=5
+" set winheight=999
