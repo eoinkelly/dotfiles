@@ -139,3 +139,9 @@ keychain --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_deploy
 # #########################
 
 eval "$(direnv hook zsh)"
+
+# #########################
+# Shell globbing
+# #########################
+setopt extendedglob # enable fancy extended glob syntax
+setopt dotglob # include hidden files in shell globs

@@ -27,6 +27,7 @@ Plugin 'guns/vim-sexp' " clojure
 Plugin 'tpope/vim-sexp-mappings-for-regular-people' " clojure
 Plugin 'guns/vim-clojure-static' " clojure
 
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'vim-latex/vim-latex'
@@ -289,6 +290,9 @@ set hidden
 let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
+let g:syntastic_elixir_checkers = ['elixir']
+let g:syntastic_enable_elixir_checker = 1
+
 " let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
@@ -468,7 +472,7 @@ autocmd FileType objc setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown l
 
 set foldmethod=indent
 " TODO: ideally I would set this to some "fold level max" value
-set foldlevel=10
+set foldlevel=40
 
 
 
