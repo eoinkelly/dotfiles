@@ -1,3 +1,4 @@
+# vi: ft=zsh
 # Initialisation that makes sense for both interactive and non-interactive
 # shells
 # ###########################
@@ -7,6 +8,12 @@ export PGDATABASE="postgres"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# ##############
+# Go Development
+# ##############
+export GOPATH="$HOME/code/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # Add homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"

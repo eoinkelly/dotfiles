@@ -1,10 +1,18 @@
+# vi: ft=zsh
+
 alias netrst='sudo service networking restart' 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias rdbtp='rake -t db:test:prepare'
+
+# rails shortcuts
+# ###############
 
 alias be='bundle exec'
-alias brake='bundle exec rake -t'
 alias brails='bundle exec rails'
+# alias brake='bundle exec rake -t'
+alias brake='echo "please just use rake now"'
+alias rdbtp='bundle exec rake -t db:test:prepare'
+# noglob tells zsh not to glob the [] args which rake accepts
+alias rake="noglob rake -t" 
 
 # ctags kills kittens if you run it on a large repo
 # alias ctags="`brew --prefix`/bin/ctags"
@@ -17,6 +25,7 @@ alias gco='git checkout'
 alias ga='git add'
 alias gb='git branch -vv'
 alias gpush='git push'
+alias gpushf='git push --force-with-lease'
 alias gpull='git pull'
 alias gf='git fetch'
 alias gc='echo "gcm = commit, gco = checkout"'
@@ -39,7 +48,6 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias ri='ri --format ansi'
 
 alias marked='open -a "/Applications/Marked.app" '
-alias rake="noglob rake"
 
 alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
 alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'

@@ -34,6 +34,8 @@
 	both = diff HEAD
 	l1 = log --pretty=oneline
   roblog = log --pretty=format:'%Cred %h %Creset %ad %Cgreen %an %Creset %s' --date=rfc
+	pushf = push --force-with-lease
+	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --enable=receive-pack --strict-paths .git/
 
 [push]
 	default = current

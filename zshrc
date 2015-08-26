@@ -1,3 +1,4 @@
+# vi: ft=zsh
 # Initialisation for interactive shells only
 # ##########################################
 
