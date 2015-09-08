@@ -1,6 +1,26 @@
 # vi: ft=zsh
-# Initialisation for interactive shells only
-# ##########################################
+#
+# zshrc
+#
+# * Sourced for interactive shells only
+# 
+# Good:
+# 
+# * aliases
+# * functions
+# * color themes
+# * key bindings
+# * commands that need a tty
+# * commands that produce output
+#
+# Bad:
+#
+# * environment setup that would be needed by both interactive shells and
+# shells spawned by other processes e.g. text editors
+#
+# Details: http://zsh.sourceforge.net/Intro/intro_3.html
+#
+echo "Running zshrc: sourced for interactive zsh shells only"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -10,6 +30,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
+# ZSH_THEME="agnoster"
 # ZSH_THEME="steeef"
 
 # Never know when you're gonna need to popd!
@@ -88,15 +109,18 @@ stty ixoff -ixon
 # https://gist.github.com/1688857
 # export RUBY_GC_MALLOC_LIMIT=60000000
 # export RUBY_FREE_MIN=200000
-export RUBY_HEAP_INIT_SLOTS=1000000
-export RUBY_HEAP_SLOTS_INCREMENT=1000000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=1000000000
-export RUBY_HEAP_FREE_MIN=500000
+# export RUBY_HEAP_INIT_SLOTS=1000000
+# export RUBY_HEAP_SLOTS_INCREMENT=1000000
+# export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+# export RUBY_GC_MALLOC_LIMIT=1000000000
+# export RUBY_HEAP_FREE_MIN=500000
 # For 100k+ lines rails apps consider
 # export RUBY_GC_MALLOC_LIMIT=1000000000
 # export RUBY_FREE_MIN=500000
 # export RUBY_HEAP_MIN_SLOTS=40000
+
+# disable spring
+export DISABLE_SPRING=1
 
 # I think this is for Tmux (can't remember)
 TERM=screen-256color
@@ -146,3 +170,18 @@ eval "$(direnv hook zsh)"
 # #########################
 setopt extendedglob # enable fancy extended glob syntax
 setopt dotglob # include hidden files in shell globs
+
+# #########################
+# Lunchy autocomplete
+# #########################
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+  . $LUNCHY_DIR/lunchy-completion.zsh
+fi
+
+# `psql` without any args should do what I mean!
+export PGDATABASE="postgres"
+export GOPATH="$HOME/code/go"
+
+# android dev
+# export GRADLE_HOME="/usr/local/Cellar/gradle/2.0" # used for homebrew gradle

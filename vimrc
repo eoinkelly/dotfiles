@@ -447,7 +447,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " ==========================================================
 
 " thoughtbot/vim-rspec
-let g:rspec_runner = "os_x_iterm"
+" let g:rspec_runner = "os_x_iterm"
+" let g:rspec_command = "!rspec --drb {spec}"
 
 " ==========================================================
 " ==========================================================

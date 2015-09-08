@@ -3,16 +3,21 @@
 alias netrst='sudo service networking restart' 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
+# setup docker environment vars in current shell
+alias dockerme='echo "Adding docker to ENV..." && eval "$(docker-machine env default)" && env | grep DOCK'
+
 # rails shortcuts
 # ###############
 
 alias be='bundle exec'
-alias brails='bundle exec rails'
+# alias brails='bundle exec rails'
+alias brails='echo "please just use rails or ./bin/rails now"'
 # alias brake='bundle exec rake -t'
-alias brake='echo "please just use rake now"'
+alias brake='echo "please just use rake or ./bin/rake now"'
 alias rdbtp='bundle exec rake -t db:test:prepare'
 # noglob tells zsh not to glob the [] args which rake accepts
 alias rake="noglob rake -t" 
+alias rubocop="rubocop -D" 
 
 # ctags kills kittens if you run it on a large repo
 # alias ctags="`brew --prefix`/bin/ctags"
@@ -76,3 +81,5 @@ alias canary3000="canary http://localhost:3000/"
 
 # PostgreSQL
 alias pgdbs="psql -c '\list+' | ~/.dotfiles/bin/pgdbs_filter.rb"
+
+alias prettypath="echo $PATH | tr -s ':' '\n'"
