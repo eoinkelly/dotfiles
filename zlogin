@@ -16,4 +16,4 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Running zlogin: sourced when entering zsh login shells"
+# echo "Running zlogin: sourced when entering zsh login shells"

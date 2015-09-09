@@ -16,6 +16,4 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Running zprofile: sourced for login zsh shells only"
-
-
+# echo "Running zprofile: sourced for login zsh shells only" 

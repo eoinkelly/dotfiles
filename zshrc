@@ -20,7 +20,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Running zshrc: sourced for interactive zsh shells only"
+# echo "Running zshrc: sourced for interactive zsh shells only"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -185,3 +185,6 @@ export GOPATH="$HOME/code/go"
 
 # android dev
 # export GRADLE_HOME="/usr/local/Cellar/gradle/2.0" # used for homebrew gradle
+
+# rust auto completer (r_a_c_er)
+export RUST_SRC_PATH="$HOME/Code/rust/src"

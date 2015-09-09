@@ -12,49 +12,30 @@ filetype off " required!
 " ========================================================================
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+" General
+" =======
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
-Plugin 'fatih/vim-go'
-Plugin 'pangloss/vim-javascript'
-
-Plugin 'mxw/vim-jsx' " jsx, depends: vim-javascript
-
-Plugin 'kien/rainbow_parentheses.vim' " clojure
-Plugin 'guns/vim-sexp' " clojure
-Plugin 'tpope/vim-sexp-mappings-for-regular-people' " clojure
-Plugin 'guns/vim-clojure-static' " clojure
-
 Plugin 'elixir-lang/vim-elixir'
-Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'vim-latex/vim-latex'
-Plugin 'jneen/ragel.vim'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'idris-hackers/idris-vim'
+" Plugin 'derekwyatt/vim-scala'
 Plugin 'ack.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'jshint.vim'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
@@ -64,11 +45,51 @@ Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'thoughtbot/vim-rspec'
+
+" Idris
+Plugin 'idris-hackers/idris-vim'
+
+" ragel
+" Plugin 'jneen/ragel.vim'
+
+" haskell
+Plugin 'lukerandall/haskellmode-vim'
+
+" go
+Plugin 'fatih/vim-go' 
+
+" clojure
+Plugin 'kien/rainbow_parentheses.vim' 
+Plugin 'guns/vim-sexp' 
+Plugin 'tpope/vim-sexp-mappings-for-regular-people' 
+Plugin 'guns/vim-clojure-static' 
+
+" javascript
+Plugin 'jshint.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx' " jsx, depends: vim-javascript
+Plugin 'mustache/vim-mustache-handlebars'
+
+" ruby
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-bundler'
+" Plugin 'kchmck/vim-coffee-script'
+
+" rust
 Plugin 'wting/rust.vim'
+Plugin 'phildawes/racer' 
+Plugin 'cespare/vim-toml'
+
+" cobol
 Plugin 'fsouza/cobol.vim'
+
+" swift
 Plugin 'keith/swift.vim'
 
 " Themes
@@ -285,9 +306,17 @@ set guifont=Source_Code_Pro_Light:h14
 " try auto hiding buffers
 set hidden
 
+" Rust racer
+let g:racer_cmd = "/Users/eoinkelly/.vim/bundle/racer/target/release/racer"
+let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
+
 " Syntastic
 " =========
 let g:syntastic_ruby_checkers = ['rubocop']
+
+" hard-code path to rubocop for faster checking
+let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.2.3/bin/rubocop"
+
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
 let g:syntastic_elixir_checkers = ['elixir']
@@ -307,8 +336,18 @@ let g:syntastic_python_checkers = ['pylint', 'python']
 
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+
+" Don't run syntastic when we open a file
+let g:syntastic_check_on_open = 0
+
+" Don't run syntastic when we :wq
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_enable_signs = 1
+let g:syntastic_style_error_symbol = "✗"
+let g:syntastic_style_warning_symbol = "⚠"
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
 
 " let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
 let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"

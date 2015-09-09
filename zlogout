@@ -12,4 +12,4 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Running zlogout: sourced only when a login shell exists"
+# echo "Running zlogout: sourced only when a login shell exists"

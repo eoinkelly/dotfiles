@@ -15,7 +15,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Running zshenv: sourced for ALL zsh shells"
+# echo "Running zshenv: sourced for ALL zsh shells"
 
 # ##########
 # PATH setup
@@ -76,8 +76,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # * We want to use rbenv to provide `ruby` to both interactive and
 #   non-interactive shells
 
-# echo "running rbenv init"
-# echo "---------------"
-# echo $PATH | tr -s ':' '\n'
-eval "$(rbenv init -)"
+# Pass --no-rehash to prevent rehashing when we create a shell. This makes
+# starting the shell *much* quicker.
+# eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"
 
