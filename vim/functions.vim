@@ -139,5 +139,5 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-command Markify :!open -a "/Applications/Marked.app" %
+command Markify :!open -a "/Applications/Marked 2.app" %
 

@@ -25,6 +25,7 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'cakebaker/scss-syntax.vim'
 " Plugin 'derekwyatt/vim-scala'
 Plugin 'ack.vim'
+Plugin 'othree/eregex.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'scrooloose/nerdtree'
@@ -46,6 +47,9 @@ Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 
+" Postgres
+Plugin 'exu/pgsql.vim'
+
 " Idris
 Plugin 'idris-hackers/idris-vim'
 
@@ -56,16 +60,16 @@ Plugin 'idris-hackers/idris-vim'
 Plugin 'lukerandall/haskellmode-vim'
 
 " go
-Plugin 'fatih/vim-go' 
+Plugin 'fatih/vim-go'
 
 " clojure
-Plugin 'kien/rainbow_parentheses.vim' 
-Plugin 'guns/vim-sexp' 
-Plugin 'tpope/vim-sexp-mappings-for-regular-people' 
-Plugin 'guns/vim-clojure-static' 
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'guns/vim-clojure-static'
 
 " javascript
-Plugin 'jshint.vim'
+" Plugin 'jshint.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx' " jsx, depends: vim-javascript
 Plugin 'mustache/vim-mustache-handlebars'
@@ -79,11 +83,11 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
-" Plugin 'kchmck/vim-coffee-script'
+Plugin 'kchmck/vim-coffee-script'
 
 " rust
 Plugin 'wting/rust.vim'
-Plugin 'phildawes/racer' 
+Plugin 'phildawes/racer'
 Plugin 'cespare/vim-toml'
 
 " cobol
@@ -174,6 +178,7 @@ filetype plugin on    " Enable filetype-specific plugins
 " Hey Vim, .md files are Markdown not Modula2 mmkay?
 au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=markdown
 au BufRead,BufNewFile *.hdl set filetype=verilog
+au BufRead,BufNewFile *.deface set filetype=eruby.html
 
 
 au BufRead,BufNewFile *.m set filetype=objc
@@ -319,12 +324,13 @@ let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.2.3/bin/
 
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
-let g:syntastic_elixir_checkers = ['elixir']
-let g:syntastic_enable_elixir_checker = 1
+" let g:syntastic_elixir_checkers = ['elixir']
+" let g:syntastic_enable_elixir_checker = 1
 
 " let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Python has the following checkers, among others: flake8, pyflakes, pylint
 " and a native python checker.
@@ -454,7 +460,7 @@ noremap P P`[
 " :hi TabLineSel ctermfg=Red ctermbg=Yellow
 " :hi TabLineSel ctermbg=254 ctermfg=Black
 
-set cursorline
+" set cursorline
 
 " https://github.com/hwartig/vim-seeing-is-believing
 " nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
@@ -486,8 +492,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " ==========================================================
 
 " thoughtbot/vim-rspec
-" let g:rspec_runner = "os_x_iterm"
-" let g:rspec_command = "!rspec --drb {spec}"
+let g:rspec_command = "!bundle exec rspec {spec}"
+
+if has("nvim")
+  let g:rspec_command = "split | term bundle exec rspec {spec}"
+endif
 
 " ==========================================================
 " ==========================================================
@@ -534,7 +543,7 @@ autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")
 
 " use ,p as a "delete {thing} to blackhole register and the paste contents of
 " default register"
-vnoremap <Leader>p "_dP
+" vnoremap <Leader>p "_dP
 
 " wean myself off :b#
 nnoremap <leader><leader> <c-^>
@@ -567,6 +576,11 @@ let g:UltiSnipsListSnippets="<C-s>"
 
 " configure handlebars plugin
 let g:mustache_abbreviations = 0
+
+
+
+" tComment stuff
+" ==============
 call tcomment#DefineType('handlebars', '{{!-- %s --}}')
 call tcomment#DefineType('html.handlebars', '{{!-- %s --}}')
 
@@ -592,3 +606,20 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " set winheight=5
 " set winminheight=5
 " set winheight=999
+
+" nvim stuff
+" ==========
+
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    " tnoremap <A-h> <C-\><C-n><C-w>h
+    " tnoremap <A-j> <C-\><C-n><C-w>j
+    " tnoremap <A-k> <C-\><C-n><C-w>k
+    " tnoremap <A-l> <C-\><C-n><C-w>l
+    " nnoremap <A-h> <C-w>h
+    " nnoremap <A-j> <C-w>j
+    " nnoremap <A-k> <C-w>k
+    " nnoremap <A-l> <C-w>l
+endif
+
+let g:terminal_scrollback_buffer_size = 10000 " Terminal scrollback buffer size

@@ -6,6 +6,7 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 # setup docker environment vars in current shell
 alias dockerme='echo "Adding docker to ENV..." && eval "$(docker-machine env default)" && env | grep DOCK'
 
+alias eclipse='open /Users/eoinkelly/eclipse/java-latest-released/Eclipse.app'
 # rails shortcuts
 # ###############
 
@@ -32,11 +33,11 @@ alias gb='git branch -vv'
 alias gpush='git push'
 alias gpushf='git push --force-with-lease'
 alias gpull='git pull'
-alias gf='git fetch'
-alias gc='echo "gcm = commit, gco = checkout"'
+alias gfetch='git fetch'
+# alias gc='echo "gcm = commit, gco = checkout"'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gs='git stash'
+# alias gs='git stash'
 
 alias npm0='npm --depth=0'
 alias npmg='npm -g'
@@ -52,7 +53,7 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 alias ri='ri --format ansi'
 
-alias marked='open -a "/Applications/Marked.app" '
+alias marked='open -a "/Applications/Marked 2.app" '
 
 alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
 alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'

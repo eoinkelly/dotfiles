@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+# ft: ruby
+
+require "pg"
+
+def fail_with_usage
+  puts <<-EOM
+  Usage:
+    pg_peek name_of_database
+  EOM
+  exit
+end
+
+db_name = ARGV.first
+fail_with_usage unless db_name
+
+tables_query = <<-EOQ
+  SELECT table_name
+  FROM information_schema.tables
+  WHERE table_catalog = '#{db_name}'
+    AND table_schema = 'public'
+EOQ
+
+conn = PG.connect(dbname: db_name)
+
+table_names = conn.exec(tables_query) { |result| result.map { |row| row["table_name"] } }
+
+puts "%30s | %5s" % ["Table name", "Count"]
+print " " * 20
+puts "-" * 20
+
+table_names.sort.each do |table_name|
+  count = conn.exec("SELECT count(*) FROM #{table_name}") { |result| result.first["count"] }
+  puts "%30s | %5s" % [table_name, count]
+end

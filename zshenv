@@ -1,12 +1,12 @@
 # zshenv
 #
 # * sourced for ALL zsh shells
-# 
+#
 # Good:
 #
 # * Anything that should be availble to both interactive shell environments and
 #   shells spawned by other processes e.g. a text editor
-# * Setting environment variables e.g. PATH 
+# * Setting environment variables e.g. PATH
 #
 # Bad:
 #
@@ -46,9 +46,6 @@ export PATH="$HOME/xiki-bin:$PATH"
 # Add node & npm
 export PATH="/usr/local/share/npm/bin:$PATH"
 
-# Add my little utilities
-export PATH="$HOME/bin:$PATH"
-
 # Add cabal
 export PATH="$HOME/.cabal/bin:$PATH"
 
@@ -61,12 +58,21 @@ export PATH="/usr/local/android-dev-tools/sdk/build-tools/20.0.0:$PATH"
 # Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 
+# Load exenv (elixir)
+export PATH="$HOME/.exenv/bin:$PATH"
+
+# Load rabid toolbelt
+export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
+
 # We want the ./bin of rails apps we trust to be first on our path so that we
 # can run bundler binstubs (and not have to type `bundle exec foo` everytime we
 # want to run `foo).This little hack lets us have this convenience on git repos
 # we consider "safe". Mark a repo as safe by creating an empty `.git/safe` dir
 # in it.
 # export PATH=".git/safe/../../bin:$PATH"
+
+# Add my little utilities last (so they are found first)
+export PATH="$HOME/bin:$PATH"
 
 
 # ##########
@@ -81,3 +87,13 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 eval "$(rbenv init - --no-rehash)"
 
+# ############
+# Elixir setup
+# ############
+eval "$(exenv init -)"
+
+
+# ##########
+# Node setup
+# ##########
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion

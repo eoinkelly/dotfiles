@@ -1,5 +1,5 @@
 [user]
-	email = eoin@rabidtech.co.nz
+	email = eoin@eoinkelly.info
 	name = Eoin Kelly
 
 [color]
@@ -36,6 +36,7 @@
   roblog = log --pretty=format:'%Cred %h %Creset %ad %Cgreen %an %Creset %s' --date=rfc
 	pushf = push --force-with-lease
 	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --enable=receive-pack --strict-paths .git/
+	patdiff = difftool -y -x patdiff
 
 [push]
 	default = current
@@ -76,8 +77,8 @@
 	smudge = git hawser smudge %f
 	required = true
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
 	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
 [commit]
 	template = /Users/eoinkelly/.git_commit_message
