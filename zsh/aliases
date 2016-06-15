@@ -57,7 +57,7 @@ alias marked='open -a "/Applications/Marked 2.app" '
 
 alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
 alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
-alias iossim='open "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app"'
+alias iossim='open "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"'
 
 alias rme="~/Code/rme/rme"
 

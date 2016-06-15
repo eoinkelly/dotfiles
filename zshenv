@@ -74,6 +74,11 @@ export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
 # Add my little utilities last (so they are found first)
 export PATH="$HOME/bin:$PATH"
 
+# ##########
+# Rust setup
+# ##########
+
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # ##########
 # Ruby setup
@@ -92,8 +97,8 @@ eval "$(rbenv init - --no-rehash)"
 # ############
 eval "$(exenv init -)"
 
-
 # ##########
 # Node setup
 # ##########
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+

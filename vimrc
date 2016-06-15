@@ -46,6 +46,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
+" Plugin 'rainerborene/vim-reek'
 
 " Postgres
 Plugin 'exu/pgsql.vim'
@@ -179,6 +180,7 @@ filetype plugin on    " Enable filetype-specific plugins
 au BufRead,BufNewFile *.md,*.mdown,*.markdown set filetype=markdown
 au BufRead,BufNewFile *.hdl set filetype=verilog
 au BufRead,BufNewFile *.deface set filetype=eruby.html
+au BufRead,BufNewFile *.hbs.erb set filetype=html.handlebars.eruby
 
 
 au BufRead,BufNewFile *.m set filetype=objc
@@ -206,7 +208,7 @@ set number
 set showcmd
 
 " This is sorta nice but slow in terminal vim
-set relativenumber
+" set relativenumber
 " au FocusLost * :set number
 " au FocusGained * :set relativenumber
 " autocmd InsertEnter * :set number
@@ -317,20 +319,22 @@ let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
 
 " Syntastic
 " =========
-let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_scss_scss_lint_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/scss-lint"
 
+
+let g:syntastic_ruby_checkers = ['rubocop']
 " hard-code path to rubocop for faster checking
-let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.2.3/bin/rubocop"
+" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/rubocop"
 
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
 " let g:syntastic_elixir_checkers = ['elixir']
 " let g:syntastic_enable_elixir_checker = 1
 
-" let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-let g:syntastic_javascript_checkers = ['eslint']
 
 " Python has the following checkers, among others: flake8, pyflakes, pylint
 " and a native python checker.
@@ -396,6 +400,8 @@ if exists(":Abolish")
   :Abolish taht that
   :Abolish th e the
   :Abolish jion join
+  :Abolish waht what
+  :Abolish somethign something
 end
 
 " Abolish afterword{,s}                         afterward{}
@@ -623,3 +629,23 @@ if has('nvim')
 endif
 
 let g:terminal_scrollback_buffer_size = 10000 " Terminal scrollback buffer size
+
+" go stuff
+" =======
+"
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_interfaces = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+
+" let g:go_bin_path = expand("~/.vim-go-tools")
+
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" ruby reek
+" =========
+" let g:reek_always_show = 0
+" let g:reek_on_loading = 0 " only check files on demand with :RunReek

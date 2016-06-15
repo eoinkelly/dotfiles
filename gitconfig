@@ -49,6 +49,7 @@
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
 	tool = Kaleidoscope
+	compactionHeuristic = true
 [difftool]
 	prompt = false
 [mergetool "Kaleidoscope"]
@@ -82,3 +83,5 @@
 	smudge = git-lfs smudge %f
 [commit]
 	template = /Users/eoinkelly/.git_commit_message
+[interactive]
+	diffFilter = diff-highlight

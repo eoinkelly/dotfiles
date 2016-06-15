@@ -1,7 +1,6 @@
 " GUI Colorscheme
 " ===============
-" https://github.com/chriskempson/base16-vim/blob/master/colors/base16-monokai.vim
-" set background=dark
-" colorscheme base16-monokai
-colorscheme molokai
+set background=light
+colorscheme base16-default
 
+set guifont=Source_Code_Pro:h16
