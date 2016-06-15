@@ -48,6 +48,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 " Plugin 'rainerborene/vim-reek'
 
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
 " Postgres
 Plugin 'exu/pgsql.vim'
 
