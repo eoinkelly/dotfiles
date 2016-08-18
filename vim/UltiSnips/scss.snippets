@@ -1,0 +1,21 @@
+# Examples:
+# https://github.com/honza/vim-snippets/tree/master/UltiSnips
+
+# options:
+# b = only match if trigger is first thing on line
+snippet outl "outline snippet" b
+outline: 1px solid $1;$0
+endsnippet
+
+# shell interpolation `echo $USER`
+# vimL interpolation `!v somevimLscript`
+# snippet todo "Todo reminder" b
+# TODO: $1 (`!v strftime("%c")`)
+# $0
+# endsnippet
+#
+# snippet ques "question note" b
+# QUESTION: $1 (`!v strftime("%c")`)
+# $0
+# endsnippet
+#

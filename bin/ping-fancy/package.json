@@ -1,0 +1,19 @@
+{
+  "name": "ping-fancy",
+  "version": "1.0.0",
+  "description": "Visual ping output as a chart",
+  "main": "index.js",
+  "bin": {
+    "ping-fancy": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eoin Kelly <eoin@eoinkelly.info>",
+  "license": "MIT",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^3.5.5",
+    "ping-output": "^1.0.1"
+  }
+}

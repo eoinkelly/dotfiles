@@ -7,4 +7,4 @@ gem_name = ARGV.first
 abort "Usage: gemver 'gem-name'" unless gem_name && gem_name.length > 0
 
 gem_info = Gems.info gem_name
-puts "gem '#{gem_name}', '~> #{gem_info["version"]}'"
+puts "gem \"#{gem_name}\", \"~> #{gem_info["version"]}\""

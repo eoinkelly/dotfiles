@@ -26,7 +26,7 @@ alias rubocop="rubocop -D"
 # alias fullretag="`brew --prefix`/bin/ctags -R --exclude=.svn --exclude=.git --exclude=log --exclude=tmp * `bundle show --paths`"
 
 alias g='git status --short'
-alias gcm='git commit'
+alias gcm='git commit --verbose'
 alias gco='git checkout'
 alias ga='git add'
 alias gb='git branch -vv'

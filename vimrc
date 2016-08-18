@@ -19,7 +19,7 @@ Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 " Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
-Plugin 'elixir-lang/vim-elixir'
+
 Plugin 'elzr/vim-json'
 Plugin 'vim-latex/vim-latex'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -48,7 +48,15 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 " Plugin 'rainerborene/vim-reek'
 
+" Apiary blueprint files
+Plugin 'kylef/apiblueprint.vim'
+
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
+" elixir
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+
 
 " Postgres
 Plugin 'exu/pgsql.vim'
@@ -324,10 +332,11 @@ let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
 let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_scss_scss_lint_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/scss-lint"
 
+let g:syntastic_eruby_checkers = ['erb']
 
 let g:syntastic_ruby_checkers = ['rubocop']
 " hard-code path to rubocop for faster checking
-" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/rubocop"
+" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.1/bin/rubocop"
 
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
@@ -591,6 +600,15 @@ let g:mustache_abbreviations = 0
 " ==============
 call tcomment#DefineType('handlebars', '{{!-- %s --}}')
 call tcomment#DefineType('html.handlebars', '{{!-- %s --}}')
+
+" Clojure stuff
+" =============
+
+" let g:alchemist_tag_disable = 1
+" let g:alchemist_tag_map = '<C-]>'
+" let g:alchemist_tag_stack_map = '<C-T>'
+let g:alchemist#elixir_erlang_src = "~/Code/github.com/elixir-lang/elixir"
+
 
 " Clojure stuff
 " =============

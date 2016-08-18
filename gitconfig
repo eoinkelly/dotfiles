@@ -1,5 +1,5 @@
 [user]
-	email = eoin@eoinkelly.info
+	email = eoin@rabidtech.co.nz
 	name = Eoin Kelly
 
 [color]
@@ -22,6 +22,7 @@
 	editor = vim
   autocrlf = input
 	excludesfile = /Users/eoinkelly/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
 	st = status
@@ -85,3 +86,8 @@
 	template = /Users/eoinkelly/.git_commit_message
 [interactive]
 	diffFilter = diff-highlight
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
