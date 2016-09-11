@@ -23,6 +23,8 @@ Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
 
+Plugin 'alisdair/vim-armasm'
+
 Plugin 'elzr/vim-json'
 Plugin 'vim-latex/vim-latex'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -201,6 +203,19 @@ au BufRead,BufNewFile *.m set filetype=objc
 " au BufRead,BufNewFile *.md,*.mdown,*.markdown set textwidth=80
 " autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
+
+" Assembler
+" =========
+
+autocmd FileType asm setlocal shiftwidth=8 tabstop=8 softtabstop=8
+autocmd FileType armasm setlocal shiftwidth=8 tabstop=8 softtabstop=8
+
+if ($USER == "pi") " rough test for whether we are on raspberry pi or not
+  au BufRead,BufNewFile *.s set filetype=armasm
+endif
+
+" spell checking
+" ==============
 
 " turn on spellchecking for markdown files by default
 " autocmd FileType markdown setlocal spell
@@ -605,6 +620,7 @@ let g:mustache_abbreviations = 0
 " ==============
 call tcomment#DefineType('handlebars', '{{!-- %s --}}')
 call tcomment#DefineType('html.handlebars', '{{!-- %s --}}')
+call tcomment#DefineType('armasm', '@@ %s')
 
 " Clojure stuff
 " =============
@@ -674,3 +690,4 @@ let g:terminal_scrollback_buffer_size = 10000 " Terminal scrollback buffer size
 " =========
 " let g:reek_always_show = 0
 " let g:reek_on_loading = 0 " only check files on demand with :RunReek
+
