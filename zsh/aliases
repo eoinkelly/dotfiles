@@ -84,3 +84,5 @@ alias canary3000="canary http://localhost:3000/"
 alias pgdbs="psql -c '\list+' | ~/.dotfiles/bin/pgdbs_filter.rb"
 
 alias prettypath="echo $PATH | tr -s ':' '\n'"
+
+alias gdb="gdb -silent"

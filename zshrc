@@ -150,14 +150,6 @@ source $(brew --prefix nvm)/nvm.sh
 # enable npm tab completion
 . <(npm completion)
 
-# ##############
-# Keychain Setup
-# ##############
-
-# my keys all begin with id_rsa so this loads them all
-keychain --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_deploy
-. ~/.keychain/$(hostname)-sh
-
 # #################
 # oCaml development
 # #################
@@ -194,3 +186,5 @@ export GOPATH="$HOME/code/go"
 
 # rust auto completer (r_a_c_er)
 export RUST_SRC_PATH="$HOME/Code/rust/src"
+
+export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt:$PATH

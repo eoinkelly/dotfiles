@@ -10,6 +10,9 @@ filetype off " required!
 " ========================================================================
 " Vundle stuff
 " ========================================================================
+
+" To setup vundle on a new computer you need to follow https://github.com/VundleVim/Vundle.vim#quick-start
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -31,7 +34,7 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
-Plugin 'lambdatoast/elm.vim'
+Plugin 'ElmCast/elm-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tomtom/tcomment_vim'
@@ -413,6 +416,8 @@ if exists(":Abolish")
   :Abolish jion join
   :Abolish waht what
   :Abolish somethign something
+  :Abolish cna can
+  :Abolish thign thing
 end
 
 " Abolish afterword{,s}                         afterward{}

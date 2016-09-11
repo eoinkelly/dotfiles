@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "thor"
+require "http.rb"
+require "dotenv"
+
+script_dir = File.expand_path(File.dirname(__FILE__))
+Dotenv.load!("#{script_dir}/.env")
+
+require "pry"
+
+class MinuteDockCLI < Thor
+  BASE_URI = "https://minutedock.com/api/v1/".freeze
+  API_KEY = ENV["MINDOC_API_KEY"]
+  CONTACT_ID = ENV["MINDOC_PROJECT_ID"]
+
+  desc "log MESSAGE, DURATION_HOURS", "Create an entry for fairfax project"
+  def log(message, duration_hrs)
+    duration_sec = Float(duration_hrs) * 60 * 60
+
+    fail "missing message" if message.empty?
+    fail "missing duration" if duration_hrs.nil? || duration_sec <= 0
+
+    params = {
+      "api_key" => API_KEY,
+      "entry[duration]" => duration_sec,
+      "entry[description]" => message,
+      "entry[contact_id]" => CONTACT_ID,
+      "entry[logged_at]" => Time.now.to_s
+    }
+
+    # response = http.post("#{BASE_URI}/entries.json", form: params, ssl_context: ssl_ctx)
+    response = http.post("#{BASE_URI}/entries.json", form: params)
+
+    if success?(response)
+      puts "Okay, we've logged that!"
+    else
+      puts <<-EOM
+      Failed to create timesheet entry
+      Error was: #{response.parse}
+      EOM
+    end
+  end
+
+  private
+
+  def success?(response)
+    parsed = response.parse
+
+    return false unless response.code == 200
+    return false unless parsed["logged"] == true
+
+    true
+  end
+
+  # def ssl_ctx
+  #   ctx = OpenSSL::SSL::SSLContext.new
+  #   ctx.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  #   ctx
+  # end
+
+  def http
+    HTTP .headers(accept: "application/json")
+    # .via("127.0.0.1", 8888)
+  end
+end
+
+MinuteDockCLI.start(ARGV)
