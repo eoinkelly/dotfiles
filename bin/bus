@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require "nokogiri"
+require "net/http"
+
+def output(bus)
+  puts "#{bus[0]} leaves in #{bus[2]}"
+end
+
+# Get your stop number from the metlink.co.nz website
+# courtenay_place = 5002
+my_stop = 5014
+
+buses_i_really_care_about = %w(52 58)
+buses_i_care_about = %w(56 57)
+
+# .../departures        returns 20 results
+# .../departures?more=1 returns 40 results
+# .../departures?more=2 returns 60 results
+# .../departures?more=3 returns 80 results
+# .../departures?more=4 returns 100 results
+# etc.
+#
+uri = URI("https://www.metlink.org.nz/stop/#{my_stop}/departures?more=4") # get 100 results
+
+response = Net::HTTP.get(uri)
+document = Nokogiri::HTML(response)
+html_table_rows = document.css(".rt-info-content tr")
+
+all_buses = html_table_rows.map do |tr|
+  tr.css("td").map { |td| td.text.strip }
+end
+
+# Example shape of all_buses
+#
+#    ["2", "Wgtn Station", "67 mins", ""],
+#    ["91", "Queensgate", "69 mins", ""],
+#    ["54", "Churton Park", "70 mins", ""],
+#    ["52", "Newlands", "70 mins", ""],
+#    ["3", "Karori", "79 mins", ""],
+#    ["1", "Wgtn Station", "8:12pm", ""],
+#    ["14", "Wilton", "8:18pm", ""],
+#    ["91", "Queensgate", "8:20pm", ""],
+#    ["23", "Mairangi", "8:21pm", "TSG"],
+#    ["43", "Khandallah", "91 mins", ""],
+
+all_buses
+  .select { |bus| buses_i_really_care_about.include? bus[0] }
+  .each { |bus| output(bus) }
+
+puts "***************"
+
+all_buses
+  .select { |bus| buses_i_care_about.include? bus[0] }
+  .each { |bus| output(bus) }
+

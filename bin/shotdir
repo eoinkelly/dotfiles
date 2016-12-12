@@ -1,0 +1,4 @@
+#!/bin/bash
+
+screenshot_dir="${HOME}/Dropbox/Screenshots"
+open "$screenshot_dir"

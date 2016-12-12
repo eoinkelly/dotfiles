@@ -1,0 +1,6 @@
+#!/bin/bash
+
+screenshot_dir="${HOME}/Dropbox/Screenshots"
+latest_screenshot_img=`ls -1 $screenshot_dir | tail -n 1`
+img="${screenshot_dir}/${latest_screenshot_img}"
+open "$img"
