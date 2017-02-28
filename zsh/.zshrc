@@ -30,10 +30,13 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
+# POWERLEVEL9K_MODE='awesome-patched'
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status) # also available: history, time
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 export DEFAULT_USER=eoinkelly
 
 # ZSH_THEME="agnoster"
@@ -92,8 +95,8 @@ DISABLE_AUTO_TITLE="true"
 plugins=()
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.dotfiles/zsh/aliases
-source $HOME/.dotfiles/zsh/functions
+source $HOME/.zsh/aliases
+source $HOME/.zsh/functions
 
 
 # Stuff I got from r00k's zshrc that i'm not sure I need:
@@ -170,12 +173,12 @@ setopt extendedglob # enable fancy extended glob syntax
 setopt dotglob # include hidden files in shell globs
 
 # #########################
-# Lunchy autocomplete
+# Lunchy autocomplete (I don't use lunchy anymore)
 # #########################
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-  . $LUNCHY_DIR/lunchy-completion.zsh
-fi
+# LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+# if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+#   . $LUNCHY_DIR/lunchy-completion.zsh
+# fi
 
 # `psql` without any args should do what I mean!
 export PGDATABASE="postgres"
@@ -187,4 +190,31 @@ export GOPATH="$HOME/code/go"
 # rust auto completer (r_a_c_er)
 export RUST_SRC_PATH="$HOME/Code/rust/src"
 
-export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt:$PATH
+export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
+
+# Add scripts etc. that I don't want to share with the world
+export PATH=$HOME/private_bin:$PATH
+
+# Add custom dev tools for a specific project
+export PATH=$HOME/Code/bitbucket.org/rabidtech/fairfax-dev-tools/bin:$PATH
+
+export PATH=$HOME/Library/Python/3.6/bin:$PATH
+
+# ##################
+# Setup window title
+# ##################
+
+# set title to whatever string you provide
+# e.g.
+#     title hi there
+function title {
+  echo -ne "\033]0;"$*"\007"
+}
+
+# Set the title to be the current working directory name
+function set_title_to_cwd {
+  echo -ne "\033]0;"$(basename $PWD)"\007"
+}
+
+# Invoke command to automatically set the tab/window title
+set_title_to_cwd
