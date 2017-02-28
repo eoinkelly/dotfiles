@@ -22,9 +22,12 @@ Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 " Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
+Plugin 'tpope/vim-projectionist'
+
+" Typescript
+Plugin 'leafgarland/typescript-vim'
 
 Plugin 'alisdair/vim-armasm'
-
 Plugin 'elzr/vim-json'
 Plugin 'vim-latex/vim-latex'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -53,6 +56,9 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 " Plugin 'rainerborene/vim-reek'
 
+" Python
+Plugin 'tell-k/vim-autopep8'
+
 " Apiary blueprint files
 Plugin 'kylef/apiblueprint.vim'
 
@@ -62,6 +68,8 @@ Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
 
+" Kotlin
+Plugin 'udalov/kotlin-vim'
 
 " Postgres
 Plugin 'exu/pgsql.vim'
@@ -88,7 +96,10 @@ Plugin 'guns/vim-clojure-static'
 " Plugin 'jshint.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx' " jsx, depends: vim-javascript
-Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'mustache/vim-mustache-handlebars'
+
+" Ember
+Plugin 'joukevandermaas/vim-ember-hbs'
 
 " ruby
 Plugin 'kana/vim-textobj-user'
@@ -96,14 +107,14 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'kchmck/vim-coffee-script'
 
 " rust
-Plugin 'wting/rust.vim'
-Plugin 'phildawes/racer'
+Plugin 'rust-lang/rust.vim'
+" Plugin 'phildawes/racer'
 Plugin 'cespare/vim-toml'
 
 " cobol
@@ -253,13 +264,13 @@ set backspace=indent,eol,start
 " ====================
 set t_Co=256 " turn on 256 colors in terminal
 set background=dark
-" colorscheme Tomorrow-Night-Bright
+colorscheme Tomorrow-Night-Bright
 " colorscheme dracula
 " let macvim_skip_colorscheme=1
-
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
+"
+" colorscheme molokai
+" let g:molokai_original = 1
+" let g:rehash256 = 1
 
 
 " Tweak the color scheme on terminal only
@@ -325,7 +336,7 @@ set noesckeys
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 10
 " Use silver-searcher for ctrl-p
-let g:ctrlp_user_command = 'ag --nogroup --path-to-agignore ~/.dotfiles/agignore --nobreak --noheading --nocolor -g "" %s '
+let g:ctrlp_user_command = 'ag --nogroup --path-to-ignore ~/.dotfiles/agignore --nobreak --noheading --nocolor -g "" %s '
 let g:ctrlp_working_path_mode = 'ra'
 
 
@@ -341,9 +352,12 @@ set guifont=Source_Code_Pro_Light:h14
 " try auto hiding buffers
 set hidden
 
-" Rust racer
-let g:racer_cmd = "/Users/eoinkelly/.vim/bundle/racer/target/release/racer"
-let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
+" Rust
+" ====
+let g:rustfmt_autosave = 1 " have rustfmt rewrite my file on save
+
+" let g:racer_cmd = "/Users/eoinkelly/.vim/bundle/racer/target/release/racer"
+" let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
 
 " Syntastic
 " =========
@@ -361,6 +375,8 @@ let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_elixir_checkers = ['elixir']
 " let g:syntastic_enable_elixir_checker = 1
 
+let g:syntastic_rust_checkers = ['rustc']
+
 let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
@@ -369,6 +385,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 " and a native python checker.
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 let g:syntastic_python_checkers = ['pylint', 'python']
+
+" let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " Syntastic plugin for vim-airline is enabled. Changes to the status line go
 " through that
@@ -419,6 +438,12 @@ set wildignore+=bower_components/** " for front-end projects
 set wildignore+=tmp/** " for rails projects
 set wildignore+=.git " ignore git repo
 set wildignore+=*.jpg,*.png,*.o,*.pdf,*.gif,Thumbs.db,*.sqlite3 " ignore common binary files
+
+" Autopep8
+" ********
+let g:autopep8_max_line_length=100
+" let g:autopep8_aggressive=1
+
 
 " Abolish Plugin
 " **************

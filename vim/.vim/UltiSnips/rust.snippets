@@ -1,0 +1,39 @@
+# set higher priority so we override built-in snippets with same shortcut
+# priority 1
+#
+# # options:
+# # b = only match if trigger is first thing on line
+# snippet memdump "Dump ruby process memory usage" b
+# puts format("%d MB", (\`ps -o rss= -p#{Process.pid}\`.to_i / 1024))$0
+# endsnippet
+#
+# snippet it "rspec it" b
+# it "$1" do
+#   $2
+# end$0
+# endsnippet
+#
+# snippet cont "rspec context" b
+# context "$1" do
+#   $2
+# end$0
+# endsnippet
+#
+# snippet init "initialize" b
+# def initialize$1
+#   $2
+# end$0
+# endsnippet
+#
+# snippet desc "rspec describe" b
+# describe "$1" do
+#   $2
+# end$0
+# endsnippet
+snippet dbg "debug via println!" b
+println!("{:?}", $1);$2
+endsnippet
+
+snippet pln "println!" b
+println!("{}", $1);$2
+endsnippet
