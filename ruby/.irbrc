@@ -46,5 +46,5 @@ def less(x)
 end
 
 # Load my custom helpers
-load "~/.dotfiles/irb_snippets.rb"
-load '~/.dotfiles/poke.rb'
+load "~/.ruby-irb-pry-snippets/irb_snippets.rb"
+load '~/.ruby-irb-pry-snippets/poke.rb'
