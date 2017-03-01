@@ -1,0 +1,13 @@
+# 1: identify the problem this commit solves
+# If applied, this commit will ...
+
+# 2: overview the changes it makes
+
+# 3: bring the reviewer up to speed on the work I have done here
+#    * let them know what I learned in this process - catch them up!
+
+# 4: explain why this is the best solution/why I chose this solution
+
+# * The context in here will stay with this repo forever
+# * this commit can help me and the reviewer learn things about the language
+#   and this codebase

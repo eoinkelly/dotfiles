@@ -1,0 +1,14 @@
+# Note: this will configure readline in all programs that use it including
+#
+# * bash
+# * irb
+#
+# Zsh uses its own thing
+
+
+# from https://github.com/georgebrock/dotfiles/blob/master/inputrc
+# set expand-tilde on
+# set bell-style visible
+#
+# "\C-n": menu-complete
+# "\e3": "#"

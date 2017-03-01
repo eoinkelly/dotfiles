@@ -1,4 +1,4 @@
-vim/bundle/*
-!vim/bundle/.gitkeep
+stow/vim/.vim/bundle/*
+!stow/vim/.vim/bundle/.gitkeep
 cacerts
 .env

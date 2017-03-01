@@ -1,5 +1,5 @@
 [user]
-	email = eoin@eoinkelly.info
+	email = eoin@rabidtech.co.nz
 	name = Eoin Kelly
 
 [color]
@@ -24,12 +24,15 @@
 	excludesfile = /Users/eoinkelly/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
+#  x = "!cmd -arg -arg" # to run any shell cmd as alias
 [alias]
 	st = status
 	co = checkout
 	ci = commit
 	lp = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	amend = commit --amend
+	uncommit = reset --soft HEAD^
+  unstage = reset HEAD --
 	staged = diff --cached
 	unstaged = diff
 	both = diff HEAD
@@ -68,6 +71,11 @@
 	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
 
+[merge]
+  ff = only # experimental, may not be viable at work
+  stat = true
+
+
 [fetch]
   prune = true
 [filter "media"]
@@ -83,7 +91,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [commit]
-	template = /Users/eoinkelly/.git_commit_message
+	template = /Users/eoinkelly/.stCommitMsg
 [interactive]
 	diffFilter = diff-highlight
 [color "diff-highlight"]

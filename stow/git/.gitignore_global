@@ -1,0 +1,12 @@
+*~
+.DS_Store
+*.swp
+*.swo
+*.swn
+.agignore
+.envrc
+
+# use a pattern for easily making scripts that are automatically and clearly
+# ignored e.g. dothing.gitignored.sh
+*.gitignored
+*.gitignored.*
