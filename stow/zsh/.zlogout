@@ -1,7 +1,7 @@
 # zlogout
 #
 # * sourced only when a login shell exists
-# 
+#
 # Good:
 #
 # * ???
@@ -12,4 +12,5 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-# echo "Running zlogout: sourced only when a login shell exists"
+echo "Starting .zlogout (run when a login shell exits)"
+echo "Finished .zlogout"

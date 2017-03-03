@@ -15,7 +15,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-# echo "Running zshenv: sourced for ALL zsh shells"
+echo "Starting .zshenv (run for all zsh shells)"
 
 # ##########
 # PATH setup
@@ -102,3 +102,4 @@ eval "$(exenv init -)"
 # ##########
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
+echo "Finished .zshenv"
