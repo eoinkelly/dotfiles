@@ -37,6 +37,14 @@ export DEFAULT_USER=eoinkelly
 # Never know when you're gonna need to popd!
 setopt AUTO_PUSHD
 
+# Instruct zsh to trust the terminal to display combining characters correctly
+# http://zsh.sourceforge.net/Doc/Release/Options.html#index-COMBININGCHARS
+#
+# Apple does this for Terminal.app only in /etc/zshrc so we set it here also
+# for iTerm
+#
+setopt COMBINING_CHARS
+
 # Allow completing of the remainder of a command
 bindkey "^N" insert-last-word
 
@@ -46,10 +54,67 @@ chpwd() {
   ls -lrthG
 }
 
-# Save a ton of history
+# #############
+# Setup history
+# #############
+#
+# HISTSIZE and SAVEHIST should have the same value because reasons - see
+# http://zsh.sourceforge.net/Guide/zshguide02.html
+#
+#     > except for special reasons which I won't talk about, you should set
+#     > $SAVEHIST to be no more than $HISTSIZE, though it can be less
+#
 HISTSIZE=20000
-HISTFILE=~/.zsh_history
 SAVEHIST=20000
+HISTFILE=$HOME/.zsh_history
+alias history='fc -il 1' # show history with yyyy-mm-dd timestamp
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
+
+# #################
+# Setup directories
+# #################
+
+# Changing/making/removing directory
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+alias md='mkdir -p'
+alias rd=rmdir
+alias d='dirs -v | head -10'
+
+# List directory contents
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
 
 ##
 # These are config options left-over from oh-my-zsh - they seem useful so I

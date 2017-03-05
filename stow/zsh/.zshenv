@@ -35,8 +35,6 @@ fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export PATH="$GOPATH/bin:$PATH"
-
 # Add homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
@@ -97,9 +95,66 @@ eval "$(rbenv init - --no-rehash)"
 # ############
 eval "$(exenv init -)"
 
-# ##########
-# Node setup
-# ##########
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+# ################
+# Node Development
+# ################
+
+export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh # more flexible but even slower
+source /usr/local/opt/nvm/nvm.sh # this is pretty slow
+. <(npm completion) # enable npm tab completion
+# [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+# ###################
+# Android Development
+# ###################
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export ANDROID_HOME=/usr/local/android-dev-tools/sdk
+# export GRADLE_HOME="/usr/local/Cellar/gradle/2.0" # used for homebrew gradle
+
+# #################
+# Python development
+# #################
+#
+export PATH=$HOME/Library/Python/3.6/bin:$PATH
+
+# #################
+# oCaml development
+# #################
+
+# OPAM configuration
+# . /Users/eoinkelly/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# #########################
+# Custom local environments
+# #########################
+
+eval "$(direnv hook zsh)"
+
+# #################
+# oCaml development
+# #################
+
+export GOPATH="$HOME/code/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# #################
+# Rust development
+# #################
+
+# rust auto completer (r_a_c_er)
+export RUST_SRC_PATH="$HOME/Code/rust/src"
+
+# #################
+# Eoin's little helpers
+# #################
+
+# Stuff that I don't want to share with the world in my dotfiles
+export PATH=$HOME/private_bin:$PATH
+
+# Add custom work dev tools
+export PATH=$HOME/Code/bitbucket.org/rabidtech/fairfax-dev-tools/bin:$PATH
+export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
 
 echo "Finished .zshenv"
