@@ -368,7 +368,7 @@ let g:syntastic_eruby_checkers = ['erb']
 
 let g:syntastic_ruby_checkers = ['rubocop']
 " hard-code path to rubocop for faster checking
-" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.1/bin/rubocop"
+let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.3/bin/rubocop"
 
 " let g:syntastic_ruby_checkers = ['mri'] " default
 
@@ -402,13 +402,20 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_enable_signs = 1
-let g:syntastic_style_error_symbol = "✗"
-let g:syntastic_style_warning_symbol = "⚠"
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
+" let g:syntastic_style_error_symbol = "✗"
+" let g:syntastic_style_warning_symbol = "⚠"
+" let g:syntastic_error_symbol = "✗"
+" let g:syntastic_warning_symbol = "⚠"
+
+" lowercase for style error and warnings
+let g:syntastic_style_error_symbol = "x"
+let g:syntastic_style_warning_symbol = "w"
+" uppercase for style error and warnings
+let g:syntastic_error_symbol = "X"
+let g:syntastic_warning_symbol = "W"
 
 " let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
-let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
+" let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
 
 
 

@@ -18,7 +18,7 @@ alias brake='echo "please just use rake or ./bin/rake now"'
 alias rdbtp='bundle exec rake -t db:test:prepare'
 # noglob tells zsh not to glob the [] args which rake accepts
 alias rake="noglob rake -t" 
-alias rubocop="rubocop -D" 
+# alias rubocop="rubocop -D" 
 
 # ctags kills kittens if you run it on a large repo
 # alias ctags="`brew --prefix`/bin/ctags"

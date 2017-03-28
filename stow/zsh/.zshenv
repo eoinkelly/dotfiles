@@ -15,7 +15,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Starting .zshenv (run for all zsh shells)"
+# echo "Starting .zshenv (run for all zsh shells)"
 
 # ##########
 # PATH setup
@@ -78,33 +78,6 @@ export PATH="$HOME/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# ##########
-# Ruby setup
-# ##########
-#
-# * We want to use rbenv to provide `ruby` to both interactive and
-#   non-interactive shells
-
-# Pass --no-rehash to prevent rehashing when we create a shell. This makes
-# starting the shell *much* quicker.
-# eval "$(rbenv init -)"
-eval "$(rbenv init - --no-rehash)"
-
-# ############
-# Elixir setup
-# ############
-eval "$(exenv init -)"
-
-# ################
-# Node Development
-# ################
-
-export NVM_DIR=~/.nvm
-# source $(brew --prefix nvm)/nvm.sh # more flexible but even slower
-source /usr/local/opt/nvm/nvm.sh # this is pretty slow
-. <(npm completion) # enable npm tab completion
-# [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-
 # ###################
 # Android Development
 # ###################
@@ -126,14 +99,9 @@ export PATH=$HOME/Library/Python/3.6/bin:$PATH
 # OPAM configuration
 # . /Users/eoinkelly/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# #########################
-# Custom local environments
-# #########################
-
-eval "$(direnv hook zsh)"
 
 # #################
-# oCaml development
+# Go development
 # #################
 
 export GOPATH="$HOME/code/go"
@@ -157,4 +125,4 @@ export PATH=$HOME/private_bin:$PATH
 export PATH=$HOME/Code/bitbucket.org/rabidtech/fairfax-dev-tools/bin:$PATH
 export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
 
-echo "Finished .zshenv"
+# echo "Finished .zshenv"
