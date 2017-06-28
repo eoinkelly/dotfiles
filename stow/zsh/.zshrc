@@ -39,7 +39,8 @@ print "END: oh-my-zsh setup"
 # ###########
 
 source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv nvm vcs)
+# rust_version virtualenv
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status) # also available: history, time
 POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
@@ -70,6 +71,7 @@ chpwd() {
   # set_title_to_cwd
   echo "Now in: $(pwd)"
   ls -lrthG
+  echo "Now in: $(pwd)"
 }
 
 # #############
@@ -135,7 +137,8 @@ function eoin_set_title_to_cwd {
   echo -ne "\033]0;"$(basename $PWD)"\007"
 }
 
-# Invoke command to automatically set the tab/window title
+chpwd_functions=(${chpwd_functions[@]} "eoin_set_title_to_cwd")
+
 eoin_set_title_to_cwd
 
 # ##########

@@ -7,6 +7,26 @@ snippet outl "outline snippet" b
 outline: 1px solid $1;$0
 endsnippet
 
+snippet flex "flexbox skeleton" b
+// refrence: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+// on container:
+display: flex;
+// flex-direction: row; // row (default)|row-reverse|column|column-reverse
+// flex-wrap: wrap; // wrap (default)|nowrap
+// justify-content: flex-start; // flex-start (default)|flex-end|center|space-between|space-around
+// align-items: stretch; // stretch (default)|flex-start|flex-end|center|baseline
+// align-content: stretch; // stretch (default)|flex-start|flex-end|center|space-between|space-around
+
+// on items
+// order: <integer>;
+// flex-grow: 0; // <number>
+// flex-shrink: 0 // <number>
+// flex-basis: auto; // <length> | auto
+// align-self: auto; // auto (default)|flex-start-flex-end|center|baseline|stretch
+$0
+endsnippet
+
 # shell interpolation `echo $USER`
 # vimL interpolation `!v somevimLscript`
 # snippet todo "Todo reminder" b

@@ -86,3 +86,15 @@ alias pgdbs="psql -c '\list+' | ~/.dotfiles/bin/pgdbs_filter.rb"
 alias prettypath="echo $PATH | tr -s ':' '\n'"
 
 alias gdb="gdb -silent"
+
+# A fast way of chdir to a work project
+function work {
+  cd ~/Code/bitbucket.org/rabidtech/$1
+}
+alias notes="cd ~/notes"
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+
+alias kernelver="curl -s https://www.kernel.org/releases.json | jq .latest_stable.version"

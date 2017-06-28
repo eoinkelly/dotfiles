@@ -215,6 +215,10 @@ au BufRead,BufNewFile *.m set filetype=objc
 " autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
+" Swift
+" =====
+autocmd FileType swift setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
 " Assembler
 " =========
 
