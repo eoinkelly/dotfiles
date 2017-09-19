@@ -52,6 +52,7 @@ docker-clean
 dockviz
 ecj
 eiffelstudio
+elasticsearch
 elixir
 elm
 emacs
@@ -60,6 +61,7 @@ erlang
 exercism
 ffmpeg
 fftw
+filebeat
 fish
 fltk
 fontconfig
@@ -124,13 +126,16 @@ jmeter
 jpeg
 jq
 k6
+kibana
 kjell
 kotlin
+kubernetes-cli
 lame
 lastpass-cli
 leiningen
 libassuan
 libcroco
+libdnet
 libevent
 libffi
 libgcrypt
@@ -160,10 +165,12 @@ libyaml
 links
 little-cms2
 llvm
+logstash
 lua
 luajit
 lzip
 macvim
+memcache-top
 memcached
 mercurial
 metis
@@ -247,6 +254,7 @@ suite-sparse
 swiftlint
 szip
 tbb
+tcpreplay
 texinfo
 the_silver_searcher
 tidy-html5

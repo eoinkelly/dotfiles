@@ -2,3 +2,4 @@ stow/vim/.vim/bundle/*
 !stow/vim/.vim/bundle/.gitkeep
 cacerts
 .env
+/bin/minikube
