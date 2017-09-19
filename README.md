@@ -13,6 +13,9 @@ git clone repo ~/.dotfiles
 cd ~/.dotfiles
 bash ./install-all-with-stow.sh
 
+# Install oh-my-zsh
+git clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 # You might have to turn off some bits of the dotfiles
 # which are not yet installed on the machine
 # setup vim
