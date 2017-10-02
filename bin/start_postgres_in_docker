@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+docker run --rm -d -e PGUSER=postgres --name postgres -p "5432:5432" postgres:latest
