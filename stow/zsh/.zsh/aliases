@@ -98,3 +98,7 @@ alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Goo
 alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 alias kernelver="curl -s https://www.kernel.org/releases.json | jq .latest_stable.version"
+
+alias dkc="docker-compose"
+alias dkcci="docker-compose -f docker-compose.ci.yml"
+alias dk="docker"
