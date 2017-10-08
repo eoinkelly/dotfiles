@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+require "action_view"
+include ActionView::Helpers::NumberHelper
+
+def show_usage
+  puts <<-EOM
+
+  Usage:
+    humanize <NUMBER> <UNIT>
+
+    humanize 123214 b     # or bytes
+    humanize 123214.3 ms  # or milliseconds 
+    humanize 123214.3 s   # or seconds, secs, sec 
+
+  <UNIT> is not case sensitive
+
+  EOM
+end
+
+def humanize_ms(ms)
+  [[1000, :milliseconds], [60, :seconds], [60, :minutes], [24, :hours], [1000, :days]].map{ |count, name|
+    if ms > 0
+      ms, n = ms.divmod(count)
+      "#{n.to_i} #{name}"
+    end
+  }.compact.reverse.join(' ')
+end
+
+number = ARGV.shift
+unit = ARGV.shift
+
+if number.nil? || unit.nil?
+  puts "ERROR: missing number or unit"
+  show_usage 
+  exit
+end
+
+case unit.downcase
+when "s", "sec", "secs", "seconds"
+  ms = Float(number) * 1000
+  result = humanize_ms(ms)
+when "ms", "milliseconds"
+  ms = Float(number)
+  result = humanize_ms(ms)
+when "b", "bytes"
+  bytes = Integer(number)
+  result = ActionView::Helpers::NumberHelper.number_to_human_size(bytes) 
+else
+  puts "ERROR: Unknown unit"
+  show_usage
+end
+
+puts result
+

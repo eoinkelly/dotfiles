@@ -57,6 +57,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'michaeljsmith/vim-indent-object'
+" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'rainerborene/vim-reek'
 
 " Python
@@ -294,6 +295,7 @@ colorscheme Tomorrow-Night-Bright
 
 
 
+set dictionary+=/usr/share/dict/words
 
 " Use unix line endings and encode files as UTF-8
 set encoding=utf-8

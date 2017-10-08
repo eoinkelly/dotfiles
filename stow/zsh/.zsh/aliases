@@ -102,3 +102,4 @@ alias kernelver="curl -s https://www.kernel.org/releases.json | jq .latest_stabl
 alias dkc="docker-compose"
 alias dkcci="docker-compose -f docker-compose.ci.yml"
 alias dk="docker"
+alias cwdsizes="du -hd1 . |gsort -h"
