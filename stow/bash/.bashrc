@@ -262,7 +262,7 @@ PATH=$PATH:$HOME/.cabal/bin
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-TERM=screen-256color
+TERM=xterm-256color
 
 # Setup Bash Shortcuts
 # ####################

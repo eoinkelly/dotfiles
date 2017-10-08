@@ -105,7 +105,7 @@ stty ixany
 stty ixoff -ixon
 
 # I think this is for Tmux (can't remember)
-TERM=screen-256color
+TERM=xterm-256color
 
 export EDITOR="/usr/local/bin/vim"
 
