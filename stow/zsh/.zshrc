@@ -208,3 +208,6 @@ print "END node"
 eval "$(direnv hook zsh)"
 
 echo "Finished .zshrc"
+
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
