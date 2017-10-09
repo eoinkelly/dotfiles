@@ -24,6 +24,9 @@ Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
 Plugin 'tpope/vim-projectionist'
 
+" Systemd config files
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
+
 " Typescript
 Plugin 'leafgarland/typescript-vim'
 

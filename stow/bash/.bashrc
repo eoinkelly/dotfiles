@@ -42,7 +42,7 @@ keychain --nocolor ~/.ssh/id_rsa
 #         echo -n "$COLOR_PREFIX$ansi$COLOR_POSTFIX$branch$COLOR_OFF "
 #     fi
 # }
-# 
+#
 # function _prompt_command() {
 #     PS1="`_git_prompt`$PS1"
 # }
@@ -115,7 +115,7 @@ function parse_git_branch {
 # alias gra='git remote add'
 # alias grr='git remote rm'
 # alias gpu='git pull'
-# alias gcl='git clone' 
+# alias gcl='git clone'
 
 # If not running interactively, don't do anything
 case $- in
@@ -262,7 +262,7 @@ PATH=$PATH:$HOME/.cabal/bin
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-TERM=screen-256color
+TERM=xterm-256color
 
 # Setup Bash Shortcuts
 # ####################

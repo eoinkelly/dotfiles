@@ -105,7 +105,7 @@ stty ixany
 stty ixoff -ixon
 
 # I think this is for Tmux (can't remember)
-TERM=screen-256color
+TERM=xterm-256color
 
 export EDITOR="/usr/local/bin/vim"
 
@@ -200,6 +200,9 @@ load_nvm
 # . <(npm completion) # enable npm tab completion
 
 print "END node"
+
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
 
 # #########################
 # Setup Postgres
