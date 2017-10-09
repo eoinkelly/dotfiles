@@ -202,6 +202,13 @@ load_nvm
 print "END node"
 
 # #########################
+# Setup Postgres
+# #########################
+print "Setting up Postgres env vars"
+export PGHOST=localhost
+export PGUSER=postgres
+
+# #########################
 # Custom local environments
 # #########################
 
