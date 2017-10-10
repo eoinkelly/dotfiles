@@ -202,6 +202,13 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
 # #########################
+# Setup Postgres
+# #########################
+print "Setting up Postgres env vars"
+export PGHOST=localhost
+export PGUSER=postgres
+
+# #########################
 # Custom local environments
 # #########################
 
