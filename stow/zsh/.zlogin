@@ -16,5 +16,5 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Starting .zlogin (run when entering a zsh login shell)"
-echo "Finished .zlogin"
+echo -n "[.zlogin"
+echo " .zlogin]"

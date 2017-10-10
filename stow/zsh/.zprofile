@@ -16,5 +16,5 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Starting .zprofile (run for login zsh shells only)"
-echo "Finished .zprofile"
+echo -n "[.zprofile"
+echo " .zprofile]"

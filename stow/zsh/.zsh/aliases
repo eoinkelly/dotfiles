@@ -63,8 +63,15 @@ alias rme="~/Code/rme/rme"
 
 alias sourcetree='open -a SourceTree'
 
-# load aliases for ssh'ing into boxes
-source ~/.eoin-ssh-shortcut-aliases
+function load_ssh_shortcuts_if_available() {
+  aliases_file=~/.eoin-ssh-shortcut-aliases
+
+  if [[ -r "$aliases_file" ]]; then
+    print "Loading custom SSH shortcuts"
+    source $aliases_file
+  fi
+}
+load_ssh_shortcuts_if_available
 
 # show and remove vim swp|swo files
 alias swps-show='find -E . -iregex ".*\.(swo|swp)"'

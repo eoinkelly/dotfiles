@@ -21,9 +21,8 @@
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
 
-print "Starting .zshrc (run for interactive shells only)"
+print "[.zshrc "
 
-print "START: oh-my-zsh setup"
 # See ~/.oh-my-zsh/templates/zshrc.zsh-template for default oh-my-zsh options
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="" # I'm not using oh-my-zsh to manage the theme
@@ -32,7 +31,6 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 plugins=()
 source $ZSH/oh-my-zsh.sh
-print "END: oh-my-zsh setup"
 
 # ###########
 # Setup Theme
@@ -133,7 +131,7 @@ function eoin_title { # 'title' is already a shell alias so don't call it that
 
 # Set the title to be the current working directory name
 function eoin_set_title_to_cwd {
-  echo "Setting window/tab title to $(basename $PWD)"
+  # echo "Setting window/tab title to $(basename $PWD)"
   echo -ne "\033]0;"$(basename $PWD)"\007"
 }
 
@@ -148,19 +146,22 @@ eoin_set_title_to_cwd
 # * We want to use rbenv to provide `ruby` to both interactive and
 #   non-interactive shells
 
-print "START ruby"
 # Pass --no-rehash to prevent rehashing when we create a shell. This makes
 # starting the shell *much* quicker.
 # eval "$(rbenv init -)"
 eval "$(rbenv init - --no-rehash)"
-print "END ruby"
 
 # ############
 # Elixir setup
 # ############
-print "START elixir"
-eval "$(exenv init -)"
-print "END elixir"
+
+function load_exenv_if_available() {
+  which exenv 1>/dev/null 2>&1
+  if [[ $? == 0 ]]; then
+    eval "$(exenv init -)"
+  fi
+}
+load_exenv_if_available
 
 # #################
 # Rails Development
@@ -170,8 +171,6 @@ export DISABLE_SPRING=1 # disable spring because I don't trust it
 # ################
 # Node Development
 # ################
-
-print "START node"
 
 function load_nvm() {
   print -n "Loading nvm ... "
@@ -199,8 +198,6 @@ load_nvm
 # [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 # . <(npm completion) # enable npm tab completion
 
-print "END node"
-
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
@@ -210,10 +207,10 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 
 eval "$(direnv hook zsh)"
 
-echo "Finished .zshrc"
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/eoinkelly/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/eoinkelly/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/eoinkelly/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/eoinkelly/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+print " .zshrc]"
