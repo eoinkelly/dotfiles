@@ -220,4 +220,11 @@ if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then source "${HOME}/google-c
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then source "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
+# Stop run-help pointing at 'man' and instead load the actually useful version
+# which comes with zsh. Then alias 'help' to it so my muscle memory continues
+# to work.
+unalias run-help
+autoload run-help
+alias help=run-help
+
 print " .zshrc]"
