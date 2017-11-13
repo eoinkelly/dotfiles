@@ -23,6 +23,7 @@ cairo
 camlp4
 carthage
 certbot
+cfssl
 cgdb
 chicken
 chromedriver
@@ -48,19 +49,23 @@ direnv
 dirmngr
 dnstracer
 docbook
+docbook-xsl
 docker-clean
 dockviz
 ecj
 eiffelstudio
 elasticsearch
+elinks
 elixir
 elm
 emacs
 epstool
 erlang
+exa
 exercism
 ffmpeg
 fftw
+fig2dev
 filebeat
 fish
 fltk
@@ -106,8 +111,10 @@ gtk+
 haproxy
 harfbuzz
 haskell-platform
+haskell-stack
 hdf5
 hicolor-icon-theme
+highlight
 htop
 httperf
 httpie
@@ -147,6 +154,7 @@ libmpc@0.8
 libpng
 libpng12
 libpng@1.2
+libpq
 librsvg
 libssh2
 libtasn1
@@ -170,6 +178,7 @@ lua
 luajit
 lzip
 macvim
+make
 memcache-top
 memcached
 mercurial
@@ -183,6 +192,7 @@ mpg123
 msgpack
 mysql
 nasm
+ncurses
 neovim
 neovim-dot-app
 nettle
@@ -224,6 +234,7 @@ pyqt
 pyqt5
 python
 python3
+qcachegrind
 qemu
 qhull
 qrupdate
@@ -248,6 +259,8 @@ screen
 shared-mime-info
 siege
 sip
+sipcalc
+sphinx-doc
 sqlite
 stow
 suite-sparse
@@ -276,6 +289,7 @@ watch
 watchman
 webp
 wget
+whatmask
 wireshark
 wkhtmltopdf
 wxmac
