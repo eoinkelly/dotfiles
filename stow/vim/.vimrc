@@ -43,7 +43,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
 Plugin 'ElmCast/elm-vim'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-abolish'
@@ -337,8 +337,10 @@ set hlsearch
 " set backupdir=~/.tmp
 " set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
 
-" Get rid of the delay when hitting esc!
-set noesckeys
+if ! has("nvim")
+  " Get rid of the delay when hitting esc!
+  set noesckeys " doesn't work in nvim
+endif
 
 " Ctrlp
 " =====
@@ -732,3 +734,35 @@ let g:terminal_scrollback_buffer_size = 10000 " Terminal scrollback buffer size
 " let g:reek_always_show = 0
 " let g:reek_on_loading = 0 " only check files on demand with :RunReek
 
+" Neovim experiment
+Plugin 'neomake/neomake'
+
+" let g:neomake_open_list = 2
+let g:neomake_ruby_enabled_makers = ['rubocop'] " ['mri', 'rubocop', 'reek', 'rubylint']
+
+" When writing a buffer.
+call neomake#configure#automake('w')
+" " When writing a buffer, and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
+" " When reading a buffer (after 1s), and when writing.
+call neomake#configure#automake('rw', 1000)
+
+
+" Experiment: vim-signature (2017-10-13)
+" =====================================
+" https://github.com/kshenoy/vim-signature
+Plugin 'kshenoy/vim-signature'
+
+" Experiment: uhex display (2017-10-13)
+" =====================================
+" Show unprintable characters hexadecimal as <xx> instead of using ^C and ~C.
+set display=uhex
+
+" Experiment: JS Prettier (2017-10-20)
+" =====================================
+Plugin 'prettier/vim-prettier'
+let g:prettier#config#trailing_comma = 'none'
+
+" Experiment: Terraform
+" =====================
+Plugin 'hashivim/vim-terraform'

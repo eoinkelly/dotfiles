@@ -15,8 +15,8 @@ ORANGE="208"
 AQUA="87"
 
 ### Keychain Setup
-keychain --nocolor ~/.ssh/id_rsa
-. ~/.keychain/$HOSTNAME-sh
+# keychain --nocolor ~/.ssh/id_rsa
+# . ~/.keychain/$HOSTNAME-sh
 
 ### Git Stuff
 
@@ -171,17 +171,17 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-ps1_rvm() {
-  command -v rvm-prompt >/dev/null 2>&1 && printf "%s" " $(rvm-prompt) "
-}
+# ps1_rvm() {
+#   command -v rvm-prompt >/dev/null 2>&1 && printf "%s" " $(rvm-prompt) "
+# }
 
 # RVM_PART_OF_PROMPT=$(~/.rvm/bin/rvm-prompt v p g)
 # RVM_PART_OF_PROMPT=$(echo 'hello')
 # GIT_PART_OF_PROMPT=$(parse_git_branch)
 
 function prompt_command {
-	RVM_PART_OF_PROMPT=$(~/.rvm/bin/rvm-prompt v p g)
-	# RVM_PART_OF_PROMPT=""
+	# RVM_PART_OF_PROMPT=$(~/.rvm/bin/rvm-prompt v p g)
+	RVM_PART_OF_PROMPT=""
 	GIT_PART_OF_PROMPT=$(parse_git_branch)
 	# GIT_PART_OF_PROMPT=""
 	export PS1="${debian_chroot:+($debian_chroot)}\u@\h[$COLOR_PREFIX$PURPLE$COLOR_POSTFIX$RVM_PART_OF_PROMPT$COLOR_OFF][$GIT_PART_OF_PROMPT]:$COLOR_PREFIX$BLUE$COLOR_POSTFIX\w$COLOR_OFF\$ "
@@ -247,8 +247,8 @@ fi
 # #####################
 
 # https://gist.github.com/1688857
-export RUBY_GC_MALLOC_LIMIT=60000000
-export RUBY_FREE_MIN=200000
+# export RUBY_GC_MALLOC_LIMIT=60000000
+# export RUBY_FREE_MIN=200000
 export EDITOR=/usr/bin/vim
 # For 100k+ lines rails apps consider
 # export RUBY_GC_MALLOC_LIMIT=1000000000

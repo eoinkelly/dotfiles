@@ -98,6 +98,12 @@ alias gdb="gdb -silent"
 function work {
   cd ~/Code/bitbucket.org/rabidtech/$1
 }
+
+function work-clone {
+  git clone git@bitbucket.org:rabidtech/${1}.git ~/Code/bitbucket.org/rabidtech/${1}
+  cd ~/Code/bitbucket.org/rabidtech/${1}
+}
+
 alias notes="cd ~/notes"
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
