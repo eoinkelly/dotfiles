@@ -43,7 +43,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
 Plugin 'ElmCast/elm-vim'
-" Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-abolish'
@@ -61,7 +60,7 @@ Plugin 'michaeljsmith/vim-indent-object'
 " Plugin 'rainerborene/vim-reek'
 
 " Python
-Plugin 'tell-k/vim-autopep8'
+" Plugin 'tell-k/vim-autopep8'
 
 " Apiary blueprint files
 Plugin 'kylef/apiblueprint.vim'
@@ -154,7 +153,6 @@ filetype plugin indent on
 " ========================================================================
 " vim-airline
 " ========================================================================
-let g:airline#extensions#syntastic= 1
 let g:airline#extensions#tabline#enabled = 1 " show buffers on tab line when there is only one tab
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
 let g:airline#extensions#quickfix#location_text = 'Location'
@@ -243,7 +241,7 @@ endif
 " ========
 let NERDTreeShowHidden = 1
 " let NERDTreeRespectWildIgnore = 1
-let NERDTreeIgnore=['\.swp$', '\.swo$', '\.DS_Store$', '\.sass-cache$']
+let NERDTreeIgnore=['\.swp$', '\.swn$', '\.swo$', '\.DS_Store$', '\.sass-cache$']
 
 
 
@@ -334,8 +332,8 @@ set listchars=tab:▸\ ,eol:¬
 
 set hlsearch
 
-" set backupdir=~/.tmp
-" set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+set backupdir=~/.tmp
+set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
 
 if ! has("nvim")
   " Get rid of the delay when hitting esc!
@@ -370,63 +368,68 @@ let g:rustfmt_autosave = 1 " have rustfmt rewrite my file on save
 " let g:racer_cmd = "/Users/eoinkelly/.vim/bundle/racer/target/release/racer"
 " let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
 
-" Syntastic
-" =========
-let g:syntastic_scss_checkers = ['scss_lint']
-let g:syntastic_scss_scss_lint_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/scss-lint"
-
-let g:syntastic_eruby_checkers = ['erb']
-
-let g:syntastic_ruby_checkers = ['rubocop']
-" hard-code path to rubocop for faster checking
-let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.3/bin/rubocop"
-
-" let g:syntastic_ruby_checkers = ['mri'] " default
-
-" let g:syntastic_elixir_checkers = ['elixir']
-" let g:syntastic_enable_elixir_checker = 1
-
-let g:syntastic_rust_checkers = ['rustc']
-
-let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_checkers = ['jshint']
-" let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-
-" Python has the following checkers, among others: flake8, pyflakes, pylint
-" and a native python checker.
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-let g:syntastic_python_checkers = ['pylint', 'python']
-
-" let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
-" Syntastic plugin for vim-airline is enabled. Changes to the status line go
-" through that
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-
-" Don't run syntastic when we open a file
-let g:syntastic_check_on_open = 0
-
-" Don't run syntastic when we :wq
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_enable_signs = 1
-" let g:syntastic_style_error_symbol = "✗"
-" let g:syntastic_style_warning_symbol = "⚠"
-" let g:syntastic_error_symbol = "✗"
-" let g:syntastic_warning_symbol = "⚠"
-
-" lowercase for style error and warnings
-let g:syntastic_style_error_symbol = "x"
-let g:syntastic_style_warning_symbol = "w"
-" uppercase for style error and warnings
-let g:syntastic_error_symbol = "X"
-let g:syntastic_warning_symbol = "W"
-
-" let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
-" let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
+" " Syntastic (deprecated in favour of neomake experiment)
+" " =========
+" Plugin 'scrooloose/syntastic'
+"
+" let g:airline#extensions#syntastic= 1
+"
+" let g:syntastic_scss_checkers = ['scss_lint']
+" let g:syntastic_scss_scss_lint_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/scss-lint"
+"
+" let g:syntastic_eruby_checkers = ['erb']
+"
+" let g:syntastic_ruby_checkers = ['rubocop']
+" " hard-code path to rubocop for faster checking
+" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.3/bin/rubocop"
+"
+" " let g:syntastic_ruby_checkers = ['mri'] " default
+"
+" " let g:syntastic_elixir_checkers = ['elixir']
+" " let g:syntastic_enable_elixir_checker = 1
+"
+" let g:syntastic_rust_checkers = ['rustc']
+"
+" let g:syntastic_javascript_checkers = ['eslint']
+" " let g:syntastic_javascript_checkers = ['jshint']
+" " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+"
+" " Python has the following checkers, among others: flake8, pyflakes, pylint
+" " and a native python checker.
+" let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+" " let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_python_checkers = ['pycodestyle', 'pylint']
+"
+" " let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++11'
+"
+" " Syntastic plugin for vim-airline is enabled. Changes to the status line go
+" " through that
+"
+" " let g:syntastic_always_populate_loc_list = 1
+" " let g:syntastic_auto_loc_list = 1
+"
+" " Don't run syntastic when we open a file
+" let g:syntastic_check_on_open = 0
+"
+" " Don't run syntastic when we :wq
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_enable_signs = 1
+" " let g:syntastic_style_error_symbol = "✗"
+" " let g:syntastic_style_warning_symbol = "⚠"
+" " let g:syntastic_error_symbol = "✗"
+" " let g:syntastic_warning_symbol = "⚠"
+"
+" " lowercase for style error and warnings
+" let g:syntastic_style_error_symbol = "x"
+" let g:syntastic_style_warning_symbol = "w"
+" " uppercase for style error and warnings
+" let g:syntastic_error_symbol = "X"
+" let g:syntastic_warning_symbol = "W"
+"
+" " let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
+" " let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
 
 
 
@@ -734,11 +737,13 @@ let g:terminal_scrollback_buffer_size = 10000 " Terminal scrollback buffer size
 " let g:reek_always_show = 0
 " let g:reek_on_loading = 0 " only check files on demand with :RunReek
 
-" Neovim experiment
+" Experiment: neomake (2017-12-02)
+" =====================================
 Plugin 'neomake/neomake'
 
 " let g:neomake_open_list = 2
 let g:neomake_ruby_enabled_makers = ['rubocop'] " ['mri', 'rubocop', 'reek', 'rubylint']
+let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle']
 
 " When writing a buffer.
 call neomake#configure#automake('w')
@@ -765,4 +770,9 @@ let g:prettier#config#trailing_comma = 'none'
 
 " Experiment: Terraform
 " =====================
-Plugin 'hashivim/vim-terraform'
+" Plugin 'hashivim/vim-terraform' " crappy syntax highlighting
+Plugin 'b4b4r07/vim-hcl'
+autocmd BufNewFile,BufRead *.tf set filetype=hcl " this doesn't work in plugin for some reason
+
+autocmd BufNewFile,BufRead *.tfstate set filetype=json
+autocmd BufNewFile,BufRead *.tfstate.backup set filetype=json

@@ -42,7 +42,11 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv nvm vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status) # also available: history, time
 POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
+POWERLEVEL9K_NVM_FOREGROUND='white'
+POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
+
 export DEFAULT_USER=eoinkelly
+
 
 ##
 # Instruct zsh to trust the terminal to display combining characters correctly
@@ -158,6 +162,7 @@ eval "$(rbenv init - --no-rehash)"
 function load_exenv_if_available() {
   which exenv 1>/dev/null 2>&1
   if [[ $? == 0 ]]; then
+    print -n "Loading elixir ... "
     eval "$(exenv init -)"
   fi
 }

@@ -1,0 +1,2 @@
+" From stow
+source ~/.vimrc

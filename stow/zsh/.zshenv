@@ -91,6 +91,15 @@ export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 # #################
 #
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
+export PIP_CONFIG_FILE=$HOME/.pip.conf
+
+# Stop python from creating __pycache__/ dirs everywhere
+export PYTHONDONTWRITEBYTECODE=1
+
+# virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
 # #################
 # oCaml development

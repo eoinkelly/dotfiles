@@ -18,3 +18,5 @@
 #
 echo -n "[.zprofile"
 echo " .zprofile]"
+
+export PATH="$HOME/.cargo/bin:$PATH"

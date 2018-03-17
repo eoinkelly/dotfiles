@@ -5,8 +5,11 @@
 *.swn
 .agignore
 .envrc
+.vscode/
 
 # use a pattern for easily making scripts that are automatically and clearly
 # ignored e.g. dothing.gitignored.sh
 *.gitignored
 *.gitignored.*
+
+.ignore

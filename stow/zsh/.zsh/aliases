@@ -116,3 +116,9 @@ alias dkc="docker-compose"
 alias dkcci="docker-compose -f docker-compose.ci.yml"
 alias dk="docker"
 alias cwdsizes="du -hd1 . |gsort -h"
+alias desktop="cd ~/Desktop"
+alias desk="cd ~/Desktop"
+
+alias vim=nvim
+alias vi=nvim
+alias tf=terraform
