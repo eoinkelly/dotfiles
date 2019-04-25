@@ -39,22 +39,25 @@ source $ZSH/oh-my-zsh.sh
 # not sure if this is in theme or not
 export DEFAULT_USER=eoinkelly
 
-
 # POWERLEVEL9K_MODE:
 #
 #   flat|awesome-patched|awesome-fontconfig|awesome-mapped-fontconfig|nerdfont-complete|nerdfont-fontconfig|compatible|<empty> (default)
 #
-POWERLEVEL9K_MODE=""
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv nvm vcs)
-# rust_version virtualenv
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status) # also available: history, time
-POWERLEVEL9K_SHOW_CHANGESET=true
-POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
-POWERLEVEL9K_NVM_FOREGROUND='white'
-POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
+POWERLEVEL9K_MODE="nerdfont-complete"
+
+# https://github.com/bhilburn/powerlevel9k#available-prompt-segments
+# e.g.
+#
+#     history time rust_version virtualenv
+#
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh dir_writable dir background_jobs aws rbenv nvm vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
+# POWERLEVEL9K_SHOW_CHANGESET=true
+# POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
+# POWERLEVEL9K_NVM_FOREGROUND='white'
+# POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
 
 source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-
 
 ##
 # Instruct zsh to trust the terminal to display combining characters correctly
