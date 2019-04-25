@@ -30,3 +30,33 @@ describe "$1" do
   $2
 end$0
 endsnippet
+
+snippet letb "let with do end" b
+let(:$1) do
+  $2
+end
+endsnippet
+
+snippet let!b "let! with do end" b
+let!(:$1) do
+  $2
+end
+endsnippet
+
+snippet bef "before each with brackets" b
+before(:each$1) do
+  $2
+end
+endsnippet
+
+snippet rubocop "rubcop:disable shortcut" b
+# rubocop:disable Metrics/$1
+endsnippet
+
+snippet spec "rspec skeleton" b
+require "$1_helper"
+
+RSpec.describe $2 do
+  $3
+end$0
+endsnippet

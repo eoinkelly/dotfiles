@@ -19,7 +19,7 @@
 	remote = yellow
 
 [core]
-	editor = vim
+	# editor = vim # I want $EDITOR fallback so I can use nvim
   autocrlf = input
 	excludesfile = /Users/eoinkelly/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -99,3 +99,5 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[log]
+	# date = auto:human # breaks sourcetree on 2019-02-25

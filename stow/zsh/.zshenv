@@ -78,6 +78,17 @@ export PATH="$HOME/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# ##################
+# Elixir Development
+# ##################
+
+# iex needs an editor which won't take over the terminal so we use code instead
+# of vim. Help available at
+#
+#   iex> h open
+#
+export ELIXIR_EDITOR="code --goto __FILE__:__LINE__"
+
 # ###################
 # Android Development
 # ###################
@@ -133,5 +144,8 @@ export PATH=$HOME/private_bin:$PATH
 # Add custom work dev tools
 export PATH=$HOME/Code/bitbucket.org/rabidtech/fairfax-dev-tools/bin:$PATH
 export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
+
+# Allow running Visual studio Code from command line
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
 
 # echo "Finished .zshenv"

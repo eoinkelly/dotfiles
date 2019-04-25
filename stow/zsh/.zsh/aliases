@@ -17,7 +17,7 @@ alias brails='echo "please just use rails or ./bin/rails now"'
 alias brake='echo "please just use rake or ./bin/rake now"'
 alias rdbtp='bundle exec rake -t db:test:prepare'
 # noglob tells zsh not to glob the [] args which rake accepts
-alias rake="noglob rake -t" 
+# alias rake="noglob rake -t" 
 # alias rubocop="rubocop -D" 
 
 # ctags kills kittens if you run it on a large repo
@@ -63,15 +63,15 @@ alias rme="~/Code/rme/rme"
 
 alias sourcetree='open -a SourceTree'
 
-function load_ssh_shortcuts_if_available() {
-  aliases_file=~/.eoin-ssh-shortcut-aliases
-
-  if [[ -r "$aliases_file" ]]; then
-    print "Loading custom SSH shortcuts"
-    source $aliases_file
-  fi
-}
-load_ssh_shortcuts_if_available
+# function load_ssh_shortcuts_if_available() {
+#   aliases_file=~/.eoin-ssh-shortcut-aliases
+#
+#   if [[ -r "$aliases_file" ]]; then
+#     print "Loading custom SSH shortcuts"
+#     source $aliases_file
+#   fi
+# }
+# load_ssh_shortcuts_if_available
 
 # show and remove vim swp|swo files
 alias swps-show='find -E . -iregex ".*\.(swo|swp)"'
@@ -99,12 +99,23 @@ function work {
   cd ~/Code/bitbucket.org/rabidtech/$1
 }
 
+function radiola {
+  cd ~/Code/bitbucket.org/radiolarti/$1
+}
+
 function work-clone {
   git clone git@bitbucket.org:rabidtech/${1}.git ~/Code/bitbucket.org/rabidtech/${1}
   cd ~/Code/bitbucket.org/rabidtech/${1}
 }
 
-alias notes="cd ~/notes"
+function github {
+  cd ~/Code/github.com/eoinkelly/$1
+}
+
+function notes {
+  cd ~/notes/$1
+}
+
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
@@ -122,3 +133,4 @@ alias desk="cd ~/Desktop"
 alias vim=nvim
 alias vi=nvim
 alias tf=terraform
+alias kit=kitchen

@@ -275,3 +275,5 @@ TERM=xterm-256color
 # Prevent Ctrl-s from sending XOFF and making it seem like the session is dead
 stty ixany
 stty ixoff -ixon
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

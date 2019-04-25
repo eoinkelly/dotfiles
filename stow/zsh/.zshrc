@@ -36,7 +36,15 @@ source $ZSH/oh-my-zsh.sh
 # Setup Theme
 # ###########
 
-source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+# not sure if this is in theme or not
+export DEFAULT_USER=eoinkelly
+
+
+# POWERLEVEL9K_MODE:
+#
+#   flat|awesome-patched|awesome-fontconfig|awesome-mapped-fontconfig|nerdfont-complete|nerdfont-fontconfig|compatible|<empty> (default)
+#
+POWERLEVEL9K_MODE=""
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv nvm vcs)
 # rust_version virtualenv
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status) # also available: history, time
@@ -45,7 +53,7 @@ POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_NVM_FOREGROUND='white'
 POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
 
-export DEFAULT_USER=eoinkelly
+source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 
 ##
@@ -109,7 +117,8 @@ stty ixoff -ixon
 # I think this is for Tmux (can't remember)
 TERM=xterm-256color
 
-export EDITOR="/usr/local/bin/vim"
+# export EDITOR="/usr/local/bin/vim"
+export EDITOR="/usr/local/bin/nvim"
 
 # #########################
 # Shell globbing
@@ -186,8 +195,8 @@ function load_nvm() {
 
 function load_nvm_if_nvmrc_exists_in_cwd() {
   if [[ -r "${PWD}/.nvmrc" ]]; then
-    print "Found .nvmrc in current working dir."
-    load_nvm
+    # nvm use prints stuff to stdout so we don't need to
+    nvm use
   fi
 }
 
@@ -196,8 +205,8 @@ function load_nvm_if_nvmrc_exists_in_cwd() {
 
 # run load_nvm_if_nvmrc_exists_in_cwd() once at shell startup in case we are
 # already in a dir with a .nvmrc
-# load_nvm_if_nvmrc_exists_in_cwd
 load_nvm
+load_nvm_if_nvmrc_exists_in_cwd
 
 # optional completions
 # [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
@@ -219,6 +228,9 @@ export PGUSER=postgres
 
 eval "$(direnv hook zsh)"
 
+# Tell homebrew to automatically cleanup
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then source "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
 
@@ -232,4 +244,14 @@ unalias run-help
 autoload run-help
 alias help=run-help
 
+print "Enabling fzf"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND="fd --type f"
+# --height 40%
+# export FZF_DEFAULT_OPTS="--border --preview 'head -100 {}' --inline-info"
+export FZF_DEFAULT_OPTS="--border --preview 'head -100 {}'"
+export FZF_DEFAULT_OPTS="--border"
+
 print " .zshrc]"
+

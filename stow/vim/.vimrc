@@ -3,7 +3,7 @@
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set nocompatible
+" set nocompatible " is default since Vim 8
 
 filetype off " required!
 
@@ -24,8 +24,14 @@ Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
 Plugin 'tpope/vim-projectionist'
 
+" C language stuff
+Plugin 'rhysd/vim-clang-format'
+
 " Systemd config files
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
+
+" Easier session management
+Plugin 'tpope/vim-obsession'
 
 " Typescript
 Plugin 'leafgarland/typescript-vim'
@@ -38,8 +44,17 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'ack.vim'
 Plugin 'othree/eregex.vim'
 Plugin 'rizzatti/dash.vim'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+" Markdown (and other stuff)
+" Plugin 'vim-pandoc/vim-pandoc'
+" Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'godlygeek/tabular'
+" Plugin 'gabrielelana/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
+
 Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/argtextobj.vim'
+
 Plugin 'ag.vim'
 Plugin 'ctrlp.vim'
 Plugin 'ElmCast/elm-vim'
@@ -50,7 +65,10 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
+
+" Make netrw better
 Plugin 'tpope/vim-vinegar'
+
 Plugin 'tpope/vim-eunuch'
 Plugin 'mattn/emmet-vim'
 Plugin 'bling/vim-airline'
@@ -68,8 +86,21 @@ Plugin 'kylef/apiblueprint.vim'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
 " elixir
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
+" Plugin 'slashmili/alchemist.vim' " I'm not ready for this
+" let g:alchemist#elixir_erlang_src = "~/Code/github.com/elixir-lang/elixir"
+
+Plugin 'elixir-editors/vim-elixir'
+
+" We need to set the MIX_ENV environment variable to something other than
+" 'dev'. Phoenix uses 'dev' (so builds into `_build/dev/...` and if mix-format
+" uses the same then it breaks Phoenix code reloading. We must use an
+" environment which exists (config/config.exs will try to load
+" config/ourenv.exs) so we choose 'test' because 1) it exists and 2) it
+" shouldn't interfere with running tests (probably)
+let $MIX_ENV = 'test'
+Plugin 'mhinz/vim-mix-format'
+let g:mix_format_on_save = 1
+
 
 " Kotlin
 Plugin 'udalov/kotlin-vim'
@@ -132,12 +163,11 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'tomasr/molokai'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'} " this theme has 24 bit color support
 
-" Snippets
-Plugin 'SirVer/ultisnips'        " snippet engine
-Plugin 'honza/vim-snippets'      " the snippets
-
 call vundle#end() " required
-filetype plugin indent on
+
+let mapleader=','
+
+" filetype plugin indent on " is default since Vim 8
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -217,6 +247,9 @@ au BufRead,BufNewFile *.m set filetype=objc
 " autocmd FileType ghmarkdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
 
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_new_list_item_indent = 0
+
 " Swift
 " =====
 autocmd FileType swift setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -241,8 +274,47 @@ endif
 " ========
 let NERDTreeShowHidden = 1
 " let NERDTreeRespectWildIgnore = 1
+" let NERDTreeHijackNetrw=1
 let NERDTreeIgnore=['\.swp$', '\.swn$', '\.swo$', '\.DS_Store$', '\.sass-cache$']
+nmap <Leader>r :NERDTreeToggle<CR>
 
+
+" netrw
+" =====
+
+let g:netrw_banner = 0 " vinegar does this anyway but no harm to have it here
+let g:netrw_liststyle = 3 " choose tree style
+let g:netrw_browse_split = 4 " open new file in the previous window
+let g:netrw_altv = 1
+let g:netrw_winsize = 15 " sensible window width %
+
+" function! ToggleVExplorer()
+"   if exists("t:expl_buf_num")
+"       let expl_win_num = bufwinnr(t:expl_buf_num)
+"       if expl_win_num != -1
+"           let cur_win_nr = winnr()
+"           exec expl_win_num . 'wincmd w'
+"           close
+"           exec cur_win_nr . 'wincmd w'
+"           unlet t:expl_buf_num
+"       else
+"           unlet t:expl_buf_num
+"       endif
+"   else
+"       exec '1wincmd w'
+"       Vexplore
+"       let t:expl_buf_num = bufnr("%")
+"   endif
+" endfunction
+" " map <silent> <C-E> :call ToggleVExplorer()<CR>
+" nmap <Leader>r call ToggleVExplorer()<CR>
+
+
+" automatically open a :Vex window when I open vim
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
 
 
 set smartindent
@@ -253,7 +325,7 @@ set number
 set showcmd
 
 " This is sorta nice but slow in terminal vim
-" set relativenumber
+set relativenumber
 " au FocusLost * :set number
 " au FocusGained * :set relativenumber
 " autocmd InsertEnter * :set number
@@ -353,7 +425,8 @@ let g:ctrlp_working_path_mode = 'ra'
 " ======
 " * replace spaces in font name with _
 " * hXX is size in points
-set guifont=Source_Code_Pro_Light:h14
+" set guifont=Source_Code_Pro_Light:h14
+set guifont=Hack_Nerd_Font:h14
 
 
 " try auto formatting paragraphs
@@ -368,73 +441,9 @@ let g:rustfmt_autosave = 1 " have rustfmt rewrite my file on save
 " let g:racer_cmd = "/Users/eoinkelly/.vim/bundle/racer/target/release/racer"
 " let $RUST_SRC_PATH="/Users/eoinkelly/Code/rust/src/"
 
-" " Syntastic (deprecated in favour of neomake experiment)
-" " =========
-" Plugin 'scrooloose/syntastic'
-"
-" let g:airline#extensions#syntastic= 1
-"
-" let g:syntastic_scss_checkers = ['scss_lint']
-" let g:syntastic_scss_scss_lint_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/scss-lint"
-"
-" let g:syntastic_eruby_checkers = ['erb']
-"
-" let g:syntastic_ruby_checkers = ['rubocop']
-" " hard-code path to rubocop for faster checking
-" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.3/bin/rubocop"
-"
-" " let g:syntastic_ruby_checkers = ['mri'] " default
-"
-" " let g:syntastic_elixir_checkers = ['elixir']
-" " let g:syntastic_enable_elixir_checker = 1
-"
-" let g:syntastic_rust_checkers = ['rustc']
-"
-" let g:syntastic_javascript_checkers = ['eslint']
-" " let g:syntastic_javascript_checkers = ['jshint']
-" " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-"
-" " Python has the following checkers, among others: flake8, pyflakes, pylint
-" " and a native python checker.
-" let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-" " let g:syntastic_python_checkers = ['pylint']
-" let g:syntastic_python_checkers = ['pycodestyle', 'pylint']
-"
-" " let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++11'
-"
-" " Syntastic plugin for vim-airline is enabled. Changes to the status line go
-" " through that
-"
-" " let g:syntastic_always_populate_loc_list = 1
-" " let g:syntastic_auto_loc_list = 1
-"
-" " Don't run syntastic when we open a file
-" let g:syntastic_check_on_open = 0
-"
-" " Don't run syntastic when we :wq
-" let g:syntastic_check_on_wq = 0
-"
-" let g:syntastic_enable_signs = 1
-" " let g:syntastic_style_error_symbol = "✗"
-" " let g:syntastic_style_warning_symbol = "⚠"
-" " let g:syntastic_error_symbol = "✗"
-" " let g:syntastic_warning_symbol = "⚠"
-"
-" " lowercase for style error and warnings
-" let g:syntastic_style_error_symbol = "x"
-" let g:syntastic_style_warning_symbol = "w"
-" " uppercase for style error and warnings
-" let g:syntastic_error_symbol = "X"
-" let g:syntastic_warning_symbol = "W"
-"
-" " let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
-" " let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
-
-
-
 " I prefer if help opens in a new tab
-cabbrev help tab help
+" 2018-11-25: I changed my mind
+" cabbrev help tab help
 
 set showtabline=2  " Always show the tabline
 
@@ -597,7 +606,7 @@ autocmd BufNewFile,BufReadPost *.json setl foldmethod=syntax nofoldenable
 
 " Objective C
 " ============
-autocmd FileType objc setlocal shiftwidth=4 tabstop=4 softtabstop=4 " markdown likes 4-space tabs
+autocmd FileType objc setlocal shiftwidth=4 tabstop=4 softtabstop=4 " ObjC likes 4-space tabs
 
 " Folding
 " =======
@@ -609,10 +618,105 @@ set foldlevel=40
 
 
 
-runtime macros/matchit.vim " enable the matchit plugin
+runtime macros/matchit.vim " enable the matchit plugin (required by vim-textobj-rubyblock)
 
-source ~/.vim/functions.vim
-source ~/.vim/aliases.vim
+" Syntastic
+" =========
+
+" Plugin 'scrooloose/syntastic'
+"
+" let g:airline#extensions#syntastic= 1
+"
+" let g:syntastic_scss_checkers = ['scss_lint']
+" let g:syntastic_scss_scss_lint_exec = "/Users/eoinkelly/.rbenv/versions/2.3.0/bin/scss-lint"
+"
+" let g:syntastic_eruby_checkers = ['erb']
+"
+" let g:syntastic_ruby_checkers = ['rubocop']
+" " hard-code path to rubocop for faster checking
+" let g:syntastic_ruby_rubocop_exec = "/Users/eoinkelly/.rbenv/versions/2.3.3/bin/rubocop"
+"
+" " let g:syntastic_ruby_checkers = ['mri'] " default
+"
+" " let g:syntastic_elixir_checkers = ['elixir']
+" " let g:syntastic_enable_elixir_checker = 1
+"
+" let g:syntastic_rust_checkers = ['rustc']
+"
+" let g:syntastic_javascript_checkers = ['eslint']
+" " let g:syntastic_javascript_checkers = ['jshint']
+" " let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+"
+" " Python has the following checkers, among others: flake8, pyflakes, pylint
+" " and a native python checker.
+" let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+" " let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_python_checkers = ['pycodestyle', 'pylint']
+"
+" " let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++11'
+"
+" " Syntastic plugin for vim-airline is enabled. Changes to the status line go
+" " through that
+"
+" " let g:syntastic_always_populate_loc_list = 1
+" " let g:syntastic_auto_loc_list = 1
+"
+" " Don't run syntastic when we open a file
+" let g:syntastic_check_on_open = 0
+"
+" " Don't run syntastic when we :wq
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_enable_signs = 1
+" " let g:syntastic_style_error_symbol = "✗"
+" " let g:syntastic_style_warning_symbol = "⚠"
+" " let g:syntastic_error_symbol = "✗"
+" " let g:syntastic_warning_symbol = "⚠"
+"
+" " lowercase for style error and warnings
+" let g:syntastic_style_error_symbol = "x"
+" let g:syntastic_style_warning_symbol = "w"
+" " uppercase for style error and warnings
+" let g:syntastic_error_symbol = "X"
+" let g:syntastic_warning_symbol = "W"
+"
+" " let g:syntastic_java_javac_classpath = "/<path-to-your-app>/bin/classes\n/<path-to-your-android-sdk>/platforms/android-19/*.jar"
+" " let g:syntastic_java_javac_classpath = "/Users/eoinkelly/Library/Android/sdk/platforms/android-19/*.jar"
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+
+" Experiment: Neomake (2017-12-02)
+" =====================================
+" Plugin 'neomake/neomake'
+"
+" " let g:neomake_open_list = 2
+" let g:neomake_ruby_enabled_makers = ['rubocop'] " ['mri', 'rubocop', 'reek', 'rubylint']
+" let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle']
+"
+" " When writing a buffer.
+" call neomake#configure#automake('w')
+" " " When writing a buffer, and on normal mode changes (after 750ms).
+" call neomake#configure#automake('nw', 750)
+" " " When reading a buffer (after 1s), and when writing.
+" call neomake#configure#automake('rw', 1000)
+
+
+" Experiment: Ale (2018-03-17)
+" ============================
+Plugin 'w0rp/ale'
+
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
+" colors list: https://jonasjacek.github.io/colors/
+" use a dark red for highlighted warnings
+highlight ALEWarning ctermbg=124
+
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \}
 
 " Strip tailing whitespace
 " nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
@@ -627,9 +731,6 @@ autocmd BufWritePre *.* :call Preserve("%s/\\s\\+$//e")
 " use ,p as a "delete {thing} to blackhole register and the paste contents of
 " default register"
 " vnoremap <Leader>p "_dP
-
-" wean myself off :b#
-nnoremap <leader><leader> <c-^>
 
 " Make %% expand (on the command line) into the containing path of the currently open buffer
 " cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -652,10 +753,6 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Ultisnip configuration
-" ======================
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsListSnippets="<C-s>"
 
 " configure handlebars plugin
 let g:mustache_abbreviations = 0
@@ -664,9 +761,18 @@ let g:mustache_abbreviations = 0
 
 " tComment stuff
 " ==============
-call tcomment#DefineType('handlebars', '{{!-- %s --}}')
-call tcomment#DefineType('html.handlebars', '{{!-- %s --}}')
-call tcomment#DefineType('armasm', '@@ %s')
+call tcomment#type#Define('handlebars', '{{!-- %s --}}')
+call tcomment#type#Define('html.handlebars', '{{!-- %s --}}')
+call tcomment#type#Define('armasm', '@@ %s')
+" Use C++ style comments in C
+call tcomment#type#Define('c', '// %s')
+
+" clang-format stuff
+" ==================
+" do nothing if there is no .clang-format
+let g:clang_format#enable_fallback_style=0
+
+autocmd FileType c ClangFormatAutoEnable
 
 " Clojure stuff
 " =============
@@ -674,7 +780,6 @@ call tcomment#DefineType('armasm', '@@ %s')
 " let g:alchemist_tag_disable = 1
 " let g:alchemist_tag_map = '<C-]>'
 " let g:alchemist_tag_stack_map = '<C-T>'
-let g:alchemist#elixir_erlang_src = "~/Code/github.com/elixir-lang/elixir"
 
 
 " Clojure stuff
@@ -729,29 +834,11 @@ let g:terminal_scrollback_buffer_size = 10000 " Terminal scrollback buffer size
 
 " let g:go_bin_path = expand("~/.vim-go-tools")
 
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " ruby reek
 " =========
 " let g:reek_always_show = 0
 " let g:reek_on_loading = 0 " only check files on demand with :RunReek
-
-" Experiment: neomake (2017-12-02)
-" =====================================
-Plugin 'neomake/neomake'
-
-" let g:neomake_open_list = 2
-let g:neomake_ruby_enabled_makers = ['rubocop'] " ['mri', 'rubocop', 'reek', 'rubylint']
-let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle']
-
-" When writing a buffer.
-call neomake#configure#automake('w')
-" " When writing a buffer, and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
-" " When reading a buffer (after 1s), and when writing.
-call neomake#configure#automake('rw', 1000)
-
 
 " Experiment: vim-signature (2017-10-13)
 " =====================================
@@ -770,9 +857,253 @@ let g:prettier#config#trailing_comma = 'none'
 
 " Experiment: Terraform
 " =====================
-" Plugin 'hashivim/vim-terraform' " crappy syntax highlighting
-Plugin 'b4b4r07/vim-hcl'
-autocmd BufNewFile,BufRead *.tf set filetype=hcl " this doesn't work in plugin for some reason
+Plugin 'hashivim/vim-terraform' " crappy syntax highlighting
 
-autocmd BufNewFile,BufRead *.tfstate set filetype=json
-autocmd BufNewFile,BufRead *.tfstate.backup set filetype=json
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+" This is required to override neovim's built-in tf filetype (which is a bit
+" rubbish)
+au BufRead,BufNewFile *.tf set filetype=terraform
+
+" 2018-06-04: Fixes a bug in vim-terraform (there is open PR to fix it)
+autocmd FileType terraform setlocal commentstring=#%s
+
+" Experiement: deoplete (2018-03-17)
+" ==================================
+" https://github.com/Shougo/deoplete.nvim
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim'
+  " let g:deoplete#enable_at_startup = 1
+else
+endif
+
+
+" Snippets
+" ========
+
+" Ultisnip configuration
+" ======================
+
+Plugin 'SirVer/ultisnips'        " snippet engine
+Plugin 'honza/vim-snippets'      " the snippets
+
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets="<C-s>"
+
+" Don't name this dir "ultisnips" or it will be found as part of the searching
+" that ultisnips does through the runtime path i.e. snippets in this dir will
+" appear twice when you expand them and you will be asked to choose which one
+" you want
+let g:UltiSnipsSnippetsDir="~/.vim/eoin_ultisnips"
+
+" UltiSnips will search vim runtime path for subdirs with these names and load
+" snippets - this allows other plugins to provide snippets
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+" Plugin 'Shougo/neosnippet'
+" Plugin 'Shougo/neosnippet-snippets'
+
+
+" FZF
+" ===
+set rtp+=/usr/local/opt/fzf
+Plugin 'junegunn/fzf.vim'
+
+" ===================================================
+" Aliases
+" ===================================================
+
+" D = command key (macvim only, does not work in terminal vim)
+" M = option/alt key
+" C = control key
+"
+map <Leader>val :sp ~/.dotfiles/vim/aliases.vim<cr>
+map <Leader>zal :sp ~/.dotfiles/zsh/aliases<cr>
+
+" Rspec.vim mappings
+map <Leader>S :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>o :OverCommandLine<CR>
+
+" Map C-s to save because I sometimes use it by accident
+map <C-s> :w<cr>
+imap <C-s> <ESC>:w<cr>
+
+nmap <Leader>t :CtrlP<CR>
+nmap <Leader>b :CtrlPBuffer<CR>
+nmap <Leader>m :CtrlPMRU<CR>
+
+" wean myself off :b#
+" TODO: this is currently broken
+nmap <leader><leader> <c-^>
+
+nnoremap <cr> :nohlsearch<cr>
+
+" Practical Vim tip #80
+" Make C-l clear search highlighting as well as clear screen
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+
+" Enable the learnin' stick!
+" noremap h <NOP>
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP
+
+" Map C-j to run JSHint (FIXME: should run in .js files only)
+" map <C-j> :JSHint<CR>
+
+" imap Q: QUESTION:
+" imap T: TODO:
+
+" ===================================================
+" Functions
+" ===================================================
+
+function MyTabLine()
+  let s = '' " complete tabline goes here
+  " loop through each tab page
+  for t in range(tabpagenr('$'))
+    " set highlight for tab number and &modified
+    let s .= '%#TabLineSel#'
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (t + 1) . 'T'
+    " set page number string
+    let s .= t + 1 . ':'
+    " get buffer names and statuses
+    let n = ''  "temp string for buffer names while we loop and check buftype
+    let m = 0  " &modified counter
+    let bc = len(tabpagebuflist(t + 1))  "counter to avoid last ' '
+    " loop through each buffer in a tab
+    for b in tabpagebuflist(t + 1)
+      " buffer types: quickfix gets a [Q], help gets [H]{base fname}
+      " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+      if getbufvar( b, "&buftype" ) == 'help'
+        let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+      elseif getbufvar( b, "&buftype" ) == 'quickfix'
+        let n .= '[Q]'
+      else
+        let n .= pathshorten(bufname(b))
+      endif
+      " check and ++ tab's &modified count
+      if getbufvar( b, "&modified" )
+        let m += 1
+      endif
+      " no final ' ' added...formatting looks better done later
+      if bc > 1
+        let n .= ' '
+      endif
+      let bc -= 1
+    endfor
+    " add modified label [n+] where n pages in tab are modified
+    if m > 0
+      let s .= '[' . m . '+]'
+    endif
+    " select the highlighting for the buffer names
+    " my default highlighting only underlines the active tab
+    " buffer names.
+    if t + 1 == tabpagenr()
+      let s .= '%#TabLine#'
+    else
+      let s .= '%#TabLineSel#'
+    endif
+    " add buffer names
+    let s .= n
+    " switch to no underlining and add final space to buffer list
+    let s .= '%#TabLineSel#' . ' '
+  endfor
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1
+    let s .= '%=%#TabLineFill#%999Xclose'
+  endif
+  return s
+endfunction
+
+" function! RunTests(filename)
+"     " Write the file and run tests for the given filename
+"     :w
+"     :silent !echo;echo;echo;echo;echo
+"     exec ":!bundle exec rspec " . a:filename
+" endfunction
+"
+" function! SetTestFile()
+"     " Set the spec file that tests will be run for.
+"     let t:grb_test_file=@%
+" endfunction
+"
+" function! RunTestFile(...)
+"     if a:0
+"         let command_suffix = a:1
+"     else
+"         let command_suffix = ""
+"     endif
+"
+"     " Run the tests for the previously-marked file.
+"     let in_spec_file = match(expand("%"), '_spec.rb$') != -1
+"     if in_spec_file
+"         call SetTestFile()
+"     elseif !exists("t:grb_test_file")
+"         return
+"     end
+"     call RunTests(t:grb_test_file . command_suffix)
+" endfunction
+"
+" function! RunNearestTest()
+"     let spec_line_number = line('.')
+"     call RunTestFile(":" . spec_line_number)
+" endfunction
+
+" Copy selected lines to the system clipboard
+" *******************************************
+" Copy the selected lines to the system pasteboard
+" function SystemClipboardCopy() range
+"   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
+" endfunction
+"
+" com -range=% -nargs=0 SystemClipboardCopy :<line1>,<line2>call SystemClipboardCopy()
+
+" Evaluate the selected lines w. ruby and print output
+" ****************************************************
+" function EvalRuby() range
+"   let
+"   let ruby_code = join(getline(a:firstline, a:lastline), "\n")
+"   let ruby_output = system('echo '.shellescape(ruby_code).'| ruby ')
+"
+"   " execute "normal " . a:lastline . "G"
+"   " execute "normal o# => " . ruby_code . "\<Esc>ddk"
+"   execute "normal o# => " . ruby_code . "\<Esc>ddk"
+" endfunction
+"
+" com -range=% -nargs=0 EvalRuby :<line1>,<line2>call EvalRuby()
+
+function Jsonifier()
+  :set filetype=json
+  :setlocal foldmethod=syntax nofoldenable
+  :%!jsonlint
+endfunction
+
+command Jsonify call Jsonifier()
+
+" Perform a command and preserve the cursor position and remove the command
+" from history
+" ****************************************************
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+" TODO: how to guard against command redefinition so i can source this file
+" without errors after changes
+command Markify :!open -a "/Applications/Marked.app" %

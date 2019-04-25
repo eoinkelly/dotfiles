@@ -1,7 +1,13 @@
 #!/Users/eoinkelly/.rbenv/shims/ruby
 
-require 'rubygems'
-require 'gems'
+require "bundler/inline"
+
+gemfile do
+  source "https://rubygems.org"
+  gem "gems"
+end
+
+require "gems"
 
 gem_name = ARGV.first
 abort "Usage: gemver 'gem-name'" unless gem_name && gem_name.length > 0
