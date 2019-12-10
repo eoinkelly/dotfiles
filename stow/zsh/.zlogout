@@ -12,5 +12,5 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Starting .zlogout (run when a login shell exits)"
-echo "Finished .zlogout"
+echo -n "[~/.zlogout"
+echo " ~/.zlogout]"

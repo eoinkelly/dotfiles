@@ -1,10 +1,18 @@
-# vi: ft=zsh
+##
+# There are 4 kinds of zsh shell:
 #
-# zshrc
+# 1. login + interactive
+# 2. login + non-interactive
+# 3. non-login + interactive
+# 4. non-login + non-interactive
 #
-# * Sourced for interactive shells only
+# This file is only run for _interactive_ shells (1. and 3. above).
+# This file is **not** run when you run a shell script!
 #
-# Good choice for:
+#     $ zsh ./script.sh # will source this file
+#     $ zsh -l ./script.sh # will not source this file
+#
+# Good choices for this file are anything which configures the shell for a human to use e.g.
 #
 # * aliases
 # * functions
@@ -13,13 +21,15 @@
 # * commands that need a tty
 # * commands that produce output
 #
-# Bad choice for:
+# Bad choices for this file:
 #
 # * environment setup that would be needed by both interactive shells and
 #   shells spawned by other processes e.g. text editors
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
+
+# vi: ft=zsh
 
 print "[.zshrc "
 
@@ -167,6 +177,16 @@ eoin_set_title_to_cwd
 # eval "$(rbenv init -)"
 eval "$(rbenv init - --no-rehash)"
 
+# ##########
+# PHP setup
+# ##########
+#
+# * We want to use phpenv to provide `php` to both interactive and
+#   non-interactive shells
+#
+export PATH="$HOME/.phpenv/bin:$PATH:$HOME/.composer/vendor/bin"
+eval "$(phpenv init -)"
+
 # ############
 # Elixir setup
 # ############
@@ -176,6 +196,7 @@ function load_exenv_if_available() {
   if [[ $? == 0 ]]; then
     print -n "Loading elixir ... "
     eval "$(exenv init -)"
+    print "done."
   fi
 }
 load_exenv_if_available
@@ -199,6 +220,7 @@ function load_nvm() {
 function load_nvm_if_nvmrc_exists_in_cwd() {
   if [[ -r "${PWD}/.nvmrc" ]]; then
     # nvm use prints stuff to stdout so we don't need to
+    print "Found .nvmrc file. Running 'nvm use'"
     nvm use
   fi
 }
@@ -256,5 +278,17 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--border --preview 'head -100 {}'"
 export FZF_DEFAULT_OPTS="--border"
 
+print "Configuring tab completion for serverless"
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
 print " .zshrc]"
+
 

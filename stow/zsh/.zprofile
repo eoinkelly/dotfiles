@@ -1,22 +1,27 @@
-# vi: ft=zsh
-# zprofile
+##
+# There are 4 kinds of zsh shell:
 #
-# * sourced for ALL zsh shells
+# 1. login + interactive
+# 2. login + non-interactive
+# 3. non-login + interactive
+# 4. non-login + non-interactive
 #
-# Good:
+# This file:
 #
-# * Anything that should be availble to both interactive shell environments and
-#   shells spawned by other processes e.g. a text editor
-# * Setting environment variables e.g. PATH
+# * is sourced when entering login shells only (1. and 2. above)
+# * is similar function to .zlogin (.zprofile exists to make ksh fans happy)
 #
-# Bad:
+# Good chocies for this file:
 #
-# * any command that produces output
-# * any command that assumes it is connected to a tty
+# * set terminal type
+# * run login commands e.g. uptime or fortune
 #
-# Details: http://zsh.sourceforge.net/Intro/intro_3.html
+# Bad
 #
-echo -n "[.zprofile"
-echo " .zprofile]"
+# * anything that changes the shell environment
+#
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# vi: ft=zsh
+
+echo -n "[~/.zprofile"
+echo " ~/.zprofile]"

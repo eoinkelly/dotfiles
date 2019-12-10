@@ -94,27 +94,62 @@ alias prettypath="echo $PATH | tr -s ':' '\n'"
 
 alias gdb="gdb -silent"
 
-# A fast way of chdir to a work project
+# #####################################
+# A fast way of chdir to a code project
 function work {
-  cd ~/Code/bitbucket.org/rabidtech/$1
+  cd ~/Code/repos/$1
 }
 
-function radiola {
-  cd ~/Code/bitbucket.org/radiolarti/$1
+function _work() {
+  local state
+
+  _arguments '1: :->repos_dir'
+
+  case $state in
+    (repos_dir) _arguments '1:profiles:($(ls ~/Code/repos))' ;;
+  esac
 }
 
-function work-clone {
-  git clone git@bitbucket.org:rabidtech/${1}.git ~/Code/bitbucket.org/rabidtech/${1}
-  cd ~/Code/bitbucket.org/rabidtech/${1}
-}
+compdef _work work
+# #####################################
 
+# #######################################
+# A fast way of chdir to a github project
 function github {
-  cd ~/Code/github.com/eoinkelly/$1
+  cd ~/Code/github.com/$1
 }
 
+function _github() {
+  local state
+
+  _arguments '1: :->repos_dir'
+
+  case $state in
+    (repos_dir) _arguments '1:profiles:($(ls ~/Code/github.com))' ;;
+  esac
+}
+
+compdef _github github
+# #######################################
+
+
+# #######################################
 function notes {
   cd ~/notes/$1
 }
+
+function _notes() {
+  local state
+
+  _arguments '1: :->notes_dir'
+
+  case $state in
+    (notes_dir) _arguments '1:profiles:($(ls ~/notes))' ;;
+  esac
+}
+
+compdef _notes notes
+# #######################################
 
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -134,3 +169,6 @@ alias vim=nvim
 alias vi=nvim
 alias tf=terraform
 alias kit=kitchen
+
+alias now="date"
+alias gmt="date -u"

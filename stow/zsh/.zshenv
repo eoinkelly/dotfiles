@@ -1,21 +1,30 @@
-# zshenv
+##
+# There are 4 kinds of zsh shell:
 #
-# * sourced for ALL zsh shells
+# 1. login + interactive
+# 2. login + non-interactive
+# 3. non-login + interactive
+# 4. non-login + non-interactive
 #
-# Good:
+# This file:
+#
+# * is the **only** zsh startup file run for **all** shells
+# * is run immediately after running /etc/zshenv (assuming that file exists)
+#
+# Good choices for this file:
 #
 # * Anything that should be availble to both interactive shell environments and
 #   shells spawned by other processes e.g. a text editor
 # * Setting environment variables e.g. PATH
 #
-# Bad:
+# Bad choices for this file:
 #
 # * any command that produces output
 # * any command that assumes it is connected to a tty
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-# echo "Starting .zshenv (run for all zsh shells)"
+echo -n "[~/.zshenv"
 
 # ##########
 # PATH setup
@@ -148,4 +157,4 @@ export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
 # Allow running Visual studio Code from command line
 export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
 
-# echo "Finished .zshenv"
+echo " ~/.zshenv]"
