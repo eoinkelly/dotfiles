@@ -1,0 +1,50 @@
+# https://starship.rs/config/
+
+# Don't print a new line at the start of the prompt
+# add_newline = false
+
+# [line_break]
+# disabled = true
+
+[character]
+# Replace the "❯" symbol in the prompt with "➜"
+# symbol = "➜"
+
+[git_branch]
+# symbol = ""
+# style = "purple"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[aws]
+displayed_items = "profile"
+
+[aws.region_aliases]
+ap-southeast-2 = "au"
+
+[battery]
+disabled = true
+
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+
+[python]
+pyenv_version_name = true
+style = "yellow"
+
+[php]
+style = "red"
+
+[node]
+style = "green"
+
+# [docker_context]
+# disabled = false
+
+[time]
+disabled = false
+style = "yellow"
+format = "[%T]"

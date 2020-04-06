@@ -87,6 +87,13 @@ export PATH="$HOME/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# ##########
+# Flutter setup
+# ##########
+
+export PATH="$HOME/flutter_dev/flutter/bin:$PATH"
+
+
 # ##################
 # Elixir Development
 # ##################
@@ -103,7 +110,7 @@ export ELIXIR_EDITOR="code --goto __FILE__:__LINE__"
 # ###################
 
 export JAVA_HOME=$(/usr/libexec/java_home)
-export ANDROID_HOME=/usr/local/android-dev-tools/sdk
+# export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 # export GRADLE_HOME="/usr/local/Cellar/gradle/2.0" # used for homebrew gradle
 
 # #################
@@ -133,7 +140,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 # Go development
 # #################
 
-export GOPATH="$HOME/code/go"
+export GOPATH="$HOME/code/go/gopath"
 export PATH="$GOPATH/bin:$PATH"
 
 # #################
@@ -156,5 +163,8 @@ export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
 
 # Allow running Visual studio Code from command line
 export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+
+# Fix problem that puma and many other things have with fork() on Catalina
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 echo " ~/.zshenv]"

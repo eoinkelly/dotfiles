@@ -18,11 +18,27 @@ call vundle#begin()
 
 " General
 " =======
+
+" Pony lang
+Plugin 'dleonard0/pony-vim-syntax'
+
+" Powershell
+Plugin 'PProvost/vim-ps1'
+
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle (required)!
 " Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
 Plugin 'vim-scripts/renumber.vim'
 Plugin 'tpope/vim-projectionist'
+
+" J language
+Plugin 'guersam/vim-j'
+
+" Nginx.vim
+Plugin 'chr4/nginx.vim'
+
+" PHP
+Plugin 'beyondwords/vim-twig'
 
 " C language stuff
 Plugin 'rhysd/vim-clang-format'
@@ -77,6 +93,10 @@ Plugin 'michaeljsmith/vim-indent-object'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'rainerborene/vim-reek'
 
+" Silverstripe templates
+Plugin 'phalkunz/vim-ss'
+
+Plugin 'GutenYe/json5.vim'
 " Python
 " Plugin 'tell-k/vim-autopep8'
 
@@ -106,7 +126,8 @@ let g:mix_format_on_save = 1
 Plugin 'udalov/kotlin-vim'
 
 " Postgres
-Plugin 'exu/pgsql.vim'
+" Plugin 'exu/pgsql.vim' " seems less maintained than the lifepillar one
+Plugin 'lifepillar/pgsql.vim'
 
 " Idris
 Plugin 'idris-hackers/idris-vim'
@@ -805,6 +826,13 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " set winminheight=5
 " set winheight=999
 
+" pgsql stuff
+" ==========
+" treat all .sql files as PostgreSQL
+" without this, the filetype must be 'pgsql' for the plugin to syntax
+" highlight it etc.
+autocmd BufNewFile,BufRead *.sql setf pgsql
+
 " nvim stuff
 " ==========
 
@@ -899,7 +927,9 @@ let g:UltiSnipsSnippetsDir="~/.vim/eoin_ultisnips"
 
 " UltiSnips will search vim runtime path for subdirs with these names and load
 " snippets - this allows other plugins to provide snippets
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+"
+" Explicitly adding my custom ultisnips dir is required under nvim but not vim
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/.vim/eoin_ultisnips']
 
 " Plugin 'Shougo/neosnippet'
 " Plugin 'Shougo/neosnippet-snippets'

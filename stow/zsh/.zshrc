@@ -53,22 +53,23 @@ export DEFAULT_USER=eoinkelly
 #
 #   flat|awesome-patched|awesome-fontconfig|awesome-mapped-fontconfig|nerdfont-complete|nerdfont-fontconfig|compatible|<empty> (default)
 #
-POWERLEVEL9K_MODE="nerdfont-complete"
-
-# https://github.com/bhilburn/powerlevel9k#available-prompt-segments
-# e.g.
+# POWERLEVEL9K_MODE="nerdfont-complete"
 #
-#     history time rust_version virtualenv
+# # https://github.com/bhilburn/powerlevel9k#available-prompt-segments
+# # e.g.
+# #
+# #     history time rust_version virtualenv
+# #
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh dir_writable dir background_jobs aws rbenv nvm vcs status)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+# # POWERLEVEL9K_SHOW_CHANGESET=true
+# # POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
+# # POWERLEVEL9K_NVM_FOREGROUND='white'
+# # POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
 #
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh dir_writable dir background_jobs aws rbenv nvm vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-# POWERLEVEL9K_SHOW_CHANGESET=true
-# POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
-# POWERLEVEL9K_NVM_FOREGROUND='white'
-# POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
+# source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
-source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-
+eval "$(starship init zsh)"
 ##
 # Instruct zsh to trust the terminal to display combining characters correctly
 # http://zsh.sourceforge.net/Doc/Release/Options.html#index-COMBININGCHARS
@@ -177,6 +178,19 @@ eoin_set_title_to_cwd
 # eval "$(rbenv init -)"
 eval "$(rbenv init - --no-rehash)"
 
+# ############
+# Python setup
+# ############
+#
+# * We want to use pyenv to provide `python` to both interactive and
+#   non-interactive shells
+
+# Pass --no-rehash to prevent rehashing when we create a shell. This makes
+# starting the shell *much* quicker.
+# eval "$(rbenv init -)"
+export PATH="${HOME}/.pyenv/shims:${PATH}"
+eval "$(pyenv init - --no-rehash)"
+
 # ##########
 # PHP setup
 # ##########
@@ -210,32 +224,34 @@ export DISABLE_SPRING=1 # disable spring because I don't trust it
 # Node Development
 # ################
 
-function load_nvm() {
-  print -n "Loading nvm ... "
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  print "done."
-}
-
-function load_nvm_if_nvmrc_exists_in_cwd() {
-  if [[ -r "${PWD}/.nvmrc" ]]; then
-    # nvm use prints stuff to stdout so we don't need to
-    print "Found .nvmrc file. Running 'nvm use'"
-    nvm use
-  fi
-}
+# function load_nvm() {
+#   print -n "Loading nvm ... "
+#   export NVM_DIR="$HOME/.nvm"
+#   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+#   print "done."
+# }
+#
+# function load_nvm_if_nvmrc_exists_in_cwd() {
+#   if [[ -r "${PWD}/.nvmrc" ]]; then
+#     # nvm use prints stuff to stdout so we don't need to
+#     print "Found .nvmrc file. Running 'nvm use'"
+#     nvm use
+#   fi
+# }
 
 # Add load_nvm_if_nvmrc_exists_in_cwd to the list of function zsh will run when you chdir
 # chpwd_functions=(${chpwd_functions[@]} "load_nvm_if_nvmrc_exists_in_cwd")
 
 # run load_nvm_if_nvmrc_exists_in_cwd() once at shell startup in case we are
 # already in a dir with a .nvmrc
-load_nvm
-load_nvm_if_nvmrc_exists_in_cwd
+# load_nvm
+# load_nvm_if_nvmrc_exists_in_cwd
 
 # optional completions
 # [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 # . <(npm completion) # enable npm tab completion
+
+eval "$(nodenv init - --no-rehash)"
 
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
@@ -279,16 +295,12 @@ export FZF_DEFAULT_OPTS="--border --preview 'head -100 {}'"
 export FZF_DEFAULT_OPTS="--border"
 
 print "Configuring tab completion for serverless"
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/eoinkelly/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 print " .zshrc]"
+
 
 

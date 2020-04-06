@@ -1,5 +1,5 @@
 [user]
-	email = eoin@rabidtech.co.nz
+	email = eoin@eoinkelly.info
 	name = Eoin Kelly
 
 [color]
@@ -23,6 +23,7 @@
   autocrlf = input
 	excludesfile = /Users/eoinkelly/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
+  # pager = delta --dark # --hunk-style=plain
 
 #  x = "!cmd -arg -arg" # to run any shell cmd as alias
 [alias]
@@ -88,8 +89,9 @@
 	required = true
 [filter "lfs"]
 	required = true
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [commit]
 	template = /Users/eoinkelly/.stCommitMsg
 [interactive]

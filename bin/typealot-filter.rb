@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-$commands = Hash.new(0) 
+$commands = Hash.new(0)
 
 ARGF.each do |line|
   atoms = line.split(' ')
-  key = atoms[1]
-  key = "#{key} #{atoms[2]}" if key == 'git'
+  key = atoms[3]
+  key = "#{key} #{atoms[4]}" if key == 'git'
   $commands[key] += 1
 end
 
