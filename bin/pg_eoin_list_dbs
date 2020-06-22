@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+DATABASES=`psql --no-psqlrc --pset=tuples_only --pset="footer=off" --pset="pager=off" -c '\\list+'`
+  .lines
+  .map do |line|
+    line.split("|").map(&:strip)
+  end
+
+DATABASES.each do |db_info|
+  next if db_info.first.empty? || db_info.first.nil?
+
+  # skip standard DBs we don't care about
+  next if db_info.first.match?(/^(postgres|template0|template1)$/)
+
+  puts "#{printf("%40s", db_info[0])} (approx. #{db_info[6]})"
+end

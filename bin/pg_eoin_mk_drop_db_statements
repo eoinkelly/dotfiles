@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+DATABASES=`psql --no-psqlrc --pset=tuples_only --pset="footer=off" --pset="pager=off" -c 'SELECT datname FROM pg_database;'`.lines.map(&:strip).sort
+
+DATABASES.each do |db_name|
+  next if db_name.empty? || db_name.nil?
+
+  # skip standard DBs we would never want to delete
+  next if db_name.match?(/^(postgres|template0|template1)$/)
+
+  puts "psql -c 'DROP DATABASE #{db_name};'"
+end
+
