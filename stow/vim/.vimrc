@@ -19,6 +19,9 @@ call vundle#begin()
 " General
 " =======
 
+" JSON with comments
+Plugin 'neoclide/jsonc.vim'
+
 " Pony lang
 Plugin 'dleonard0/pony-vim-syntax'
 

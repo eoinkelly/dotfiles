@@ -103,3 +103,5 @@
 	newHighlight = green bold 22
 [log]
 	# date = auto:human # breaks sourcetree on 2019-02-25
+[pull]
+	ff = only
