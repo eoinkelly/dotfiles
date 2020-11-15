@@ -13,6 +13,7 @@ automake
 aws-elasticbeanstalk
 aws-shell
 awscli
+azure-cli
 bandwhich
 bat
 bdw-gc
@@ -41,9 +42,11 @@ diff-so-fancy
 direnv
 docbook
 docbook-xsl
+dog
 duc
 dust
 emacs
+entr
 erlang
 etcd
 exa
@@ -66,6 +69,7 @@ gdb
 gdbm
 gettext
 gflags
+gh
 ghostscript
 giflib
 git
@@ -81,6 +85,7 @@ gnupg
 gnutls
 go
 go-jira
+gobject-introspection
 golangci-lint
 gpgme
 gradle
@@ -164,7 +169,6 @@ libyaml
 libzip
 little-cms2
 lldpd
-llvm@7
 lua
 lua@5.1
 luajit
@@ -183,6 +187,7 @@ memtester
 mhash
 minisign
 mkcert
+mlton
 mpfr
 msgpack
 mysql
@@ -209,10 +214,8 @@ openjdk
 openjpeg
 openldap
 openshift-cli
-openssl
 openssl@1.1
 opus
-osquery
 p11-kit
 p7zip
 pandoc
@@ -222,10 +225,11 @@ pcre2
 perl
 pgloader
 php
+pigz
 pinentry
 pixman
 pkg-config
-pony-stable
+polyml
 ponyc
 postgresql
 procs
@@ -236,8 +240,9 @@ psgrep
 pyenv
 python
 python3
-python@2
 python@3.8
+python@3.9
+qpdf
 r
 rapidjson
 rav1e
@@ -253,7 +258,6 @@ rtmpdump
 rubberband
 ruby
 ruby-build
-rust
 sbcl
 scala
 scons
@@ -276,11 +280,13 @@ srt
 ssdeep
 starship
 stow
+swaks
 tcpdump
 tectonic
 telnet
 terraform
 tesseract
+tfsec
 the_silver_searcher
 theora
 thrift
@@ -297,6 +303,7 @@ v8
 v8@3.15
 vim
 watchman
+watson
 webp
 wget
 wxmac

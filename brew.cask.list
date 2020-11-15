@@ -1,7 +1,9 @@
 1password-cli
+beekeeper-studio
 discord
 dotnet-sdk
 font-hack-nerd-font
+font-iosevka
 font-sourcecodepro-nerd-font
 ghidra
 gimp
@@ -15,7 +17,5 @@ oracle-jdk
 pacifist
 phantomjs
 powershell
-qlcolorcode
-qlmarkdown
-qlstephen
 quicklook-json
+smlnj
