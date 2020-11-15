@@ -47,7 +47,7 @@ source $ZSH/oh-my-zsh.sh
 # ###########
 
 # not sure if this is in theme or not
-export DEFAULT_USER=eoinkelly
+# export DEFAULT_USER=eoinkelly
 
 # POWERLEVEL9K_MODE:
 #
@@ -69,7 +69,6 @@ export DEFAULT_USER=eoinkelly
 #
 # source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
-eval "$(starship init zsh)"
 ##
 # Instruct zsh to trust the terminal to display combining characters correctly
 # http://zsh.sourceforge.net/Doc/Release/Options.html#index-COMBININGCHARS
@@ -84,6 +83,12 @@ setopt auto_pushd
 
 # Allow completing of the remainder of a command
 bindkey "^N" insert-last-word
+
+# #################
+# Setup starship.rs
+# #################
+
+eval "$(starship init zsh)"
 
 # ####################
 # Setup hook functions

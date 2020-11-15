@@ -1,0 +1,3 @@
+endpoint: https://rabidtech.atlassian.net
+user: eoin@rabidtech.co.nz
+password-source: keyring

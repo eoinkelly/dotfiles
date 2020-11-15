@@ -176,7 +176,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
 
 " cobol
-Plugin 'fsouza/cobol.vim'
+" Plugin 'fsouza/cobol.vim' " seems unmaintained
 
 " swift
 Plugin 'keith/swift.vim'
@@ -186,6 +186,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'tomasr/molokai'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'} " this theme has 24 bit color support
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end() " required
 
@@ -349,7 +350,7 @@ set number
 set showcmd
 
 " This is sorta nice but slow in terminal vim
-set relativenumber
+" set relativenumber " I never really use them
 " au FocusLost * :set number
 " au FocusGained * :set relativenumber
 " autocmd InsertEnter * :set number
@@ -366,7 +367,8 @@ set backspace=indent,eol,start
 " ====================
 set t_Co=256 " turn on 256 colors in terminal
 set background=dark
-colorscheme Tomorrow-Night-Bright
+" colorscheme Tomorrow-Night-Bright
+colorscheme nord
 " colorscheme dracula
 " let macvim_skip_colorscheme=1
 "
@@ -506,6 +508,7 @@ if exists(":Abolish")
   :Abolish teh the " corrects teh|Teh|TEH
   :Abolish lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
   :Abolish taht that
+  :Abolish particpant participant
   :Abolish th e the
   :Abolish jion join
   :Abolish waht what

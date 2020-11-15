@@ -44,7 +44,7 @@ style = "green"
 # [docker_context]
 # disabled = false
 
-[time]
-disabled = false
-style = "yellow"
-format = "[%T]"
+# [time]
+# disabled = false
+# style = "yellow"
+# format = "[%T]"

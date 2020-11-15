@@ -117,15 +117,15 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Python development
 # #################
 #
-export PATH=$HOME/Library/Python/3.6/bin:$PATH
 export PIP_CONFIG_FILE=$HOME/.pip.conf
 
 # Stop python from creating __pycache__/ dirs everywhere
 export PYTHONDONTWRITEBYTECODE=1
 
-# virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
+# Tell virtualenvwrapper to use pyenv python
+export VIRTUALENVWRAPPER_PYTHON=/Users/eoinkelly/.pyenv/shims/python
+
+export WORKON_HOME=$HOME/python-envs
 source /usr/local/bin/virtualenvwrapper.sh
 
 # #################
