@@ -24,7 +24,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo -n "[~/.zshenv"
+# echo -n "[~/.zshenv"
 
 # ##########
 # PATH setup
@@ -123,10 +123,10 @@ export PIP_CONFIG_FILE=$HOME/.pip.conf
 export PYTHONDONTWRITEBYTECODE=1
 
 # Tell virtualenvwrapper to use pyenv python
-export VIRTUALENVWRAPPER_PYTHON=/Users/eoinkelly/.pyenv/shims/python
+# export VIRTUALENVWRAPPER_PYTHON=/Users/eoinkelly/.pyenv/shims/python
 
-export WORKON_HOME=$HOME/python-envs
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/python-envs
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # #################
 # oCaml development
@@ -166,5 +166,5 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$P
 
 # Fix problem that puma and many other things have with fork() on Catalina
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-echo " ~/.zshenv]"
+# echo " ~/.zshenv]"
+. "$HOME/.cargo/env"

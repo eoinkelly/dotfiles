@@ -23,5 +23,5 @@
 
 # vi: ft=zsh
 
-echo -n "[~/.zprofile"
-echo " ~/.zprofile]"
+# echo -n "[~/.zprofile"
+# echo " ~/.zprofile]"

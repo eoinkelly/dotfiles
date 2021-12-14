@@ -172,3 +172,5 @@ alias now="date"
 alias gmt="date -u"
 
 alias qlook="qlmanage -p"
+
+alias gsupstream="git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current)"

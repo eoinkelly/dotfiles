@@ -367,8 +367,8 @@ set backspace=indent,eol,start
 " ====================
 set t_Co=256 " turn on 256 colors in terminal
 set background=dark
-" colorscheme Tomorrow-Night-Bright
-colorscheme nord
+colorscheme Tomorrow-Night-Bright
+" colorscheme nord
 " colorscheme dracula
 " let macvim_skip_colorscheme=1
 "

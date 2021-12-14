@@ -31,7 +31,7 @@
 
 # vi: ft=zsh
 
-print "[.zshrc "
+# print "[.zshrc "
 
 # See ~/.oh-my-zsh/templates/zshrc.zsh-template for default oh-my-zsh options
 export ZSH=$HOME/.oh-my-zsh
@@ -145,9 +145,6 @@ export EDITOR="/usr/local/bin/nvim"
 setopt extendedglob # enable fancy extended glob syntax
 setopt dotglob # include hidden files in shell globs
 
-# `psql` without any args should do what I mean!
-export PGDATABASE="postgres"
-
 # ##################
 # Setup window title
 # ##################
@@ -180,8 +177,9 @@ eoin_set_title_to_cwd
 
 # Pass --no-rehash to prevent rehashing when we create a shell. This makes
 # starting the shell *much* quicker.
-# eval "$(rbenv init -)"
+# eval "$(rbenv init -)
 eval "$(rbenv init - --no-rehash)"
+# eval "$(frum init)"
 
 # ############
 # Python setup
@@ -203,8 +201,8 @@ eval "$(pyenv init - --no-rehash)"
 # * We want to use phpenv to provide `php` to both interactive and
 #   non-interactive shells
 #
-export PATH="$HOME/.phpenv/bin:$PATH:$HOME/.composer/vendor/bin"
-eval "$(phpenv init -)"
+#export PATH="$HOME/.phpenv/bin:$PATH:$HOME/.composer/vendor/bin"
+#eval "$(phpenv init -)"
 
 # ############
 # Elixir setup
@@ -264,9 +262,14 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 # #########################
 # Setup Postgres
 # #########################
-print "Setting up Postgres env vars"
+# print "Setting up Postgres env vars"
 export PGHOST=localhost
 export PGUSER=postgres
+
+# `psql` without any args should do what I mean!
+export PGDATABASE="postgres"
+export PG_COLOR=always
+
 
 # #########################
 # Custom local environments
@@ -274,8 +277,8 @@ export PGUSER=postgres
 
 eval "$(direnv hook zsh)"
 
-# Tell homebrew to automatically cleanup
-export HOMEBREW_NO_INSTALL_CLEANUP=1
+# tell homebrew not to keep cached files for very long
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=3
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then source "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
@@ -290,7 +293,7 @@ unalias run-help
 autoload run-help
 alias help=run-help
 
-print "Enabling fzf"
+# print "Enabling fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_COMMAND="fd --type f"
@@ -299,13 +302,18 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--border --preview 'head -100 {}'"
 export FZF_DEFAULT_OPTS="--border"
 
-print "Configuring tab completion for serverless"
-
 # tabtab source for packages
 # uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+# print "Configuring tab completion for serverless"
+# [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
-print " .zshrc]"
+# print " .zshrc]"
 
 
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# BEGIN SNIPPET: Platform.sh CLI configuration
+HOME=${HOME:-'/Users/eoinkelly'}
+export PATH="$HOME/"'.platformsh/bin':"$PATH"
+if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET

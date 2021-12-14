@@ -12,5 +12,5 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo -n "[~/.zlogout"
-echo " ~/.zlogout]"
+# echo -n "[~/.zlogout"
+# echo " ~/.zlogout]"

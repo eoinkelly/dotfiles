@@ -24,5 +24,5 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo -n "[~/.zlogin"
-echo " ~/.zlogin]"
+# echo -n "[~/.zlogin"
+# echo " ~/.zlogin]"

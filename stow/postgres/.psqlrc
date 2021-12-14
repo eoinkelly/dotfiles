@@ -1,17 +1,19 @@
--- -- vi: ft=pgsql
---
--- -- \set QUIET 1
--- \set ECHO none
+-- -- vi: ft=sql
+
+-- turn on quiet mode so that the changes this file makes won't be echoed
+\set QUIET 1
+\set ECHO none
+
 --
 -- -- stuff from TAOP
 -- \set PROMPT1 '%n@%/%R%# %x '
 --
--- \x auto
---
--- \set ON_ERROR_STOP on
--- \set ON_ERROR_ROLLBACK interactive
---
--- \pset null '¤'
+\x auto
+
+\set ON_ERROR_STOP on
+\set ON_ERROR_ROLLBACK interactive
+
+\pset null '¤'
 -- -- \pset linestyle 'unicode'
 --
 -- -- \pset unicode_border_linestyle single
@@ -31,9 +33,25 @@
 --
 -- \set VERBOSITY verbose
 -- \set HISTFILE ~/.psql_history- :DBNAME
--- \set HISTCONTROL ignoredups
+\set HISTCONTROL ignoredups
 --
--- \set COMP_KEYWORD_CASE upper
---
--- \set ECHO all
--- -- \unset QUIET
+\set COMP_KEYWORD_CASE upper
+
+-- define a shortcut for getting counts
+-- DROP FUNCTION IF EXISTS e_count;
+-- CREATE OR REPLACE FUNCTION e_count(tbl_name text)
+-- 	RETURNS bigint
+-- 	LANGUAGE plpgsql
+-- 	AS
+-- 	$$
+-- 		declare
+-- 			row_count bigint;
+-- 		begin
+-- 			execute 'select count(*) from ' || quote_ident(tbl_name) into row_count;
+-- 			return row_count;
+-- 		end;
+-- 	$$;
+
+\unset QUIET
+\set ECHO all
+

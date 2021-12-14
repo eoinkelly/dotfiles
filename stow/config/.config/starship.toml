@@ -19,10 +19,10 @@
 disabled = true
 
 [aws]
-displayed_items = "profile"
+# displayed_items = "profile"
 
 [aws.region_aliases]
-ap-southeast-2 = "au"
+ap-southeast-2 = "aws-au"
 
 [battery]
 disabled = true
@@ -31,18 +31,53 @@ disabled = true
 truncation_length = 8
 truncate_to_repo = false
 
+[lua]
+disabled = true
+
+[memory_usage]
+disabled = false
+threshold = -1
+style = "bold dimmed white"
+format = "[RAM:${ram_pct}(|SWP:${swap_pct})]($style) "
+
 [python]
+disabled = true
 pyenv_version_name = true
 style = "yellow"
 
 [php]
 style = "red"
 
-[node]
-style = "green"
+[nodejs]
+# style = "green"
+symbol = "N "
+disabled = true
 
-# [docker_context]
-# disabled = false
+[docker_context]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[ruby]
+disabled = true
+symbol = "R "
+
+
+[git_status]
+disabled = true
+format = '([\[$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind\]]($style) )'
+
+# conflicted = "🏳"
+# ahead = "🏎💨"
+# behind = "😰"
+# diverged = "😵"
+# untracked = "🤷‍"
+# stashed = "📦"
+# modified = "📝"
+# staged = '[++\($count\)](green)'
+# renamed = "👅"
+# deleted = "🗑"
 
 # [time]
 # disabled = false
