@@ -137,7 +137,7 @@ stty ixoff -ixon
 TERM=xterm-256color
 
 # export EDITOR="/usr/local/bin/vim"
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/opt/homebrew/bin/nvim"
 
 # #########################
 # Shell globbing
