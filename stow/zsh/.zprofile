@@ -25,3 +25,4 @@
 
 # echo -n "[~/.zprofile"
 # echo " ~/.zprofile]"
+eval "$(/opt/homebrew/bin/brew shellenv)"
