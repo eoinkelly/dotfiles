@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+
+$input_data = stream_get_contents(STDIN);
+$ob = unserialize($input_data, ['allowed_classes' => false]);
+var_dump($ob);
