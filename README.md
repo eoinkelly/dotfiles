@@ -6,6 +6,9 @@
 This section is WIP
 
 ```
+brew install fzf neovim pyenv rbenv nodenv direnv
+brew install font-monaspace-nerd-font font-sauce-code-pro-nerd-font diff-so-fancy
+
 # setup dotfiles
 # ##############
 brew install git stow vim
@@ -22,6 +25,9 @@ git clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 # #########
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+pyenv install <latest-python>
+pyenv global <latest-python>
+pip install pynvim
 # open vim
 :PluginInstall
 
