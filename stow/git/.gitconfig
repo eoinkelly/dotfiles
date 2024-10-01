@@ -1,5 +1,5 @@
 [user]
-	email = eoin@eoinkelly.info
+	email = eoin.kelly@ackama.com
 	name = Eoin Kelly
 
 [color]
@@ -22,7 +22,7 @@
 	# editor = vim # I want $EDITOR fallback so I can use nvim
   autocrlf = input
 	excludesfile = /Users/eoinkelly/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	# pager = diff-so-fancy | less --tabs=4 -RFX
   # pager = delta --dark # --hunk-style=plain
 
 #  x = "!cmd -arg -arg" # to run any shell cmd as alias
@@ -45,6 +45,7 @@
 
 [push]
 	default = current
+	autoSetupRemote = true
 [init]
 	templatedir = ~/.git_template
 	defaultBranch = main
@@ -109,3 +110,5 @@
 	# date = auto:human # breaks sourcetree on 2019-02-25
 [pull]
 	ff = only
+[branch]
+  sort = -committerdate

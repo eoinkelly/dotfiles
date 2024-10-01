@@ -24,7 +24,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-# echo -n "[~/.zshenv"
+echo "Loading .zshenv"
 
 # ##########
 # PATH setup
@@ -81,6 +81,11 @@ export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
 # Add my little utilities last (so they are found first)
 export PATH="$HOME/bin:$PATH"
 
+# add ssh-tools
+export PATH="$HOME/bin/ssh-tools:$PATH"
+
+# add PHP composer global tools
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 # ##########
 # Rust setup
 # ##########
@@ -116,7 +121,9 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # #################
 # Python development
 # #################
-#
+
+export PATH="$HOME/.local/bin:$PATH"
+
 export PIP_CONFIG_FILE=$HOME/.pip.conf
 
 # Stop python from creating __pycache__/ dirs everywhere
@@ -168,3 +175,5 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$P
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # echo " ~/.zshenv]"
 . "$HOME/.cargo/env"
+
+

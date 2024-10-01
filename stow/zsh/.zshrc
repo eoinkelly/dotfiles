@@ -31,7 +31,7 @@
 
 # vi: ft=zsh
 
-# print "[.zshrc "
+echo "Loading .zshrc"
 
 # See ~/.oh-my-zsh/templates/zshrc.zsh-template for default oh-my-zsh options
 export ZSH=$HOME/.oh-my-zsh
@@ -137,7 +137,7 @@ stty ixoff -ixon
 TERM=xterm-256color
 
 # export EDITOR="/usr/local/bin/vim"
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/opt/homebrew/bin/nvim"
 
 # #########################
 # Shell globbing
@@ -167,19 +167,6 @@ function eoin_set_title_to_cwd {
 chpwd_functions=(${chpwd_functions[@]} "eoin_set_title_to_cwd")
 
 eoin_set_title_to_cwd
-
-# ##########
-# Ruby setup
-# ##########
-#
-# * We want to use rbenv to provide `ruby` to both interactive and
-#   non-interactive shells
-
-# Pass --no-rehash to prevent rehashing when we create a shell. This makes
-# starting the shell *much* quicker.
-# eval "$(rbenv init -)
-eval "$(rbenv init - --no-rehash)"
-# eval "$(frum init)"
 
 # ############
 # Python setup
@@ -275,6 +262,7 @@ export PG_COLOR=always
 # Custom local environments
 # #########################
 
+echo "Loading direnv"
 eval "$(direnv hook zsh)"
 
 # tell homebrew not to keep cached files for very long
@@ -310,10 +298,27 @@ export FZF_DEFAULT_OPTS="--border"
 # print " .zshrc]"
 
 
+export PATH="/opt/homebrew/sbin/:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # BEGIN SNIPPET: Platform.sh CLI configuration
-HOME=${HOME:-'/Users/eoinkelly'}
-export PATH="$HOME/"'.platformsh/bin':"$PATH"
-if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+# HOME=${HOME:-'/Users/eoinkelly'}
+# export PATH="$HOME/"'.platformsh/bin':"$PATH"
+# if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+
+# Opt-in to faster homebrew
+# export HOMEBREW_INSTALL_FROM_API=1
+
+# ################
+# Ruby development
+# ################
+#
+# * We want to use rbenv to provide `ruby` to both interactive and
+#   non-interactive shells
+
+# Pass --no-rehash to prevent rehashing when we create a shell. This makes
+# starting the shell *much* quicker.
+# eval "$(rbenv init -)
+eval "$(rbenv init - --no-rehash)"
+source /Users/eoinkelly/.config/op/plugins.sh

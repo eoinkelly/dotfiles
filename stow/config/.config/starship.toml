@@ -79,7 +79,7 @@ format = '([\[$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahea
 # renamed = "👅"
 # deleted = "🗑"
 
-# [time]
-# disabled = false
+[time]
+disabled = false
 # style = "yellow"
 # format = "[%T]"

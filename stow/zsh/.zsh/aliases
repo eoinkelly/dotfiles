@@ -112,21 +112,21 @@ compdef _work work
 
 # #######################################
 # A fast way of chdir to a github project
-function github {
-  cd ~/Code/github.com/$1
-}
-
-function _github() {
-  local state
-
-  _arguments '1: :->repos_dir'
-
-  case $state in
-    (repos_dir) _arguments '1:profiles:($(ls ~/Code/github.com))' ;;
-  esac
-}
-
-compdef _github github
+# function github {
+#   cd ~/Code/github.com/$1
+# }
+#
+# function _github() {
+#   local state
+#
+#   _arguments '1: :->repos_dir'
+#
+#   case $state in
+#     (repos_dir) _arguments '1:profiles:($(ls ~/Code/github.com))' ;;
+#   esac
+# }
+#
+# compdef _github github
 # #######################################
 
 
@@ -163,6 +163,9 @@ alias cwdsizes="du -hd1 . |gsort -h"
 alias desktop="cd ~/Desktop"
 alias desk="cd ~/Desktop"
 
+alias down="cd ~/Downloads"
+alias downloads="cd ~/Downloads"
+
 alias vim=nvim
 alias vi=nvim
 alias tf=terraform
@@ -174,3 +177,18 @@ alias gmt="date -u"
 alias qlook="qlmanage -p"
 
 alias gsupstream="git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current)"
+
+alias k="kubectl"
+
+# stree is also used for Ruby syntax_tree gem
+alias srctree="/opt/homebrew/bin/stree"
+
+# output the current timezone
+alias timezone.show='ls -l /etc/localtime'
+# set the timezone to my default local timezone
+alias timezone.set-nz='sudo ln -sf /var/db/timezone/zoneinfo/Pacific/Auckland /etc/localtime'
+# set the timezone to utc
+alias timezone.set-utc='sudo ln -sf /var/db/timezone/zoneinfo/UTC /etc/localtime'
+
+alias rails-dbg='rdbg -c -n --open=vscode -- bin/rails'
+alias st="sourcetree"

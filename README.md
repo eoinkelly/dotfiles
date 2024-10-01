@@ -29,19 +29,37 @@ git clone https://github.com/madumlao/phpenv.git ~/.phpenv
 
 # finish fzf setup
 $(brew --prefix)/opt/fzf/install
+
+rbenv install 3.something_modern
+pyenv install 3.something_modern
+
+# after installing vscode
+./set-default-open-with-macos.sh
+
 ```
 
 ## Apple stuff
 
 
-Keyboard prefs
+* Finder sidebar
+    * show filename extension
+    * enable the shortcuts I like in finder sidebar
+    * show hidden files `cmd-shift-.`
+* copy `private_bin` dir from old and wire it up
+* change keyboard modifier keys to match microsoft keyboard (swap option and cmd)
+* Keyboard prefs
+    ```
     keyboard tab
         set fastest key repeating
         set shortest delay until repeat
     text tab
         turn off smart quotes
         turn off period after double space
+    ```
+
+Setup key repeating the way I like:
 
 ```
 defaults write -g ApplePressAndHoldEnabled -bool false
+# needs a restart to take hold
 ```
