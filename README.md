@@ -5,25 +5,23 @@
 
 This section is WIP
 
-```
-brew install fzf neovim pyenv rbenv nodenv direnv
-brew install font-monaspace-nerd-font font-sauce-code-pro-nerd-font diff-so-fancy
+```bash
+# install packages my config depends on
+brew install neovim fzf pyenv rbenv nodenv direnv starship font-monaspace-nerd-font font-sauce-code-pro-nerd-font diff-so-fancy git stow vim
 
 # setup dotfiles
 # ##############
-brew install git stow vim
-git clone repo ~/.dotfiles
+# use https because git ssh not set up yet
+git clone https://github.com/eoinkelly/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 bash ./install-all-with-stow.sh
 
 # Install oh-my-zsh
 git clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-# You might have to turn off some bits of the dotfiles
-# which are not yet installed on the machine
 # setup vim
 # #########
-
+brew install neovim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 pyenv install <latest-python>
 pyenv global <latest-python>
@@ -31,17 +29,11 @@ pip install pynvim
 # open vim
 :PluginInstall
 
-git clone https://github.com/madumlao/phpenv.git ~/.phpenv
-
 # finish fzf setup
 $(brew --prefix)/opt/fzf/install
 
-rbenv install 3.something_modern
-pyenv install 3.something_modern
-
 # after installing vscode
 ./set-default-open-with-macos.sh
-
 ```
 
 ## Apple stuff
@@ -62,6 +54,7 @@ pyenv install 3.something_modern
         turn off smart quotes
         turn off period after double space
     ```
+
 
 Setup key repeating the way I like:
 
