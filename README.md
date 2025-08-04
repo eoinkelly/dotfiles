@@ -34,6 +34,11 @@ $(brew --prefix)/opt/fzf/install
 
 # after installing vscode
 ./set-default-open-with-macos.sh
+
+
+mkdir -p ~/Code/repos
+git clone git@github.com:chriskempson/tomorrow-theme.git ~/Code/repos/tomorrow-theme
+# set colors in tools as required
 ```
 
 ## Apple stuff
