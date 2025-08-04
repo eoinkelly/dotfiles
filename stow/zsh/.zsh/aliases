@@ -1,24 +1,24 @@
 # vi: ft=zsh
 
-alias netrst='sudo service networking restart' 
-alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+# alias netrst='sudo service networking restart'
+# alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 # setup docker environment vars in current shell
-alias dockerme='echo "Adding docker to ENV..." && eval "$(docker-machine env default)" && env | grep DOCK'
+# alias dockerme='echo "Adding docker to ENV..." && eval "$(docker-machine env default)" && env | grep DOCK'
 
-alias eclipse='open /Users/eoinkelly/eclipse/java-latest-released/Eclipse.app'
+# alias eclipse='open /Users/eoinkelly/eclipse/java-latest-released/Eclipse.app'
 # rails shortcuts
 # ###############
 
 alias be='bundle exec'
 # alias brails='bundle exec rails'
-alias brails='echo "please just use rails or ./bin/rails now"'
+# alias brails='echo "please just use rails or ./bin/rails now"'
 # alias brake='bundle exec rake -t'
-alias brake='echo "please just use rake or ./bin/rake now"'
-alias rdbtp='bundle exec rake -t db:test:prepare'
+# alias brake='echo "please just use rake or ./bin/rake now"'
+# alias rdbtp='bundle exec rake -t db:test:prepare'
 # noglob tells zsh not to glob the [] args which rake accepts
-# alias rake="noglob rake -t" 
-# alias rubocop="rubocop -D" 
+# alias rake="noglob rake -t"
+# alias rubocop="rubocop -D"
 
 # ctags kills kittens if you run it on a large repo
 # alias ctags="`brew --prefix`/bin/ctags"
@@ -44,22 +44,22 @@ alias npmg='npm -g'
 alias npmg0='npm -g --depth=0'
 
 alias tree='tree -C'
-alias typealot="history | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
-alias typeabit="history | tail -n 1000 | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
+# alias typealot="history | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
+# alias typeabit="history | tail -n 1000 | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
 
-alias pg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log'
+# alias pg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log'
 
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+# alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-alias ri='ri --format ansi'
+# alias ri='ri --format ansi'
 
-alias marked='open -a "/Applications/Marked 2.app" '
+# alias marked='open -a "/Applications/Marked 2.app" '
 
-alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
-alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
-alias iossim='open "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"'
+# alias andevmon='open "/Users/eoinkelly/Library/Android/sdk/tools/lib/monitor-x86_64/monitor.app"'
+# alias brb='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+# alias iossim='open "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"'
 
-alias rme="~/Code/rme/rme"
+# alias rme="~/Code/rme/rme"
 
 alias sourcetree='open -a SourceTree'
 
@@ -74,8 +74,8 @@ alias sourcetree='open -a SourceTree'
 # load_ssh_shortcuts_if_available
 
 # show and remove vim swp|swo files
-alias swps-show='find -E . -iregex ".*\.(swo|swp)"'
-alias swps-rm='find -E . -iregex ".*\.(swo|swp)" -exec rm {} ";"'
+# alias swps-show='find -E . -iregex ".*\.(swo|swp)"'
+# alias swps-rm='find -E . -iregex ".*\.(swo|swp)" -exec rm {} ";"'
 
 # use graphic printing chars that are good for iterm2
 alias pstree='pstree -g 2'
@@ -85,11 +85,11 @@ wtf() { fc -li 1 | grep "$*"; }
 
 canary() { /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary "$*" 2>/dev/null 1>/dev/null &; }
 
-alias canary3000="canary http://localhost:3000/"
+# alias canary3000="canary http://localhost:3000/"
 
-alias prettypath="echo $PATH | tr -s ':' '\n'"
+# alias prettypath="echo $PATH | tr -s ':' '\n'"
 
-alias gdb="gdb -silent"
+# alias gdb="gdb -silent"
 
 # #####################################
 # A fast way of chdir to a code project
@@ -149,39 +149,39 @@ compdef _notes notes
 # #######################################
 
 
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
-alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+# alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+# alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+# alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
-alias kernelver="curl -s https://www.kernel.org/releases.json | jq .latest_stable.version"
+# alias kernelver="curl -s https://www.kernel.org/releases.json | jq .latest_stable.version"
 
-alias comp="docker-compose"
+# alias comp="docker-compose"
 # alias dkcci="docker-compose -f docker-compose.ci.yml"
-alias doc="docker"
+# alias doc="docker"
 
-alias cwdsizes="du -hd1 . |gsort -h"
+# alias cwdsizes="du -hd1 . |gsort -h"
 alias desktop="cd ~/Desktop"
 alias desk="cd ~/Desktop"
 
 alias down="cd ~/Downloads"
 alias downloads="cd ~/Downloads"
 
-alias vim=nvim
-alias vi=nvim
+# alias vim=nvim
+# alias vi=nvim
 alias tf=terraform
-alias kit=kitchen
+# alias kit=kitchen
 
-alias now="date"
-alias gmt="date -u"
+# alias now="date"
+# alias gmt="date -u"
 
-alias qlook="qlmanage -p"
+# alias qlook="qlmanage -p"
 
 alias gsupstream="git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current)"
 
-alias k="kubectl"
+# alias k="kubectl"
 
 # stree is also used for Ruby syntax_tree gem
-alias srctree="/opt/homebrew/bin/stree"
+# alias srctree="/opt/homebrew/bin/stree"
 
 # output the current timezone
 alias timezone.show='ls -l /etc/localtime'
@@ -190,5 +190,5 @@ alias timezone.set-nz='sudo ln -sf /var/db/timezone/zoneinfo/Pacific/Auckland /e
 # set the timezone to utc
 alias timezone.set-utc='sudo ln -sf /var/db/timezone/zoneinfo/UTC /etc/localtime'
 
-alias rails-dbg='rdbg -c -n --open=vscode -- bin/rails'
+# alias rails-dbg='rdbg -c -n --open=vscode -- bin/rails'
 alias st="sourcetree"
