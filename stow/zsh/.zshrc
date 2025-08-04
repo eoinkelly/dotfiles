@@ -31,7 +31,7 @@
 
 # vi: ft=zsh
 
-echo "Loading .zshrc"
+# echo "Loading .zshrc"
 
 # See ~/.oh-my-zsh/templates/zshrc.zsh-template for default oh-my-zsh options
 export ZSH=$HOME/.oh-my-zsh
@@ -262,7 +262,7 @@ export PG_COLOR=always
 # Custom local environments
 # #########################
 
-echo "Loading direnv"
+# echo "Loading direnv"
 eval "$(direnv hook zsh)"
 
 # tell homebrew not to keep cached files for very long
@@ -321,4 +321,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # starting the shell *much* quicker.
 # eval "$(rbenv init -)
 eval "$(rbenv init - --no-rehash)"
-source /Users/eoinkelly/.config/op/plugins.sh
+if [ -f /Users/eoinkelly/.config/op/plugins.sh ]; then
+  source /Users/eoinkelly/.config/op/plugins.sh
+fi

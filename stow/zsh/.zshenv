@@ -24,7 +24,7 @@
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #
-echo "Loading .zshenv"
+# echo "Loading .zshenv"
 
 # ##########
 # PATH setup
@@ -42,34 +42,36 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 # Add homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Add xiki
-export PATH="$HOME/xiki-bin:$PATH"
+# export PATH="$HOME/xiki-bin:$PATH"
 
 # Add node & npm
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 # Add cabal
-export PATH="$HOME/.cabal/bin:$PATH"
+# export PATH="$HOME/.cabal/bin:$PATH"
 
-export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH"
-export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH"
+# export PATH="/usr/local/android-dev-tools/sdk/platform-tools:$PATH"
+# export PATH="/usr/local/android-dev-tools/sdk/tools:$PATH"
 
 # for zip-align (will probably break sometime)
-export PATH="/usr/local/android-dev-tools/sdk/build-tools/20.0.0:$PATH"
+# export PATH="/usr/local/android-dev-tools/sdk/build-tools/20.0.0:$PATH"
 
 # Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Load exenv (elixir)
-export PATH="$HOME/.exenv/bin:$PATH"
+if [ -d "$HOME/.exenv/bin" ]; then
+	export PATH="$HOME/.exenv/bin:$PATH"
+fi
 
 # Load rabid toolbelt
-export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
+# export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
 
 # We want the ./bin of rails apps we trust to be first on our path so that we
 # can run bundler binstubs (and not have to type `bundle exec foo` everytime we
@@ -79,24 +81,27 @@ export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
 # export PATH=".git/safe/../../bin:$PATH"
 
 # Add my little utilities last (so they are found first)
-export PATH="$HOME/bin:$PATH"
+# export PATH="$HOME/bin:$PATH"
 
 # add ssh-tools
-export PATH="$HOME/bin/ssh-tools:$PATH"
+# export PATH="$HOME/bin/ssh-tools:$PATH"
 
 # add PHP composer global tools
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+# export PATH="$HOME/.composer/vendor/bin:$PATH"
 # ##########
 # Rust setup
 # ##########
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
+if [ -d "$HOME/.cargo/bin" ]; then
+	export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # ##########
 # Flutter setup
 # ##########
 
-export PATH="$HOME/flutter_dev/flutter/bin:$PATH"
+# export PATH="$HOME/flutter_dev/flutter/bin:$PATH"
 
 
 # ##################
@@ -108,13 +113,13 @@ export PATH="$HOME/flutter_dev/flutter/bin:$PATH"
 #
 #   iex> h open
 #
-export ELIXIR_EDITOR="code --goto __FILE__:__LINE__"
+# export ELIXIR_EDITOR="code --goto __FILE__:__LINE__"
 
 # ###################
 # Android Development
 # ###################
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
 # export ANDROID_HOME=/usr/local/android-dev-tools/sdk
 # export GRADLE_HOME="/usr/local/Cellar/gradle/2.0" # used for homebrew gradle
 
@@ -165,15 +170,15 @@ export RUST_SRC_PATH="$HOME/Code/rust/src"
 export PATH=$HOME/private_bin:$PATH
 
 # Add custom work dev tools
-export PATH=$HOME/Code/bitbucket.org/rabidtech/fairfax-dev-tools/bin:$PATH
-export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
+# export PATH=$HOME/Code/bitbucket.org/rabidtech/fairfax-dev-tools/bin:$PATH
+# export PATH=$HOME/code/bitbucket.org/rabidtech/rabid-toolbelt/bin:$PATH
 
 # Allow running Visual studio Code from command line
-export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+# export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
 
 # Fix problem that puma and many other things have with fork() on Catalina
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-# echo " ~/.zshenv]"
-. "$HOME/.cargo/env"
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-
+if [ -x "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi
