@@ -43,7 +43,7 @@ alias npm0='npm --depth=0'
 alias npmg='npm -g'
 alias npmg0='npm -g --depth=0'
 
-alias tree='tree -C'
+# alias tree='tree -C'
 # alias typealot="history | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
 # alias typeabit="history | tail -n 1000 | ~/.dotfiles/bin/typealot-filter.rb | sort -rn | head -n 20"
 
@@ -62,6 +62,7 @@ alias tree='tree -C'
 # alias rme="~/Code/rme/rme"
 
 alias sourcetree='open -a SourceTree'
+alias st='open -a SourceTree'
 
 # function load_ssh_shortcuts_if_available() {
 #   aliases_file=~/.eoin-ssh-shortcut-aliases
@@ -83,7 +84,7 @@ alias pstree='pstree -g 2'
 # wtf YYYY-MM-DD to see all history from a particular day
 wtf() { fc -li 1 | grep "$*"; }
 
-canary() { /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary "$*" 2>/dev/null 1>/dev/null &; }
+# canary() { /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary "$*" 2>/dev/null 1>/dev/null &; }
 
 # alias canary3000="canary http://localhost:3000/"
 
@@ -186,9 +187,8 @@ alias gsupstream="git branch --set-upstream-to=origin/$(git branch --show-curren
 # output the current timezone
 alias timezone.show='ls -l /etc/localtime'
 # set the timezone to my default local timezone
-alias timezone.set-nz='sudo ln -sf /var/db/timezone/zoneinfo/Pacific/Auckland /etc/localtime'
-# set the timezone to utc
-alias timezone.set-utc='sudo ln -sf /var/db/timezone/zoneinfo/UTC /etc/localtime'
+# alias timezone.set-nz='sudo ln -sf /var/db/timezone/zoneinfo/Pacific/Auckland /etc/localtime'
+# # set the timezone to utc
+# alias timezone.set-utc='sudo ln -sf /var/db/timezone/zoneinfo/UTC /etc/localtime'
 
 # alias rails-dbg='rdbg -c -n --open=vscode -- bin/rails'
-alias st="sourcetree"

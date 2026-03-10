@@ -1,14 +1,5 @@
-# zlogout
-#
-# * sourced only when a login shell exists
-#
-# Good:
-#
-# * ???
-#
-# Bad:
-#
-# * almost everything? I can't think of a good use for this in my setup
+##
+# - `~/.zlogout` sourced only when a login shell exists
 #
 # Details: http://zsh.sourceforge.net/Intro/intro_3.html
 #

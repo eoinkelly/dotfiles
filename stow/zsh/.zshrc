@@ -1,13 +1,6 @@
 ##
-# There are 4 kinds of zsh shell:
-#
-# 1. login + interactive
-# 2. login + non-interactive
-# 3. non-login + interactive
-# 4. non-login + non-interactive
-#
-# This file is only run for _interactive_ shells (1. and 3. above).
-# This file is **not** run when you run a shell script!
+# - `.zshrc` is only run for _interactive_ shells (both login and non-login).
+# - This file is **not** run when you run a shell script!
 #
 #     $ zsh ./script.sh # will source this file
 #     $ zsh -l ./script.sh # will not source this file
@@ -30,44 +23,21 @@
 #
 
 # vi: ft=zsh
-
 # echo "Loading .zshrc"
 
+# #################
+# Setup oh-my-zsh
+# #################
+#
 # See ~/.oh-my-zsh/templates/zshrc.zsh-template for default oh-my-zsh options
+#
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="" # I'm not using oh-my-zsh to manage the theme
-export UPDATE_ZSH_DAYS=30
+export UPDATE_ZSH_DAYS=90
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 plugins=()
 source $ZSH/oh-my-zsh.sh
-
-# ###########
-# Setup Theme
-# ###########
-
-# not sure if this is in theme or not
-# export DEFAULT_USER=eoinkelly
-
-# POWERLEVEL9K_MODE:
-#
-#   flat|awesome-patched|awesome-fontconfig|awesome-mapped-fontconfig|nerdfont-complete|nerdfont-fontconfig|compatible|<empty> (default)
-#
-# POWERLEVEL9K_MODE="nerdfont-complete"
-#
-# # https://github.com/bhilburn/powerlevel9k#available-prompt-segments
-# # e.g.
-# #
-# #     history time rust_version virtualenv
-# #
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh dir_writable dir background_jobs aws rbenv nvm vcs status)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-# # POWERLEVEL9K_SHOW_CHANGESET=true
-# # POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
-# # POWERLEVEL9K_NVM_FOREGROUND='white'
-# # POWERLEVEL9K_NVM_BACKGROUND='124' # a vivid red
-#
-# source  ~/.zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 ##
 # Instruct zsh to trust the terminal to display combining characters correctly
@@ -88,7 +58,9 @@ bindkey "^N" insert-last-word
 # Setup starship.rs
 # #################
 
-eval "$(starship init zsh)"
+if whence starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 # ####################
 # Setup hook functions
@@ -117,10 +89,8 @@ HISTSIZE=20000
 SAVEHIST=20000
 HISTFILE=$HOME/.zsh_history
 
-
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
-
 
 # Disable flow control commands (prevents C-s from freezing everything)
 # stty start undef
@@ -154,19 +124,16 @@ DISABLE_AUTO_TITLE="true" # tell oh-my-zsh not to set title
 # set title to whatever string you provide
 # e.g.
 #     eoin_title hi there
-function eoin_title { # 'title' is already a shell alias so don't call it that
-  echo -ne "\033]0;"$*"\007"
-}
-
-# Set the title to be the current working directory name
-function eoin_set_title_to_cwd {
-  # echo "Setting window/tab title to $(basename $PWD)"
-  echo -ne "\033]0;"$(basename $PWD)"\007"
-}
-
-chpwd_functions=(${chpwd_functions[@]} "eoin_set_title_to_cwd")
-
-eoin_set_title_to_cwd
+# function eoin_title { # 'title' is already a shell alias so don't call it that
+#   echo -ne "\033]0;"$*"\007"
+# }
+# # Set the title to be the current working directory name
+# function eoin_set_title_to_cwd {
+#   # echo "Setting window/tab title to $(basename $PWD)"
+#   echo -ne "\033]0;"$(basename $PWD)"\007"
+# }
+# chpwd_functions=(${chpwd_functions[@]} "eoin_set_title_to_cwd")
+# eoin_set_title_to_cwd
 
 # ############
 # Python setup
@@ -177,9 +144,10 @@ eoin_set_title_to_cwd
 
 # Pass --no-rehash to prevent rehashing when we create a shell. This makes
 # starting the shell *much* quicker.
-# eval "$(rbenv init -)"
-export PATH="${HOME}/.pyenv/shims:${PATH}"
-eval "$(pyenv init - --no-rehash)"
+if whence pyenv &>/dev/null; then
+  export PATH="${HOME}/.pyenv/shims:${PATH}"
+  eval "$(pyenv init - --no-rehash)"
+fi
 
 # ##########
 # PHP setup
@@ -195,15 +163,15 @@ eval "$(pyenv init - --no-rehash)"
 # Elixir setup
 # ############
 
-function load_exenv_if_available() {
-  which exenv 1>/dev/null 2>&1
-  if [[ $? == 0 ]]; then
-    print -n "Loading elixir ... "
-    eval "$(exenv init -)"
-    print "done."
-  fi
-}
-load_exenv_if_available
+# function load_exenv_if_available() {
+#   which exenv 1>/dev/null 2>&1
+#   if [[ $? == 0 ]]; then
+#     print -n "Loading elixir ... "
+#     eval "$(exenv init -)"
+#     print "done."
+#   fi
+# }
+# load_exenv_if_available
 
 # #################
 # Rails Development
@@ -241,7 +209,9 @@ export DISABLE_SPRING=1 # disable spring because I don't trust it
 # [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 # . <(npm completion) # enable npm tab completion
 
-eval "$(nodenv init - --no-rehash)"
+if whence nodenv &>/dev/null; then
+  eval "$(nodenv init - --no-rehash)"
+fi
 
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
@@ -263,10 +233,13 @@ export PG_COLOR=always
 # #########################
 
 # echo "Loading direnv"
-eval "$(direnv hook zsh)"
+if whence direnv&>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # tell homebrew not to keep cached files for very long
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=3
+export HOMEBREW_NO_ENV_HINTS=1
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then source "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
@@ -319,8 +292,17 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Pass --no-rehash to prevent rehashing when we create a shell. This makes
 # starting the shell *much* quicker.
-# eval "$(rbenv init -)
-eval "$(rbenv init - --no-rehash)"
+if whence rbenv &>/dev/null; then
+  eval "$(rbenv init - --no-rehash)"
+fi
+
 if [ -f /Users/eoinkelly/.config/op/plugins.sh ]; then
   source /Users/eoinkelly/.config/op/plugins.sh
 fi
+
+if whence mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+# Added by Windsurf
+export PATH="/Users/eoinkelly/.codeium/windsurf/bin:$PATH"

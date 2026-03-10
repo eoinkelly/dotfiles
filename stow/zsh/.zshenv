@@ -47,9 +47,6 @@ fi
 # Add homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-# Add xiki
-# export PATH="$HOME/xiki-bin:$PATH"
-
 # Add node & npm
 export PATH="/usr/local/share/npm/bin:$PATH"
 
@@ -66,12 +63,10 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Load exenv (elixir)
-if [ -d "$HOME/.exenv/bin" ]; then
-	export PATH="$HOME/.exenv/bin:$PATH"
-fi
+# if [ -d "$HOME/.exenv/bin" ]; then
+# 	export PATH="$HOME/.exenv/bin:$PATH"
+# fi
 
-# Load rabid toolbelt
-# export PATH="$HOME/Code/rabid-toolbelt/bin:$PATH"
 
 # We want the ./bin of rails apps we trust to be first on our path so that we
 # can run bundler binstubs (and not have to type `bundle exec foo` everytime we
@@ -95,6 +90,10 @@ fi
 # export PATH="$HOME/.cargo/bin:$PATH"
 if [ -d "$HOME/.cargo/bin" ]; then
 	export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -x "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
 fi
 
 # ##########
@@ -179,6 +178,3 @@ export PATH=$HOME/private_bin:$PATH
 # Fix problem that puma and many other things have with fork() on Catalina
 # export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-if [ -x "$HOME/.cargo/env" ]; then
-	. "$HOME/.cargo/env"
-fi
