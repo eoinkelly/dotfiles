@@ -160,6 +160,7 @@ export PATH="$GOPATH/bin:$PATH"
 
 # rust auto completer (r_a_c_er)
 export RUST_SRC_PATH="$HOME/Code/rust/src"
+. "$HOME/.cargo/env"
 
 # #################
 # Eoin's little helpers
@@ -177,4 +178,10 @@ export PATH=$HOME/private_bin:$PATH
 
 # Fix problem that puma and many other things have with fork() on Catalina
 # export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# echo " ~/.zshenv]"
 
+# #################
+# Docker Desktop
+# #################
+
+export PATH="${HOME}/.docker/bin:$PATH"

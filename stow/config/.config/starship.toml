@@ -1,17 +1,109 @@
 # https://starship.rs/config/
 
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$aws\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$mise\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$netns\
+$shell\
+$directory\
+$character"""
+
 # Don't print a new line at the start of the prompt
 # add_newline = false
-
-# [line_break]
-# disabled = true
 
 [character]
 # Replace the "❯" symbol in the prompt with "➜"
 # symbol = "➜"
 
 [git_branch]
-# symbol = ""
+format = "[\nGIT: $symbol$branch(:$remote_branch)]($style) "
+symbol = ""
 # style = "purple"
 
 # Disable the package module, hiding it from the prompt completely
@@ -20,9 +112,14 @@ disabled = true
 
 [aws]
 # displayed_items = "profile"
+symbol = "\nAWS: "
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[aws.profile_aliases]
+kaluza-industryabstractions-oea-test = "oea-test"
 
 [aws.region_aliases]
-ap-southeast-2 = "aws-au"
+ap-southeast-2 = "syd"
 
 [battery]
 disabled = true
@@ -35,7 +132,7 @@ truncate_to_repo = false
 disabled = true
 
 [memory_usage]
-disabled = false
+disabled = true
 threshold = -1
 style = "bold dimmed white"
 format = "[RAM:${ram_pct}(|SWP:${swap_pct})]($style) "
@@ -83,3 +180,31 @@ format = '([\[$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahea
 disabled = false
 # style = "yellow"
 # format = "[%T]"
+
+[kubernetes]
+disabled = false
+# style = "blue bold"
+# format = 'k: c:$cluster ctx:$context n:$namespace'
+format = "[K8S: $context \\($namespace\\)](blue bold)"
+# format = '[k8s: u:$user c:$cluster ctx:$context n:$namespace](dimmed green) '
+
+[[kubernetes.contexts]]
+# equals "admin_user"
+context_pattern = "kmi-oea-test"
+# user_pattern = "admin_user"
+style = "blue bold"
+# context_alias = "k-test"
+# user_alias = "admin"
+
+[[kubernetes.contexts]]
+context_pattern = "kmi-oea-sandbox"
+style = "bold blue"
+# context_alias = "k-sandbox"
+
+[[kubernetes.contexts]]
+context_pattern = "kmi-oea-prod"
+style = "bold red"
+# context_alias = "k-prod"
+
+[line_break]
+disabled = false
